@@ -68,21 +68,21 @@ impl BlockPos {
       | ((self.0[3] & 0b11) as u8) << 6
   }
   #[inline]
-  pub fn down_level(&self) -> Self {
+  pub fn down_level(&self, level: u8) -> Self {
     Self([
-      self.0[0] >> 2,
-      self.0[1] >> 2,
-      self.0[2] >> 2,
-      self.0[3] >> 2,
+      self.0[0] >> 2 * level,
+      self.0[1] >> 2 * level,
+      self.0[2] >> 2 * level,
+      self.0[3] >> 2 * level,
     ])
   }
   #[inline]
-  pub fn up_level(&self) -> Self {
+  pub fn up_level(&self, level: u8) -> Self {
     Self([
-      self.0[0] << 2,
-      self.0[1] << 2,
-      self.0[2] << 2,
-      self.0[3] << 2,
+      self.0[0] << 2 * level,
+      self.0[1] << 2 * level,
+      self.0[2] << 2 * level,
+      self.0[3] << 2 * level,
     ])
   }
 }
@@ -187,6 +187,24 @@ impl BlockDist {
     (self.x().abs() as u64)
       + (self.y().abs() as u64)
       + (self.z().abs() as u64)
+  }
+  #[inline]
+  pub fn down_level(&self, level: u8) -> Self {
+    Self([
+      self.0[0] >> 2 * level,
+      self.0[1] >> 2 * level,
+      self.0[2] >> 2 * level,
+      self.0[3] >> 2 * level,
+    ])
+  }
+  #[inline]
+  pub fn up_level(&self, level: u8) -> Self {
+    Self([
+      self.0[0] << 2 * level,
+      self.0[1] << 2 * level,
+      self.0[2] << 2 * level,
+      self.0[3] << 2 * level,
+    ])
   }
 }
 impl From<[i64; 3]> for BlockDist {

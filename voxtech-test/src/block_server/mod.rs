@@ -1,5 +1,5 @@
 use std::{
-  collections::HashMap,
+  collections::{HashMap, VecDeque},
   ops::{Index, IndexMut},
 };
 
@@ -138,7 +138,131 @@ impl Default for Sector {
     }
   }
 }
+impl Index<usize> for Sector {
+  type Output = Chunk;
+
+  fn index(&self, index: usize) -> &Self::Output {
+    &self.chunks[index]
+  }
+}
+impl IndexMut<usize> for Sector {
+  fn index_mut(&mut self, index: usize) -> &mut Self::Output {
+    &mut self.chunks[index]
+  }
+}
+impl Sector {
+  pub fn get(&self, index: u8) -> &Chunk {
+    &self.chunks[(index % 64) as usize]
+  }
+  pub fn get_mut(&mut self, index: u8) -> &mut Chunk {
+    &mut self.chunks[(index % 64) as usize]
+  }
+  pub fn iter(
+    &self,
+  ) -> impl DoubleEndedIterator<Item = &Chunk> {
+    self.chunks.iter()
+  }
+  pub fn iter_mut(
+    &mut self,
+  ) -> impl DoubleEndedIterator<Item = &mut Chunk> {
+    self.chunks.iter_mut()
+  }
+}
 
 pub struct World {
-  sectors: HashMap<SectorPos, Sector>,
+  sector_map: HashMap<SectorPos, usize>,
+  sector_mem: Vec<Option<Sector>>,
+  sector_rev: Vec<SectorPos>,
+  remove_que: VecDeque<usize>,
+}
+impl World {
+  pub fn insert(&mut self, pos: SectorPos, sector: Sector) {
+    let idx = if let Some(idx) = self.remove_que.pop_front() {
+      self.sector_mem[idx] = Some(sector);
+      self.sector_rev[idx] = pos;
+      idx
+    } else {
+      let idx = self.sector_mem.len();
+      self
+        .sector_mem
+        .push(Some(sector));
+      self.sector_rev.push(pos);
+      idx
+    };
+    self.sector_map.insert(pos, idx);
+  }
+  pub fn remove(&mut self, pos: SectorPos) -> Option<Sector> {
+    let idx = self.sector_map.remove(&pos)?;
+    self.sector_mem[idx].take()
+  }
+  pub fn remove_idx(
+    &mut self,
+    idx: usize,
+  ) -> Option<(SectorPos, Sector)> {
+    let pos = self.sector_rev[idx];
+    self.sector_map.remove(&pos)?;
+    let sector = self.sector_mem[idx].take();
+    sector.map(|s| (pos, s))
+  }
+  pub fn get(&self, idx: usize) -> Option<&Sector> {
+    self.sector_mem[idx].as_ref()
+  }
+  pub fn get_mut(&mut self, idx: usize) -> Option<&mut Sector> {
+    self.sector_mem[idx].as_mut()
+  }
+  pub fn get_by_key(&self, key: &SectorPos) -> Option<&Sector> {
+    let idx = self
+      .sector_map
+      .get(key)
+      .copied()?;
+    self.sector_mem[idx].as_ref()
+  }
+  pub fn get_by_key_mut(
+    &mut self,
+    key: &SectorPos,
+  ) -> Option<&mut Sector> {
+    let idx = self
+      .sector_map
+      .get(key)
+      .copied()?;
+    self.sector_mem[idx].as_mut()
+  }
+  pub fn idx_get(&self, key: &SectorPos) -> Option<usize> {
+    self
+      .sector_map
+      .get(key)
+      .copied()
+  }
+  pub fn iter(
+    &self,
+  ) -> impl DoubleEndedIterator<Item = &Sector> {
+    self
+      .sector_mem
+      .iter()
+      .filter_map(|f| f.as_ref())
+  }
+  pub fn iter_mut(
+    &mut self,
+  ) -> impl DoubleEndedIterator<Item = &mut Sector> {
+    self
+      .sector_mem
+      .iter_mut()
+      .filter_map(|f| f.as_mut())
+  }
+}
+impl Index<usize> for World {
+  type Output = Sector;
+
+  fn index(&self, index: usize) -> &Self::Output {
+    self.sector_mem[index]
+      .as_ref()
+      .unwrap()
+  }
+}
+impl IndexMut<usize> for World {
+  fn index_mut(&mut self, index: usize) -> &mut Self::Output {
+    self.sector_mem[index]
+      .as_mut()
+      .unwrap()
+  }
 }
