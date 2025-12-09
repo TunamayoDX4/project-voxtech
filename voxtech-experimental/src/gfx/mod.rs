@@ -2,7 +2,11 @@ use std::sync::Arc;
 
 use winit::window::Window;
 
-use wgpu::{Device, Queue, Surface, SurfaceConfiguration};
+use wgpu::{
+  Device, Queue, Surface, SurfaceConfiguration,
+};
+
+use crate::gfx::world_renderer::block_rdr;
 
 pub mod camera;
 pub mod world_renderer;
@@ -29,7 +33,8 @@ impl WGPUContext {
         flags: wgpu::InstanceFlags::default(),
         memory_budget_thresholds:
           wgpu::MemoryBudgetThresholds::default(),
-        backend_options: wgpu::BackendOptions::default(),
+        backend_options: wgpu::BackendOptions::default(
+        ),
       });
 
     // 描画先であるサーフェスのWGPU構造体の初期化
@@ -115,15 +120,16 @@ impl WGPUContext {
   pub fn rendering(
     &self,
     renderer: &world_renderer::WorldRenderer,
+    block_rdr: &[block_rdr::BlockRenderInstance],
   ) -> Result<(), wgpu::SurfaceError> {
     self.window.request_redraw();
     let output = self
       .surface
       .get_current_texture()?;
-    let view = output
-      .texture
-      .create_view(&wgpu::TextureViewDescriptor::default());
-    renderer.rendering(&view, self);
+    let view = output.texture.create_view(
+      &wgpu::TextureViewDescriptor::default(),
+    );
+    renderer.rendering(&view, self, block_rdr);
     output.present();
 
     Ok(())

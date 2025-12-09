@@ -56,7 +56,7 @@ impl UserMoveControl {
 
 /// プレイヤー入力の内マウス移動速度
 pub struct UserControlMouseVelocity {
-  input: [f64; 2],
+  pub input: [f64; 2],
 }
 impl UserControlMouseVelocity {
   pub fn new() -> Self {
@@ -78,8 +78,8 @@ impl UserControlMouseVelocity {
 
 /// プレイヤー制御に関わる入力
 pub struct UserControlInput {
-  move_key: UserMoveControl,
-  mouse_velocity: UserControlMouseVelocity,
+  pub move_key: UserMoveControl,
+  pub mouse_velocity: UserControlMouseVelocity,
   open_menu: bool,
 }
 impl UserControlInput {
@@ -91,6 +91,39 @@ impl UserControlInput {
     }
   }
 
+  /// エスケープキーの入力処理
+  fn press_escape(
+    &mut self,
+    key_event: &winit::event::KeyEvent,
+    window: &winit::window::Window,
+  ) {
+    match match key_event.state {
+      // Escキーが入力された際のカーソルの再表示・グラブの解除
+      winit::event::ElementState::Pressed => {
+        self.open_menu = true;
+        window.set_cursor_visible(true);
+        window
+          .set_cursor_grab(winit::window::CursorGrabMode::None)
+      }
+
+      // Escキーが離された際のカーソルの非表示・グラブの有効化
+      winit::event::ElementState::Released => {
+        self.open_menu = false;
+        window.set_cursor_visible(false);
+        window.set_cursor_grab(
+          winit::window::CursorGrabMode::Confined,
+        )
+      }
+    } {
+      Ok(()) => {}
+
+      // グラブ処理失敗時のメッセージ表示
+      Err(e) => {
+        eprintln!("cursor grabmode change error: {e}")
+      }
+    }
+  }
+
   /// キー入力
   pub fn key_input(
     &mut self,
@@ -98,30 +131,17 @@ impl UserControlInput {
     window: &winit::window::Window,
   ) {
     match key_event.physical_key {
+      // Escapeキーを押したときにカーソルを表示する
       winit::keyboard::PhysicalKey::Code(
         winit::keyboard::KeyCode::Escape,
-      ) if !key_event.repeat => match match key_event.state {
-        winit::event::ElementState::Pressed => {
-          self.open_menu = true;
-          window.set_cursor_visible(true);
-          window.set_cursor_grab(
-            winit::window::CursorGrabMode::None,
-          )
-        }
-        winit::event::ElementState::Released => {
-          self.open_menu = false;
-          window.set_cursor_visible(false);
-          window.set_cursor_grab(
-            winit::window::CursorGrabMode::Confined,
-          )
-        }
-      } {
-        Ok(()) => {}
-        Err(e) => {
-          eprintln!("cursor grabmode change error: {e}")
-        }
-      },
+      ) if !key_event.repeat => {
+        self.press_escape(key_event, window)
+      }
+
+      // 移動キーの入力処理
       _ if !self.open_menu => self.move_key.input(key_event),
+
+      // メニューが開かれてるときの処理
       _ => {}
     }
   }
@@ -139,108 +159,5 @@ impl UserControlInput {
   /// 定期更新
   pub fn update(&mut self) {
     self.mouse_velocity.reset();
-  }
-}
-
-pub struct Player {
-  position: nalgebra::Point3<f64>,
-  velocity: nalgebra::Vector3<f64>,
-  yaw: f64,
-  pitch: f64,
-  roll: f64,
-}
-impl Player {
-  pub fn new() -> Self {
-    Self {
-      position: [0., 0., 0.].into(),
-      velocity: [0., 0., 0.].into(),
-      yaw: 0.,
-      pitch: 0.,
-      roll: 0.,
-    }
-  }
-
-  pub fn update(&mut self, input: &UserControlInput) {
-    if input.move_key.l {
-      self.velocity.x -= 5. / 60.
-    }
-    if input.move_key.r {
-      self.velocity.x += 5. / 60.
-    }
-    if input.move_key.dn {
-      self.velocity.z -= 5. / 60.
-    }
-    if input.move_key.up {
-      self.velocity.z += 5. / 60.
-    }
-    if input.move_key.bw {
-      self.velocity.y -= 5. / 60.
-    }
-    if input.move_key.fw {
-      self.velocity.y += 5. / 60.
-    }
-    self.yaw = (self.yaw
-      + (0.12
-        * input.mouse_velocity.input[0]
-        * std::f64::consts::PI
-        / 180.))
-      .rem_euclid(std::f64::consts::PI * 2.);
-    self.pitch = (self.pitch
-      + (0.08
-        * -input.mouse_velocity.input[1]
-        * std::f64::consts::PI
-        / 180.))
-      .clamp(
-        -std::f64::consts::FRAC_PI_2,
-        std::f64::consts::FRAC_PI_2,
-      );
-    if input.move_key.rot_l {
-      self.yaw = (self.yaw
-        + (90. * std::f64::consts::PI / 180.) / 60.)
-        .rem_euclid(std::f64::consts::PI * 2.)
-    }
-    if input.move_key.rot_r {
-      self.yaw = (self.yaw
-        - (90. * std::f64::consts::PI / 180.) / 60.)
-        .rem_euclid(std::f64::consts::PI * 2.)
-    }
-    if input.move_key.rot_dn {
-      self.pitch = (self.pitch
-        - (90. * std::f64::consts::PI / 180.) / 60.)
-        .max(-std::f64::consts::FRAC_PI_2);
-    }
-    if input.move_key.rot_up {
-      self.pitch = (self.pitch
-        + (90. * std::f64::consts::PI / 180.) / 60.)
-        .min(std::f64::consts::FRAC_PI_2);
-    }
-  }
-
-  pub fn update_camera(
-    &mut self,
-    camera: &mut super::gfx::camera::CameraInstance,
-  ) {
-    let rotation = nalgebra::UnitQuaternion::from_axis_angle(
-      &nalgebra::UnitVector3::new_normalize(
-        nalgebra::Vector3::z(),
-      ),
-      self.yaw,
-    );
-    self.position = self.position + rotation * self.velocity;
-    self.velocity = [0., 0., 0.].into();
-    camera.position = self.position;
-    camera.rotation = rotation
-      * nalgebra::UnitQuaternion::from_axis_angle(
-        &nalgebra::UnitVector3::new_normalize(
-          nalgebra::Vector3::x(),
-        ),
-        self.pitch,
-      )
-      * nalgebra::UnitQuaternion::from_axis_angle(
-        &nalgebra::UnitVector3::new_normalize(
-          nalgebra::Vector3::y(),
-        ),
-        self.roll,
-      );
   }
 }

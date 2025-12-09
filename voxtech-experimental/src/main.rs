@@ -3,7 +3,9 @@ use std::sync::Arc;
 use winit::{
   application::ApplicationHandler,
   event::{DeviceEvent, DeviceId, WindowEvent},
-  event_loop::{ActiveEventLoop, ControlFlow, EventLoop},
+  event_loop::{
+    ActiveEventLoop, ControlFlow, EventLoop,
+  },
   window::{Window, WindowAttributes, WindowId},
 };
 
@@ -12,15 +14,22 @@ pub use aliases::*;
 pub mod gfx;
 
 pub mod control;
+pub mod player;
+
+pub mod types;
 
 /// アプリケーション構造体
 pub struct App {
   window: Option<Arc<Window>>,
   wgpu_ctx: Option<gfx::WGPUContext>,
   camera: Option<gfx::camera::CameraInstance>,
-  world_renderer: Option<gfx::world_renderer::WorldRenderer>,
+  world_renderer:
+    Option<gfx::world_renderer::WorldRenderer>,
+  block_renderer: Option<
+    Vec<gfx::world_renderer::block_rdr::BlockRenderInstance,
+  >>,
   user_input: control::UserControlInput,
-  player: control::Player,
+  player: player::Player,
 }
 impl ApplicationHandler for App {
   fn resumed(&mut self, event_loop: &ActiveEventLoop) {
@@ -29,9 +38,9 @@ impl ApplicationHandler for App {
       .create_window(
         WindowAttributes::default()
           .with_active(true)
-          .with_inner_size(winit::dpi::PhysicalSize::new(
-            1280, 720,
-          ))
+          .with_inner_size(
+            winit::dpi::PhysicalSize::new(1280, 720),
+          )
           .with_enabled_buttons(
             winit::window::WindowButtons::CLOSE
               | winit::window::WindowButtons::MINIMIZE,
@@ -39,11 +48,13 @@ impl ApplicationHandler for App {
       )
       .expect("Winit Window initialize failure");
     let window = Arc::new(window);
-    match window
-      .set_cursor_grab(winit::window::CursorGrabMode::Confined)
-    {
+    match window.set_cursor_grab(
+      winit::window::CursorGrabMode::Confined,
+    ) {
       Ok(()) => window.set_cursor_visible(false),
-      Err(e) => eprintln!("cursor grabmode change error: {e}"),
+      Err(e) => {
+        eprintln!("cursor grabmode change error: {e}")
+      }
     }
     self.window = Some(Arc::clone(&window));
 
@@ -51,12 +62,13 @@ impl ApplicationHandler for App {
     let camera = gfx::camera::CameraInstance {
       position: [0., 0., -5.].into(),
       velocity: [0., 0., 0.].into(),
-      rotation: nalgebra::UnitQuaternion::from_axis_angle(
-        &nalgebra::UnitVector3::new_normalize(
-          nalgebra::Vector3::x(),
+      rotation:
+        nalgebra::UnitQuaternion::from_axis_angle(
+          &nalgebra::UnitVector3::new_normalize(
+            nalgebra::Vector3::x(),
+          ),
+          0.,
         ),
-        0.,
-      ),
     };
 
     // WGPUコンテキストの初期化
@@ -68,8 +80,12 @@ impl ApplicationHandler for App {
         &wgpu_ctx, &camera,
       )
       .expect("World renderer initialize failure");
+    let block_renderer = [
+      gfx::world_renderer::block_rdr::BlockRenderInstance::new(&wgpu_ctx)
+    ].into();
     self.wgpu_ctx = Some(wgpu_ctx);
     self.world_renderer = Some(world_renderer);
+    self.block_renderer = Some(block_renderer);
     self.camera = Some(camera);
   }
 
@@ -83,6 +99,7 @@ impl ApplicationHandler for App {
       return;
     };
     match event {
+      // 再描画処理
       WindowEvent::RedrawRequested => {
         if let Some(world_renderer) =
           self.world_renderer.as_mut()
@@ -95,9 +112,17 @@ impl ApplicationHandler for App {
             self
               .player
               .update_camera(camera);
-            world_renderer.update_camera(&wgpu_ctx, &camera);
+            world_renderer
+              .update_camera(&wgpu_ctx, &camera);
           }
-          match wgpu_ctx.rendering(world_renderer) {
+          let Some(block_rdr) =
+            self.block_renderer.as_ref()
+          else {
+            return;
+          };
+          match wgpu_ctx
+            .rendering(world_renderer, &block_rdr)
+          {
             Ok(_) => {}
             Err(wgpu::SurfaceError::Lost) => {
               wgpu_ctx.reconfigure()
@@ -109,8 +134,14 @@ impl ApplicationHandler for App {
           }
         }
       }
+
+      // ウィンドウのリサイズ処理
       WindowEvent::Resized(_) => wgpu_ctx.resize(),
+
+      // ウィンドウを閉じる要求が来た時の処理
       WindowEvent::CloseRequested => event_loop.exit(),
+
+      // キーボード入力処理
       WindowEvent::KeyboardInput { event, .. } => {
         if let Some(window) = self.window.as_ref() {
           self
@@ -129,6 +160,7 @@ impl ApplicationHandler for App {
     event: DeviceEvent,
   ) {
     match event {
+      // マウス入力処理
       DeviceEvent::MouseMotion { delta } => {
         self
           .user_input
@@ -147,9 +179,10 @@ fn main() {
     window: None,
     wgpu_ctx: None,
     world_renderer: None,
+    block_renderer: None,
     camera: None,
     user_input: control::UserControlInput::new(),
-    player: control::Player::new(),
+    player: player::Player::new(),
   };
   event_loop
     .run_app(&mut app)

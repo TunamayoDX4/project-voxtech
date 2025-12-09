@@ -3,6 +3,12 @@ struct CameraUniform {
 }
 @group(0) @binding(0) var<uniform> camera: CameraUniform;
 
+struct InstanceInput {
+  @location(8) stride: u32, 
+  @location(9) offset: vec2<f32>, 
+  @location(10) color: vec2<f32>,
+}
+
 struct VertexInput {
   @location(0) position: vec4<f32>, 
   @location(1) tex_coord: vec2<f32>,
@@ -17,9 +23,16 @@ struct VertexOutput {
 @vertex
 fn vs_main(
   model: VertexInput,
+  instance: InstanceInput,
 ) -> VertexOutput {
   var out: VertexOutput;
-  out.position = camera.view_proj * model.position;
+  var stride = vec4<f32>(
+    f32((instance.stride >> 0) & 0xF), 
+    f32((instance.stride >> 4) & 0xF),
+    f32((instance.stride >> 8) & 0xF),
+    f32((instance.stride >> 12) & 0xF),
+  );
+  out.position = camera.view_proj * (model.position + stride);
   out.color = model.color;
   return out;
 }

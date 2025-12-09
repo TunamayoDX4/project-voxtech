@@ -2,7 +2,9 @@ use bytemuck::{Pod, Zeroable};
 
 /// 頂点構造体
 #[repr(C)]
-#[derive(Debug, Clone, Copy, PartialEq, Pod, Zeroable)]
+#[derive(
+  Debug, Clone, Copy, PartialEq, Pod, Zeroable,
+)]
 pub struct Vertex {
   pub position: [f32; 4],
   pub tex_coord: [f32; 2],
@@ -222,15 +224,17 @@ impl From<u8> for TileFace {
 
 /// インスタンス構造体
 #[repr(C)]
-#[derive(Debug, Clone, Copy, PartialEq, Pod, Zeroable)]
+#[derive(
+  Debug, Clone, Copy, PartialEq, Pod, Zeroable,
+)]
 pub struct BakedInstance {
-  pub stride: [u8; 4],
+  pub stride: u32,
   pub tex_pos: [f32; 2],
   pub tex_scale: [f32; 2],
 }
 impl BakedInstance {
   const ATTRIBS: [wgpu::VertexAttribute; 3] = wgpu::vertex_attr_array![
-    8 => Uint8x4,
+    8 => Uint32,
     9 => Float32x2,
     10 => Float32x2,
   ];
