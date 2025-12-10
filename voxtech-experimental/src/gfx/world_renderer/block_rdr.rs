@@ -10,8 +10,9 @@ pub struct BlockRenderInstance {
 impl BlockRenderInstance {
   pub fn new(
     context: &super::super::WGPUContext,
+    block_count: u32,
   ) -> Self {
-    let instances = (0..4096)
+    let instances = (0..block_count.min(4096))
       .map(
         |i| super::types::BakedInstance {
           stride: i,

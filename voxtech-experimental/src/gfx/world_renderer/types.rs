@@ -228,6 +228,8 @@ impl From<u8> for TileFace {
   Debug, Clone, Copy, PartialEq, Pod, Zeroable,
 )]
 pub struct BakedInstance {
+  /// ブロックのストライド
+  /// 下位12bitのみを使用、
   pub stride: u32,
   pub tex_pos: [f32; 2],
   pub tex_scale: [f32; 2],

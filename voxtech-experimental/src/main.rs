@@ -81,7 +81,7 @@ impl ApplicationHandler for App {
       )
       .expect("World renderer initialize failure");
     let block_renderer = [
-      gfx::world_renderer::block_rdr::BlockRenderInstance::new(&wgpu_ctx)
+      gfx::world_renderer::block_rdr::BlockRenderInstance::new(&wgpu_ctx, 1088)
     ].into();
     self.wgpu_ctx = Some(wgpu_ctx);
     self.world_renderer = Some(world_renderer);

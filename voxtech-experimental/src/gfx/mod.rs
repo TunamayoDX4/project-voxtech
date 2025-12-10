@@ -9,6 +9,7 @@ use wgpu::{
 use crate::gfx::world_renderer::block_rdr;
 
 pub mod camera;
+pub mod util;
 pub mod world_renderer;
 
 /// WGPUのコンテキスト構造体

@@ -27,10 +27,10 @@ fn vs_main(
 ) -> VertexOutput {
   var out: VertexOutput;
   var stride = vec4<f32>(
-    f32((instance.stride >> 0) & 0xF), 
-    f32((instance.stride >> 4) & 0xF),
-    f32((instance.stride >> 8) & 0xF),
-    f32((instance.stride >> 12) & 0xF),
+    f32((instance.stride >> 4) & 0xC | (instance.stride >> 0) & 0x3), 
+    f32((instance.stride >> 6) & 0xC | (instance.stride >> 2) & 0x3),
+    f32((instance.stride >> 8) & 0xC | (instance.stride >> 4) & 0x3),
+    0.0,
   );
   out.position = camera.view_proj * (model.position + stride);
   out.color = model.color;
