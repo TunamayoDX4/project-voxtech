@@ -13,6 +13,7 @@ pub struct WorldRenderer {
   vertices: [Buffer; 6],
   indices: Buffer,
   camera: super::camera::CameraUniformInstance,
+  depth_texture: super::util::texture::Texture,
 }
 impl WorldRenderer {
   pub fn new(
@@ -71,61 +72,73 @@ impl WorldRenderer {
           usage: wgpu::BufferUsages::INDEX,
         },
       );
+    let depth_texture =
+      super::util::texture::Texture::new_depth(
+        context,
+        "depth texture",
+      );
     let pipeline = context
       .device
       .create_render_pipeline(
-        &wgpu::RenderPipelineDescriptor {
-          label: Some("World render pipeline"),
-          layout: Some(&pipeline_layout),
-          primitive: wgpu::PrimitiveState {
-            topology:
-              wgpu::PrimitiveTopology::TriangleList,
-            strip_index_format: None,
-            front_face: wgpu::FrontFace::Ccw,
-            cull_mode: Some(wgpu::Face::Back),
-            unclipped_depth: false,
-            polygon_mode: wgpu::PolygonMode::Fill,
-            conservative: false,
-          },
-          depth_stencil: None,
-          multisample: wgpu::MultisampleState {
-            count: 1,
-            mask: !0,
-            alpha_to_coverage_enabled: false,
-          },
-          multiview: None,
-          vertex: wgpu::VertexState {
-            module: &shader,
-            entry_point: Some("vs_main"),
-            compilation_options:
-              wgpu::PipelineCompilationOptions {
-                constants: &[],
-                zero_initialize_workgroup_memory: false,
-              },
-            buffers: &[
-              types::Vertex::desc(),
-              types::BakedInstance::desc(),
-            ],
-          },
-          fragment: Some(wgpu::FragmentState {
-            module: &shader,
-            entry_point: Some("fs_main"),
-            compilation_options:
-              wgpu::PipelineCompilationOptions {
-                constants: &[],
-                zero_initialize_workgroup_memory: false,
-              },
-            targets: &[Some(wgpu::ColorTargetState {
-              format: context.config.format,
-              blend: Some(
-                wgpu::BlendState::ALPHA_BLENDING,
-              ),
-              write_mask: wgpu::ColorWrites::ALL,
-            })],
-          }),
-          cache: None,
+      &wgpu::RenderPipelineDescriptor {
+        label: Some("World render pipeline"),
+        layout: Some(&pipeline_layout),
+        primitive: wgpu::PrimitiveState {
+          topology:
+            wgpu::PrimitiveTopology::TriangleList,
+          strip_index_format: None,
+          front_face: wgpu::FrontFace::Ccw,
+          cull_mode: Some(wgpu::Face::Back),
+          unclipped_depth: false,
+          polygon_mode: wgpu::PolygonMode::Fill,
+          conservative: false,
         },
-      );
+        depth_stencil: Some(wgpu::DepthStencilState {
+          format:
+            super::util::texture::Texture::DEPTH_FORMAT,
+          depth_write_enabled: true,
+          depth_compare: wgpu::CompareFunction::Less,
+          stencil: wgpu::StencilState::default(),
+          bias: wgpu::DepthBiasState::default(),
+        }),
+        multisample: wgpu::MultisampleState {
+          count: 1,
+          mask: !0,
+          alpha_to_coverage_enabled: false,
+        },
+        multiview: None,
+        vertex: wgpu::VertexState {
+          module: &shader,
+          entry_point: Some("vs_main"),
+          compilation_options:
+            wgpu::PipelineCompilationOptions {
+              constants: &[],
+              zero_initialize_workgroup_memory: false,
+            },
+          buffers: &[
+            types::Vertex::desc(),
+            types::BakedInstance::desc(),
+          ],
+        },
+        fragment: Some(wgpu::FragmentState {
+          module: &shader,
+          entry_point: Some("fs_main"),
+          compilation_options:
+            wgpu::PipelineCompilationOptions {
+              constants: &[],
+              zero_initialize_workgroup_memory: false,
+            },
+          targets: &[Some(wgpu::ColorTargetState {
+            format: context.config.format,
+            blend: Some(
+              wgpu::BlendState::ALPHA_BLENDING,
+            ),
+            write_mask: wgpu::ColorWrites::ALL,
+          })],
+        }),
+        cache: None,
+      },
+    );
 
     Ok(Self {
       _pipeline_layout: pipeline_layout,
@@ -133,7 +146,18 @@ impl WorldRenderer {
       vertices,
       indices,
       camera,
+      depth_texture,
     })
+  }
+  pub fn resize(
+    &mut self,
+    context: &super::WGPUContext,
+  ) {
+    self.depth_texture =
+      super::util::texture::Texture::new_depth(
+        context,
+        "depth texture",
+      );
   }
   pub fn update_camera(
     &mut self,
@@ -179,7 +203,16 @@ impl WorldRenderer {
               },
             },
           )],
-          depth_stencil_attachment: None,
+          depth_stencil_attachment: Some(
+            wgpu::RenderPassDepthStencilAttachment {
+              view: &self.depth_texture.view,
+              depth_ops: Some(wgpu::Operations {
+                load: wgpu::LoadOp::Clear(1.0),
+                store: wgpu::StoreOp::Store,
+              }),
+              stencil_ops: None,
+            },
+          ),
           timestamp_writes: None,
           occlusion_query_set: None,
         },

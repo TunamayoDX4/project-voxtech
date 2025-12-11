@@ -15,6 +15,7 @@ pub mod gfx;
 
 pub mod control;
 pub mod player;
+pub mod world;
 
 pub mod types;
 
@@ -136,7 +137,12 @@ impl ApplicationHandler for App {
       }
 
       // ウィンドウのリサイズ処理
-      WindowEvent::Resized(_) => wgpu_ctx.resize(),
+      WindowEvent::Resized(_) => {
+        wgpu_ctx.resize();
+        if let Some(wr) = self.world_renderer.as_mut() {
+          wr.resize(&wgpu_ctx);
+        }
+      }
 
       // ウィンドウを閉じる要求が来た時の処理
       WindowEvent::CloseRequested => event_loop.exit(),

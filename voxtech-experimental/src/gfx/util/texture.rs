@@ -1,16 +1,19 @@
 //! Texture
 //! WGPUのテクスチャの抽象化オブジェクト
 
+use std::io::Read;
+
 use super::WGPUContext;
 use image::RgbaImage;
 use wgpu::{
   AddressMode, BindGroup, BindGroupEntry,
   BindGroupLayout, BindGroupLayoutEntry,
-  BindingResource, BindingType, Extent3d, FilterMode,
-  Origin3d, SamplerBindingType, ShaderStages,
+  BindingResource, BindingType, CompareFunction,
+  Extent3d, FilterMode, Origin3d, Sampler,
+  SamplerBindingType, ShaderStages,
   TexelCopyBufferLayout, TexelCopyTextureInfo,
   TextureAspect, TextureDimension, TextureFormat,
-  TextureSampleType, TextureUsages,
+  TextureSampleType, TextureUsages, TextureView,
   TextureViewDimension,
 };
 
@@ -53,26 +56,28 @@ impl TextureLayout {
   }
 }
 
+/// テクスチャ用のバインド構造体
 pub struct Texture {
-  bindgroup: BindGroup,
+  pub size: Extent3d,
+  pub texture: wgpu::Texture,
+  pub view: TextureView,
+  pub sampler: Sampler,
 }
 impl Texture {
   pub fn new_diffuse(
     context: &WGPUContext,
-    layout: &TextureLayout,
     diffuse_image: &RgbaImage,
   ) -> Self {
     let dimensions = diffuse_image.dimensions();
-    let texture_size = Extent3d {
+    let size = Extent3d {
       width: dimensions.0,
       height: dimensions.1,
       depth_or_array_layers: 1,
     };
-    let diffuse_texture = context
-      .device
-      .create_texture(&wgpu::TextureDescriptor {
+    let texture = context.device.create_texture(
+      &wgpu::TextureDescriptor {
         label: Some("Diffuse texture object"),
-        size: texture_size,
+        size,
         mip_level_count: 1,
         sample_count: 1,
         dimension: TextureDimension::D2,
@@ -80,10 +85,11 @@ impl Texture {
         usage: TextureUsages::TEXTURE_BINDING
           | TextureUsages::COPY_DST,
         view_formats: &[],
-      });
+      },
+    );
     context.queue.write_texture(
       TexelCopyTextureInfo {
-        texture: &diffuse_texture,
+        texture: &texture,
         mip_level: 0,
         origin: Origin3d::ZERO,
         aspect: TextureAspect::All,
@@ -94,15 +100,13 @@ impl Texture {
         bytes_per_row: Some(4 * dimensions.0),
         rows_per_image: Some(dimensions.1),
       },
-      texture_size,
+      size,
     );
-    let diffuse_texture_view = diffuse_texture
-      .create_view(
-        &wgpu::TextureViewDescriptor::default(),
-      );
-    let diffuse_sampler = context
-      .device
-      .create_sampler(&wgpu::SamplerDescriptor {
+    let view = texture.create_view(
+      &wgpu::TextureViewDescriptor::default(),
+    );
+    let sampler = context.device.create_sampler(
+      &wgpu::SamplerDescriptor {
         label: Some("Diffuse texture sampler"),
         address_mode_u: AddressMode::ClampToEdge,
         address_mode_v: AddressMode::ClampToEdge,
@@ -111,8 +115,97 @@ impl Texture {
         mag_filter: FilterMode::Nearest,
         mipmap_filter: FilterMode::Nearest,
         ..Default::default()
-      });
+      },
+    );
+    Self {
+      size,
+      texture,
+      view,
+      sampler,
+    }
+  }
 
+  pub const DEPTH_FORMAT: TextureFormat =
+    TextureFormat::Depth32Float;
+  pub fn new_depth(
+    context: &WGPUContext,
+    label: &str,
+  ) -> Self {
+    let size = Extent3d {
+      width: context.config.width.max(1),
+      height: context.config.height.max(1),
+      depth_or_array_layers: 1,
+    };
+    let texture = context.device.create_texture(
+      &wgpu::TextureDescriptor {
+        label: Some(label),
+        size,
+        mip_level_count: 1,
+        sample_count: 1,
+        dimension: TextureDimension::D2,
+        format: Self::DEPTH_FORMAT,
+        usage: TextureUsages::RENDER_ATTACHMENT
+          | TextureUsages::TEXTURE_BINDING,
+        view_formats: &[],
+      },
+    );
+    let view = texture.create_view(
+      &wgpu::TextureViewDescriptor::default(),
+    );
+    let sampler = context.device.create_sampler(
+      &wgpu::SamplerDescriptor {
+        address_mode_u: AddressMode::ClampToEdge,
+        address_mode_v: AddressMode::ClampToEdge,
+        address_mode_w: AddressMode::ClampToEdge,
+        mag_filter: FilterMode::Linear,
+        min_filter: FilterMode::Linear,
+        mipmap_filter: FilterMode::Nearest,
+        lod_min_clamp: 0.0,
+        lod_max_clamp: 100.0,
+        compare: Some(CompareFunction::LessEqual),
+        ..Default::default()
+      },
+    );
+
+    Self {
+      size,
+      texture,
+      view,
+      sampler,
+    }
+  }
+}
+
+pub struct DiffuseTexture {
+  texture: Texture,
+  bindgroup: BindGroup,
+}
+impl DiffuseTexture {
+  pub fn new_diffuse_from_image(
+    context: &WGPUContext,
+    layout: &TextureLayout,
+    image_path: impl AsRef<std::path::Path>,
+  ) -> crate::aliases::StdResult<Self> {
+    let fp = std::fs::File::open(image_path)?;
+    let len = fp.metadata()?.len();
+    let mut fp = std::io::BufReader::new(fp);
+    let mut bin = Vec::with_capacity(len as usize);
+    fp.read_to_end(&mut bin)?;
+    let dyn_image = image::load_from_memory(&bin)?;
+    let tex = Self::new_diffuse(
+      context,
+      layout,
+      &dyn_image.to_rgba8(),
+    );
+    Ok(tex)
+  }
+  pub fn new_diffuse(
+    context: &WGPUContext,
+    layout: &TextureLayout,
+    diffuse_image: &RgbaImage,
+  ) -> Self {
+    let texture =
+      Texture::new_diffuse(context, diffuse_image);
     let bindgroup = context
       .device
       .create_bind_group(&wgpu::BindGroupDescriptor {
@@ -122,18 +215,18 @@ impl Texture {
           BindGroupEntry {
             binding: 0,
             resource: BindingResource::TextureView(
-              &diffuse_texture_view,
+              &texture.view,
             ),
           },
           BindGroupEntry {
             binding: 1,
             resource: BindingResource::Sampler(
-              &diffuse_sampler,
+              &texture.sampler,
             ),
           },
         ],
       });
 
-    Self { bindgroup }
+    Self { bindgroup, texture }
   }
 }

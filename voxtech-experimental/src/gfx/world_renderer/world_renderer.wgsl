@@ -20,6 +20,16 @@ struct VertexOutput {
   @location(1) color: vec4<f32>,
 };
 
+/// Calculate stride from encoded u32
+fn calculate_stride(stride: u32) -> vec3<f32> {
+  return vec3<f32>(
+    f32((stride >> 4) & 0xC | (stride >> 0) & 0x3), 
+    f32((stride >> 6) & 0xC | (stride >> 2) & 0x3),
+    f32((stride >> 8) & 0xC | (stride >> 4) & 0x3),
+  );
+}
+
+/// Vertex Shader
 @vertex
 fn vs_main(
   model: VertexInput,
@@ -27,9 +37,7 @@ fn vs_main(
 ) -> VertexOutput {
   var out: VertexOutput;
   var stride = vec4<f32>(
-    f32((instance.stride >> 4) & 0xC | (instance.stride >> 0) & 0x3), 
-    f32((instance.stride >> 6) & 0xC | (instance.stride >> 2) & 0x3),
-    f32((instance.stride >> 8) & 0xC | (instance.stride >> 4) & 0x3),
+    calculate_stride(instance.stride),
     0.0,
   );
   out.position = camera.view_proj * (model.position + stride);
@@ -37,6 +45,7 @@ fn vs_main(
   return out;
 }
 
+/// Fragment Shader
 @fragment
 fn fs_main(
   in: VertexOutput,
