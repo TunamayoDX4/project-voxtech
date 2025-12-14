@@ -13,12 +13,12 @@ impl World {
   pub fn spawn_chunk(
     &mut self,
     chunk_pos: types::BlockPos,
-    f: impl Fn(types::BlockPos) -> u8 + Clone,
+    f: impl FnOnce() -> Chunk,
   ) {
     self
       .map
       .entry(chunk_pos)
-      .insert(Chunk::new(chunk_pos, f));
+      .insert(f());
   }
 }
 
@@ -26,8 +26,12 @@ pub struct Chunk {
   cell: Option<Box<[Cell; 64]>>,
 }
 impl Chunk {
+  pub fn empty_chunk() -> Self {
+    Self { cell: None }
+  }
+
   pub fn new(
-    chunk_pos: types::BlockPos,
+    chunk_pos: &types::BlockPos,
     f: impl Fn(types::BlockPos) -> u8 + Clone,
   ) -> Self {
     Self {
@@ -36,7 +40,7 @@ impl Chunk {
           let pos = chunk_pos.merge_inner(
             types::BlockPos::from_64index(i as u8),
           );
-          Cell::new(pos, f.clone())
+          Cell::new(&pos, f.clone())
         },
       ))),
     }
@@ -47,8 +51,12 @@ impl Chunk {
 #[derive(Debug, Clone, Copy)]
 pub struct Cell([u8; 64]);
 impl Cell {
+  pub fn empty_cell() -> Self {
+    Self([0u8; 64])
+  }
+
   pub fn new(
-    cell_pos: types::BlockPos,
+    cell_pos: &types::BlockPos,
     f: impl Fn(types::BlockPos) -> u8,
   ) -> Self {
     Self(std::array::from_fn(|i| {
