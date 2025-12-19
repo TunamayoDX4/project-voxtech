@@ -17,6 +17,8 @@ pub mod control;
 pub mod player;
 pub mod world;
 
+pub mod common;
+
 pub mod types;
 
 /// アプリケーション構造体
