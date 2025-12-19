@@ -26,8 +26,8 @@ impl CameraConfig {
   ) -> CameraUniform {
     // ビュー行列の生成
     let inner_size = window.inner_size();
-    let aspect =
-      inner_size.width as f64 / inner_size.height as f64;
+    let aspect = inner_size.width as f64
+      / inner_size.height as f64;
     let target = instance.position
       + instance.rotation * nalgebra::Vector3::y();
     let up = instance.rotation * nalgebra::Vector3::z();
@@ -52,7 +52,9 @@ impl CameraConfig {
 
 /// カメラ用のユニフォームバッファ
 #[repr(C)]
-#[derive(Debug, Clone, Copy, PartialEq, Pod, Zeroable)]
+#[derive(
+  Debug, Clone, Copy, PartialEq, Pod, Zeroable,
+)]
 pub struct CameraUniform([[f32; 4]; 4]);
 
 /// カメラ用のユニフォームのインスタンス

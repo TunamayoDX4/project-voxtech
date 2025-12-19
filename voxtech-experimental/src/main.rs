@@ -11,7 +11,10 @@ use winit::{
 
 pub mod aliases;
 pub use aliases::*;
+
 pub mod gfx;
+
+pub mod gfx_old;
 
 pub mod control;
 pub mod player;
@@ -24,12 +27,13 @@ pub mod types;
 /// アプリケーション構造体
 pub struct App {
   window: Option<Arc<Window>>,
-  wgpu_ctx: Option<gfx::WGPUContext>,
-  camera: Option<gfx::camera::CameraInstance>,
+  gfx: Option<gfx::GfxBundle>, 
+  wgpu_ctx: Option<gfx_old::WGPUContext>,
+  camera: Option<gfx_old::camera::CameraInstance>,
   world_renderer:
-    Option<gfx::world_renderer::WorldRenderer>,
+    Option<gfx_old::world_renderer::WorldRenderer>,
   block_renderer: Option<
-    Vec<gfx::world_renderer::block_rdr::BlockRenderInstance,
+    Vec<gfx_old::world_renderer::block_rdr::BlockRenderInstance,
   >>,
   user_input: control::UserControlInput,
   player: player::Player,
@@ -62,7 +66,7 @@ impl ApplicationHandler for App {
     self.window = Some(Arc::clone(&window));
 
     // カメラの初期化
-    let camera = gfx::camera::CameraInstance {
+    let camera = gfx_old::camera::CameraInstance {
       position: [0., 0., -5.].into(),
       velocity: [0., 0., 0.].into(),
       rotation:
@@ -75,16 +79,17 @@ impl ApplicationHandler for App {
     };
 
     // WGPUコンテキストの初期化
-    let wgpu_ctx =
-      pollster::block_on(gfx::WGPUContext::new(window))
-        .expect("WGPU Context initialize failure");
+    let wgpu_ctx = pollster::block_on(
+      gfx_old::WGPUContext::new(window),
+    )
+    .expect("WGPU Context initialize failure");
     let world_renderer =
-      gfx::world_renderer::WorldRenderer::new(
+      gfx_old::world_renderer::WorldRenderer::new(
         &wgpu_ctx, &camera,
       )
       .expect("World renderer initialize failure");
     let block_renderer = [
-      gfx::world_renderer::block_rdr::BlockRenderInstance::new(&wgpu_ctx, 1088)
+      gfx_old::world_renderer::block_rdr::BlockRenderInstance::new(&wgpu_ctx, 1088)
     ].into();
     self.wgpu_ctx = Some(wgpu_ctx);
     self.world_renderer = Some(world_renderer);
@@ -185,6 +190,7 @@ fn main() {
   event_loop.set_control_flow(ControlFlow::Poll);
   let mut app = App {
     window: None,
+    gfx: None, 
     wgpu_ctx: None,
     world_renderer: None,
     block_renderer: None,

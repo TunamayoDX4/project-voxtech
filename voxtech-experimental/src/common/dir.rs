@@ -41,10 +41,32 @@ impl Dir {
     }
   }
 }
+impl From<u8> for Dir {
+  #[inline]
+  fn from(value: u8) -> Self {
+    Self::new(value)
+  }
+}
 impl From<Axis> for Dir {
   #[inline]
   fn from(value: Axis) -> Self {
     Self::new((value as u8) << 1)
+  }
+}
+impl std::fmt::Display for Dir {
+  fn fmt(
+    &self,
+    f: &mut std::fmt::Formatter<'_>,
+  ) -> std::fmt::Result {
+    f.write_str(match self {
+      Dir::WST => "West",
+      Dir::EST => "East",
+      Dir::STH => "South",
+      Dir::NTH => "North",
+      Dir::BTM => "Bottom",
+      Dir::TOP => "Top",
+      Dir::UNDEF => "Undefined",
+    })
   }
 }
 
@@ -82,9 +104,28 @@ impl Axis {
     unsafe { std::mem::transmute((dir as u8) >> 2) }
   }
 }
+impl From<u8> for Axis {
+  #[inline]
+  fn from(value: u8) -> Self {
+    Self::new(value)
+  }
+}
 impl From<Dir> for Axis {
   #[inline]
   fn from(value: Dir) -> Self {
     Self::new((value as u8) >> 1)
+  }
+}
+impl std::fmt::Display for Axis {
+  fn fmt(
+    &self,
+    f: &mut std::fmt::Formatter<'_>,
+  ) -> std::fmt::Result {
+    f.write_str(match self {
+      Axis::WE => "West->East",
+      Axis::SN => "South->North",
+      Axis::BT => "Bottom->Top",
+      Axis::UNDEF => "Undefined",
+    })
   }
 }
