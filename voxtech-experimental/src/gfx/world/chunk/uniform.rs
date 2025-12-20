@@ -76,7 +76,7 @@ impl ChunkUniformInstance {
 }
 
 pub struct ChunkUniformLayout {
-  bindgroup_layout: BindGroupLayout,
+  pub bindgroup_layout: BindGroupLayout,
 }
 impl ChunkUniformLayout {
   pub fn new(ctx: &WGPUCtx) -> Self {

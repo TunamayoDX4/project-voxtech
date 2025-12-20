@@ -56,7 +56,7 @@ impl Player {
 
   pub fn update_camera(
     &mut self,
-    camera: &mut super::gfx_old::camera::CameraInstance,
+    camera: &mut super::gfx::world::camera3d::Camera3DInstance,
   ) {
     let rotation =
       nalgebra::UnitQuaternion::from_axis_angle(

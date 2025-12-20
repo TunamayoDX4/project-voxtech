@@ -3,6 +3,11 @@ struct CameraUniform {
 }
 @group(0) @binding(0) var<uniform> camera: CameraUniform;
 
+struct ChunkUniform {
+  stride: vec4<i32>, 
+}
+@group(1) @binding(0) var<uniform> chunk: ChunkUniform;
+
 struct InstanceInput {
   @location(8) stride: u32, 
   @location(9) offset: vec2<f32>, 
@@ -40,7 +45,7 @@ fn vs_main(
     calculate_stride(instance.stride),
     0.0,
   );
-  out.position = camera.view_proj * (model.position + stride);
+  out.position = camera.view_proj * (vec4<f32>(chunk.stride) + model.position + stride);
   out.color = model.color;
   return out;
 }

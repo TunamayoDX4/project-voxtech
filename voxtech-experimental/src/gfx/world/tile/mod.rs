@@ -69,8 +69,8 @@ pub struct OpaqueTileRdr {
 impl OpaqueTileRdr {
   pub fn new(
     ctx: &WGPUCtx,
-    tile: &TileShared,
     camera: &super::camera3d::Camera3DUniformInstance,
+    chunk_uniform: &super::chunk::uniform::ChunkUniformLayout,
   ) -> Self {
     let rpipe_layout = ctx
       .device
@@ -80,7 +80,8 @@ impl OpaqueTileRdr {
             "Opaque tile render pipeline layout",
           ),
           bind_group_layouts: &[
-            &camera.bindgroup_layout
+            &camera.bindgroup_layout,
+            &chunk_uniform.bindgroup_layout,
           ],
           push_constant_ranges: &[],
         },

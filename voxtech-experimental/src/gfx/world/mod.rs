@@ -36,8 +36,8 @@ impl WorldRdr {
       chunk::uniform::ChunkUniformLayout::new(ctx);
     let opaque = tile::OpaqueTileRdr::new(
       ctx,
-      &tile,
       &main_camera,
+      &chunk_layout,
     );
     let chunk = chunk::ChunkStorage::new();
     Self {

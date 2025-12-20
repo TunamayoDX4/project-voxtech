@@ -30,6 +30,9 @@ pub struct App {
   gfx: Option<gfx::GfxBundle>,
   user_input: control::UserControlInput,
   player: player::Player,
+  player_camera: gfx::world::camera3d::Camera3DInstance,
+  player_camera_cfg:
+    gfx::world::camera3d::Camera3DConfig,
 }
 impl ApplicationHandler for App {
   fn resumed(&mut self, event_loop: &ActiveEventLoop) {
@@ -64,22 +67,8 @@ impl ApplicationHandler for App {
           "Graphics Bundle Module initialize failure",
         );
     gfx.world_init(
-      &gfx::world::camera3d::Camera3DConfig {
-        fovy: 30. * (std::f64::consts::PI / 180.),
-        near: 0.5,
-        far: 10000.,
-      },
-      &gfx::world::camera3d::Camera3DInstance {
-        position: [0., 0., 0.].into(),
-        velocity: [0., 0., 0.].into(),
-        rotation:
-          nalgebra::UnitQuaternion::from_axis_angle(
-            &nalgebra::UnitVector3::new_normalize(
-              nalgebra::Vector3::z(),
-            ),
-            0.,
-          ),
-      },
+      &self.player_camera_cfg,
+      &self.player_camera,
     );
     gfx.world(|ctx, w| {
       w.chunk.insert(
@@ -90,7 +79,27 @@ impl ApplicationHandler for App {
             common::BlockPos::new(0, 0, 0).into(),
             &w.chunk_layout,
             std::array::from_fn(|_| {
-              (0..16).map(|i| {
+              (0..1088).map(|i| {
+                gfx::world::tile::types::BakedInstance {
+                  stride: i,
+                  tex_pos: [0., 0.],
+                  tex_scale: [0., 0.],
+                }
+              })
+            }),
+          )
+        },
+      );
+
+      w.chunk.insert(
+        common::BlockPos::new(16, 0, 0),
+        || {
+          gfx::world::chunk::ChunkObject::new(
+            ctx,
+            common::BlockPos::new(16, 0, 0).into(),
+            &w.chunk_layout,
+            std::array::from_fn(|_| {
+              (0..1088).map(|i| {
                 gfx::world::tile::types::BakedInstance {
                   stride: i,
                   tex_pos: [0., 0.],
@@ -117,6 +126,22 @@ impl ApplicationHandler for App {
     match event {
       // 再描画処理
       WindowEvent::RedrawRequested => {
+        // プレイヤーのビューの更新
+        self
+          .player
+          .update(&self.user_input);
+        self.user_input.update();
+        self
+          .player
+          .update_camera(&mut self.player_camera);
+        gfx.world(|ctx, w| {
+          w.update(
+            ctx,
+            &self.player_camera_cfg,
+            &self.player_camera,
+          )
+        });
+
         // GFXバンドル構造体を呼び出し、描画する。
         match gfx.rendering() {
           Ok(_) => {}
@@ -177,6 +202,24 @@ fn main() {
     gfx: None,
     user_input: control::UserControlInput::new(),
     player: player::Player::new(),
+    player_camera:
+      gfx::world::camera3d::Camera3DInstance {
+        position: [0., 0., 0.].into(),
+        velocity: [0., 0., 0.].into(),
+        rotation:
+          nalgebra::UnitQuaternion::from_axis_angle(
+            &nalgebra::UnitVector3::new_normalize(
+              nalgebra::Vector3::z(),
+            ),
+            0.,
+          ),
+      },
+    player_camera_cfg:
+      gfx::world::camera3d::Camera3DConfig {
+        fovy: 45. * std::f64::consts::PI / 180.,
+        near: 0.5,
+        far: 10000.,
+      },
   };
   event_loop
     .run_app(&mut app)
