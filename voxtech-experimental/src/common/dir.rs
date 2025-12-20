@@ -40,6 +40,11 @@ impl Dir {
       _ => Self::UNDEF,
     }
   }
+
+  #[inline]
+  pub fn iter() -> impl Iterator<Item = Dir> {
+    (0..6u8).map(|i| unsafe { std::mem::transmute(i) })
+  }
 }
 impl From<u8> for Dir {
   #[inline]
@@ -97,6 +102,11 @@ impl Axis {
       2 => Self::BT,
       _ => Self::UNDEF,
     }
+  }
+
+  #[inline]
+  pub fn iter() -> impl Iterator<Item = Dir> {
+    (0..3u8).map(|i| unsafe { std::mem::transmute(i) })
   }
 
   #[inline]

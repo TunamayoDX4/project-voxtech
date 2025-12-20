@@ -28,6 +28,29 @@ impl GfxBundle {
     self.wgpu_ctx.resize();
   }
 
+  pub fn world_init(
+    &mut self,
+    camera_config: &world::camera3d::Camera3DConfig,
+    camera_instance: &world::camera3d::Camera3DInstance,
+  ) {
+    let world = world::WorldRdr::new(
+      &self.wgpu_ctx,
+      camera_config,
+      camera_instance,
+    );
+    self.world = Some(world);
+  }
+
+  pub fn world(
+    &mut self,
+    f: impl FnOnce(&wgpu_ctx::WGPUCtx, &mut world::WorldRdr),
+  ) {
+    let Some(world) = self.world.as_mut() else {
+      return;
+    };
+    f(&self.wgpu_ctx, world)
+  }
+
   pub fn rendering(
     &mut self,
   ) -> Result<(), wgpu::SurfaceError> {

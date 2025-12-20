@@ -27,14 +27,7 @@ pub mod types;
 /// アプリケーション構造体
 pub struct App {
   window: Option<Arc<Window>>,
-  gfx: Option<gfx::GfxBundle>, 
-  wgpu_ctx: Option<gfx_old::WGPUContext>,
-  camera: Option<gfx_old::camera::CameraInstance>,
-  world_renderer:
-    Option<gfx_old::world_renderer::WorldRenderer>,
-  block_renderer: Option<
-    Vec<gfx_old::world_renderer::block_rdr::BlockRenderInstance,
-  >>,
+  gfx: Option<gfx::GfxBundle>,
   user_input: control::UserControlInput,
   player: player::Player,
 }
@@ -65,36 +58,51 @@ impl ApplicationHandler for App {
     }
     self.window = Some(Arc::clone(&window));
 
-    // カメラの初期化
-    let camera = gfx_old::camera::CameraInstance {
-      position: [0., 0., -5.].into(),
-      velocity: [0., 0., 0.].into(),
-      rotation:
-        nalgebra::UnitQuaternion::from_axis_angle(
-          &nalgebra::UnitVector3::new_normalize(
-            nalgebra::Vector3::x(),
+    let mut gfx =
+      pollster::block_on(gfx::GfxBundle::new(window))
+        .expect(
+          "Graphics Bundle Module initialize failure",
+        );
+    gfx.world_init(
+      &gfx::world::camera3d::Camera3DConfig {
+        fovy: 30. * (std::f64::consts::PI / 180.),
+        near: 0.5,
+        far: 10000.,
+      },
+      &gfx::world::camera3d::Camera3DInstance {
+        position: [0., 0., 0.].into(),
+        velocity: [0., 0., 0.].into(),
+        rotation:
+          nalgebra::UnitQuaternion::from_axis_angle(
+            &nalgebra::UnitVector3::new_normalize(
+              nalgebra::Vector3::z(),
+            ),
+            0.,
           ),
-          0.,
-        ),
-    };
-
-    // WGPUコンテキストの初期化
-    let wgpu_ctx = pollster::block_on(
-      gfx_old::WGPUContext::new(window),
-    )
-    .expect("WGPU Context initialize failure");
-    let world_renderer =
-      gfx_old::world_renderer::WorldRenderer::new(
-        &wgpu_ctx, &camera,
-      )
-      .expect("World renderer initialize failure");
-    let block_renderer = [
-      gfx_old::world_renderer::block_rdr::BlockRenderInstance::new(&wgpu_ctx, 1088)
-    ].into();
-    self.wgpu_ctx = Some(wgpu_ctx);
-    self.world_renderer = Some(world_renderer);
-    self.block_renderer = Some(block_renderer);
-    self.camera = Some(camera);
+      },
+    );
+    gfx.world(|ctx, w| {
+      w.chunk.insert(
+        common::BlockPos::new(0, 0, 0),
+        || {
+          gfx::world::chunk::ChunkObject::new(
+            ctx,
+            common::BlockPos::new(0, 0, 0).into(),
+            &w.chunk_layout,
+            std::array::from_fn(|_| {
+              (0..16).map(|i| {
+                gfx::world::tile::types::BakedInstance {
+                  stride: i,
+                  tex_pos: [0., 0.],
+                  tex_scale: [0., 0.],
+                }
+              })
+            }),
+          )
+        },
+      );
+    });
+    self.gfx = Some(gfx);
   }
 
   fn window_event(
@@ -103,52 +111,28 @@ impl ApplicationHandler for App {
     _window_id: WindowId,
     event: WindowEvent,
   ) {
-    let Some(wgpu_ctx) = self.wgpu_ctx.as_mut() else {
+    let Some(gfx) = self.gfx.as_mut() else {
       return;
     };
     match event {
       // 再描画処理
       WindowEvent::RedrawRequested => {
-        if let Some(world_renderer) =
-          self.world_renderer.as_mut()
-        {
-          if let Some(camera) = self.camera.as_mut() {
-            self
-              .player
-              .update(&self.user_input);
-            self.user_input.update();
-            self
-              .player
-              .update_camera(camera);
-            world_renderer
-              .update_camera(&wgpu_ctx, &camera);
+        // GFXバンドル構造体を呼び出し、描画する。
+        match gfx.rendering() {
+          Ok(_) => {}
+          Err(wgpu::SurfaceError::Lost) => {
+            gfx.reconfigure();
           }
-          let Some(block_rdr) =
-            self.block_renderer.as_ref()
-          else {
-            return;
-          };
-          match wgpu_ctx
-            .rendering(world_renderer, &block_rdr)
-          {
-            Ok(_) => {}
-            Err(wgpu::SurfaceError::Lost) => {
-              wgpu_ctx.reconfigure()
-            }
-            Err(wgpu::SurfaceError::OutOfMemory) => {
-              event_loop.exit()
-            }
-            Err(e) => eprintln!("Error occured: {e}"),
+          Err(wgpu::SurfaceError::OutOfMemory) => {
+            event_loop.exit()
           }
+          Err(e) => eprintln!("Error occured: {e}"),
         }
       }
 
       // ウィンドウのリサイズ処理
       WindowEvent::Resized(_) => {
-        wgpu_ctx.resize();
-        if let Some(wr) = self.world_renderer.as_mut() {
-          wr.resize(&wgpu_ctx);
-        }
+        gfx.resize();
       }
 
       // ウィンドウを閉じる要求が来た時の処理
@@ -190,11 +174,7 @@ fn main() {
   event_loop.set_control_flow(ControlFlow::Poll);
   let mut app = App {
     window: None,
-    gfx: None, 
-    wgpu_ctx: None,
-    world_renderer: None,
-    block_renderer: None,
-    camera: None,
+    gfx: None,
     user_input: control::UserControlInput::new(),
     player: player::Player::new(),
   };

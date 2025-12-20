@@ -2,12 +2,12 @@
 
 use wgpu::{
   util::DeviceExt, Buffer, BufferUsages,
-  PipelineLayout, RenderPipeline,
+  PipelineLayout, RenderPass, RenderPipeline,
 };
 
 use crate::common::Dir;
 
-use super::WGPUCtx;
+use super::{camera3d, RenderTarget, Texture, WGPUCtx};
 
 pub mod types;
 
@@ -52,6 +52,14 @@ impl OpaqueTileInstances {
       },
     )
   }
+
+  pub fn rendering(
+    &self,
+    rpass: &mut RenderPass,
+  ) -> u32 {
+    rpass.set_vertex_buffer(1, self.buffer.slice(..));
+    self.instance.len() as _
+  }
 }
 
 pub struct OpaqueTileRdr {
@@ -94,9 +102,7 @@ impl OpaqueTileRdr {
           primitive: wgpu::PrimitiveState {
             topology:
               wgpu::PrimitiveTopology::TriangleList,
-            strip_index_format: Some(
-              wgpu::IndexFormat::Uint16,
-            ),
+            strip_index_format: None,
             front_face: wgpu::FrontFace::Ccw,
             cull_mode: Some(wgpu::Face::Back),
             polygon_mode: wgpu::PolygonMode::Fill,
@@ -155,6 +161,65 @@ impl OpaqueTileRdr {
       rpipe,
     }
   }
+
+  pub fn rendering(
+    &mut self,
+    render_target: &RenderTarget,
+    depth_texture: &Texture,
+    camera: &camera3d::Camera3DUniformInstance,
+    tile: &TileShared,
+    chunk: &super::chunk::ChunkStorage,
+  ) {
+    let mut encoder = render_target
+      .ctx
+      .device
+      .create_command_encoder(
+        &wgpu::CommandEncoderDescriptor {
+          label: Some("World renderer command encoder"),
+        },
+      );
+    {
+      let mut rpass = encoder.begin_render_pass(
+        &wgpu::RenderPassDescriptor {
+          label: Some("World renderer pass"),
+          color_attachments: &[Some(
+            wgpu::RenderPassColorAttachment {
+              view: &render_target.view,
+              depth_slice: None,
+              resolve_target: None,
+              ops: wgpu::Operations {
+                load: wgpu::LoadOp::Load,
+                store: wgpu::StoreOp::Store,
+              },
+            },
+          )],
+          depth_stencil_attachment: Some(
+            wgpu::RenderPassDepthStencilAttachment {
+              view: &depth_texture.view,
+              depth_ops: Some(wgpu::Operations {
+                load: wgpu::LoadOp::Load,
+                store: wgpu::StoreOp::Store,
+              }),
+              stencil_ops: None,
+            },
+          ),
+          timestamp_writes: None,
+          occlusion_query_set: None,
+        },
+      );
+      rpass.set_pipeline(&self.rpipe);
+      rpass.set_bind_group(0, &camera.bindgroup, &[]);
+      tile.set_index(&mut rpass);
+      for dir in Dir::iter() {
+        tile.set_vertex(&mut rpass, dir);
+        chunk.rendering(&mut rpass, dir);
+      }
+    }
+    render_target
+      .ctx
+      .queue
+      .submit([encoder.finish()]);
+  }
 }
 
 pub struct TileShared {
@@ -194,5 +259,25 @@ impl TileShared {
   }
   pub fn indices(&self) -> &Buffer {
     &self.indices
+  }
+
+  #[inline]
+  pub fn set_index(&self, rpass: &mut RenderPass) {
+    rpass.set_index_buffer(
+      self.indices.slice(..),
+      wgpu::IndexFormat::Uint16,
+    );
+  }
+
+  #[inline]
+  pub fn set_vertex(
+    &self,
+    rpass: &mut RenderPass,
+    dir: Dir,
+  ) {
+    rpass.set_vertex_buffer(
+      0,
+      self.vertices[dir as usize].slice(..),
+    )
   }
 }
