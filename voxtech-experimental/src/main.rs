@@ -14,8 +14,6 @@ pub use aliases::*;
 
 pub mod gfx;
 
-pub mod gfx_old;
-
 pub mod control;
 pub mod player;
 pub mod world;
