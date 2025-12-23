@@ -1,8 +1,6 @@
-use std::collections::VecDeque;
-
 use hashbrown::HashMap;
 
-pub mod types;
+use crate::common::*;
 
 pub mod l0_cell;
 pub mod l1_chunk;
@@ -12,63 +10,35 @@ pub mod l3_region;
 /// Worldはプログラム上における空間インスタンスのバインダ
 /// World is the binder for dimension instances in the program.
 pub struct World {
-  map: HashMap<types::BlockPos, Chunk>,
+  dim: Dimension, 
 }
 impl World {
-  pub fn spawn_chunk(
-    &mut self,
-    chunk_pos: types::BlockPos,
-    f: impl FnOnce() -> Chunk,
-  ) {
-    self
-      .map
-      .entry(chunk_pos)
-      .insert(f());
-  }
-}
-
-pub struct Chunk {
-  cell: Option<Box<[Cell; 64]>>,
-}
-impl Chunk {
-  pub fn empty_chunk() -> Self {
-    Self { cell: None }
-  }
-
-  pub fn new(
-    chunk_pos: &types::BlockPos,
-    f: impl Fn(types::BlockPos) -> u8 + Clone,
-  ) -> Self {
+  pub fn new() -> Self {
     Self {
-      cell: Some(Box::new(std::array::from_fn(
-        |i| {
-          let pos = chunk_pos.merge_inner(
-            types::BlockPos::from_64index(i as u8),
-          );
-          Cell::new(&pos, f.clone())
-        },
-      ))),
+      dim: Dimension::new(), 
     }
   }
 }
 
-#[repr(C, align(64))]
-#[derive(Debug, Clone, Copy)]
-pub struct Cell([u8; 64]);
-impl Cell {
-  pub fn empty_cell() -> Self {
-    Self([0u8; 64])
+pub struct Dimension {
+  map: HashMap<BlockPos, l3_region::Region>, 
+}
+impl Dimension {
+  pub fn new() -> Self {
+    Self {
+      map: HashMap::new(), 
+    }
   }
-
-  pub fn new(
-    cell_pos: &types::BlockPos,
-    f: impl Fn(types::BlockPos) -> u8,
-  ) -> Self {
-    Self(std::array::from_fn(|i| {
-      let pos = cell_pos.merge_inner(
-        types::BlockPos::from_64index(i as u8),
-      );
-      f(pos)
-    }))
+  pub fn spawn_region(
+    &mut self, 
+    region_pos: BlockPos, 
+    f: impl FnOnce(BlockPos) -> l3_region::Region, 
+  ) {
+    // 座標を256m単位にするために、下位8bitを切り上げる
+    let region_pos = region_pos.cut_up(4);
+    self
+      .map
+      .entry(region_pos)
+      .insert(f(region_pos));
   }
 }

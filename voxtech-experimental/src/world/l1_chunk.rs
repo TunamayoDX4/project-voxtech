@@ -1,5 +1,6 @@
-use super::l0_cell::Cell;
+use super::l0_cell;
 
 pub struct Chunk {
-  cell: Box<[Cell; 64]>,
+  info: [l0_cell::CellInfo; 64], 
+  cell: Option<Box<[l0_cell::Cell; 64]>>,
 }

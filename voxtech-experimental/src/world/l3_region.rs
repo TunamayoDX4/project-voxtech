@@ -6,4 +6,6 @@ use super::{
 
 pub mod cell_storage;
 
-pub struct Region {}
+pub struct Region {
+  sectors: Box<[l2_sector::Sector; 64]>, 
+}
