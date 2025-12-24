@@ -97,9 +97,69 @@ impl ApplicationHandler for App {
             common::BlockPos::new(16, 0, 0).into(),
             &w.chunk_layout,
             std::array::from_fn(|_| {
-              (0..1088).map(|i| {
+              (0..4).map(|i| {
                 gfx::world::tile::types::BakedInstance {
                   stride: i,
+                  tex_pos: [0., 0.],
+                  tex_scale: [0., 0.],
+                }
+              })
+            }),
+          )
+        },
+      );
+
+      w.chunk.insert(
+        common::BlockPos::new(0, 16, 0),
+        || {
+          gfx::world::chunk::ChunkObject::new(
+            ctx,
+            common::BlockPos::new(0, 16, 0).into(),
+            &w.chunk_layout,
+            std::array::from_fn(|_| {
+              (0..16).map(|i| {
+                gfx::world::tile::types::BakedInstance {
+                  stride: i,
+                  tex_pos: [0., 0.],
+                  tex_scale: [0., 0.],
+                }
+              })
+            }),
+          )
+        },
+      );
+
+      w.chunk.insert(
+        common::BlockPos::new(16, 16, 0),
+        || {
+          gfx::world::chunk::ChunkObject::new(
+            ctx,
+            common::BlockPos::new(16, 16, 0).into(),
+            &w.chunk_layout,
+            std::array::from_fn(|_| {
+              (0..16).map(|i| {
+                gfx::world::tile::types::BakedInstance {
+                  stride: i * 4,
+                  tex_pos: [0., 0.],
+                  tex_scale: [0., 0.],
+                }
+              })
+            }),
+          )
+        },
+      );
+
+      w.chunk.insert(
+        common::BlockPos::new(32, 16, 0),
+        || {
+          gfx::world::chunk::ChunkObject::new(
+            ctx,
+            common::BlockPos::new(32, 16, 0).into(),
+            &w.chunk_layout,
+            std::array::from_fn(|_| {
+              (0..16).map(|i| {
+                gfx::world::tile::types::BakedInstance {
+                  stride: i * 4,
                   tex_pos: [0., 0.],
                   tex_scale: [0., 0.],
                 }
