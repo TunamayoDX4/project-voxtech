@@ -10,8 +10,9 @@ pub struct Sector {
 impl Sector {
   pub fn update_neigh_west(
     &mut self,
-    halo: &SectorHalo,
+    neigh: &Sector,
   ) {
+    let neigh = neigh.chunk.as_ref();
     let Some(chunk) = self.chunk.as_mut() else {
       return;
     };
@@ -22,7 +23,38 @@ impl Sector {
           Default::default()
         }))
       });
-    for i in 0..chunk.len() {}
+    for i in (0..chunk.len()).map(|i| i * 4) {
+      if let Some(neigh) = neigh {
+        chunk_halo[i].update_neigh_west(&neigh[i + 3]);
+      }
+      chunk_halo[i + 1].update_neigh_west(&chunk[i]);
+      chunk_halo[i + 2].update_neigh_west(&chunk[i + 1]);
+      chunk_halo[i + 3].update_neigh_west(&chunk[i + 2]);
+    }
+  }
+  pub fn update_neigh_west(
+    &mut self,
+    neigh: &Sector,
+  ) {
+    let neigh = neigh.chunk.as_ref();
+    let Some(chunk) = self.chunk.as_mut() else {
+      return;
+    };
+    let chunk_halo = self
+      .chunk_halo
+      .get_or_insert_with(|| {
+        Box::new(std::array::from_fn(|_| {
+          Default::default()
+        }))
+      });
+    for i in (0..chunk.len()).map(|i| i * 4) {
+      if let Some(neigh) = neigh {
+        chunk_halo[i].update_neigh_west(&neigh[i + 3]);
+      }
+      chunk_halo[i + 1].update_neigh_west(&chunk[i]);
+      chunk_halo[i + 2].update_neigh_west(&chunk[i + 1]);
+      chunk_halo[i + 3].update_neigh_west(&chunk[i + 2]);
+    }
   }
 }
 

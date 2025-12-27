@@ -25,6 +25,18 @@ impl InnerBlockPos {
     Self::from([x, y, z, 0])
   }
   #[inline]
+  pub fn proj_xy(&self) -> u8 {
+    self.0 & 15
+  }
+  #[inline]
+  pub fn proj_xz(&self) -> u8 {
+    (self.0 & 3) | ((self.0 >> 2) & 12)
+  }
+  #[inline]
+  pub fn proj_yz(&self) -> u8 {
+    ((self.0 << 2) & 12) | ((self.0 >> 4) & 3)
+  }
+  #[inline]
   pub fn neigh_west(self) -> (bool, Self) {
     let neigh = (self.0 & 3).wrapping_sub(1);
     let outer = neigh == u8::MAX;
