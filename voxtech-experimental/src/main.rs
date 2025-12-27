@@ -16,7 +16,6 @@ pub mod gfx;
 
 pub mod control;
 pub mod player;
-pub mod world;
 
 pub mod common;
 
@@ -26,6 +25,7 @@ pub mod types;
 pub struct App {
   window: Option<Arc<Window>>,
   gfx: Option<gfx::GfxBundle>,
+  world: Option<common::World>,
   user_input: control::UserControlInput,
   player: player::Player,
   player_camera: gfx::world::camera3d::Camera3DInstance,
@@ -58,6 +58,37 @@ impl ApplicationHandler for App {
       }
     }
     self.window = Some(Arc::clone(&window));
+
+    self.world = Some(common::World::new());
+    let world = self.world.as_mut().unwrap();
+    world.dim.spawn_region(
+      common::BlockPos::new(0, 0, 0),
+      |_| {
+        let mut sector =
+          Box::new(std::array::from_fn(|_| {
+            common::l2_sector::Sector {
+              chunk_halo: Default::default(),
+              chunk: Some(Box::new(
+                std::array::from_fn(|_| {
+                  common::l1_chunk::Chunk {
+                    cell: Some(Box::new(
+                      std::array::from_fn(|_| {
+                        common::l0_cell::Cell(
+                          std::array::from_fn(|_| 1),
+                        )
+                      }),
+                    )),
+                  }
+                }),
+              )),
+            }
+          }));
+        common::l3_region::Region {
+          sector: Some(sector),
+          sector_halo: Default::default(),
+        }
+      },
+    );
 
     let mut gfx =
       pollster::block_on(gfx::GfxBundle::new(window))
@@ -139,7 +170,7 @@ impl ApplicationHandler for App {
             std::array::from_fn(|_| {
               (0..16).map(|i| {
                 gfx::world::tile::types::BakedInstance {
-                  stride: i * 4,
+                  stride: i << 2,
                   tex_pos: [0., 0.],
                   tex_scale: [0., 0.],
                 }
@@ -158,8 +189,11 @@ impl ApplicationHandler for App {
             &w.chunk_layout,
             std::array::from_fn(|_| {
               (0..16).map(|i| {
+                let narrow = i & 0b11;
+                let broad = (i & !3) << 2;
+                let stride = narrow + broad + 12;
                 gfx::world::tile::types::BakedInstance {
-                  stride: i * 4,
+                  stride,
                   tex_pos: [0., 0.],
                   tex_scale: [0., 0.],
                 }
@@ -258,6 +292,7 @@ fn main() {
   let mut app = App {
     window: None,
     gfx: None,
+    world: None,
     user_input: control::UserControlInput::new(),
     player: player::Player::new(),
     player_camera:

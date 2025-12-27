@@ -55,6 +55,15 @@ impl Dir {
   pub fn is_negative(&self) -> u8 {
     1 - self.is_positive()
   }
+
+  #[inline]
+  pub fn invert(&self) -> Self {
+    unsafe {
+      std::mem::transmute(
+        (*self as u8 & !1) | !(*self as u8 & 1),
+      )
+    }
+  }
 }
 impl From<u8> for Dir {
   #[inline]
@@ -157,67 +166,6 @@ impl std::fmt::Display for Axis {
       Axis::SN => "South->North",
       Axis::BT => "Bottom->Top",
       Axis::UNDEF => "Undefined",
-    })
-  }
-}
-
-#[repr(u8)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub enum Step {
-  /// West-East
-  WE = 1,
-
-  /// South-North
-  SN = 4,
-
-  /// Bottom-Top
-  BT = 16,
-
-  /// Undefined
-  UNDEF = 127,
-}
-impl Step {
-  /// 方向の数
-  pub const COUNT: u8 = 3;
-
-  #[inline]
-  pub fn new(value: u8) -> Self {
-    match value {
-      16 => Self::WE,
-      4 => Self::SN,
-      1 => Self::BT,
-      _ => Self::UNDEF,
-    }
-  }
-}
-impl From<u8> for Step {
-  #[inline]
-  fn from(value: u8) -> Self {
-    Self::new(value)
-  }
-}
-impl From<Dir> for Step {
-  #[inline]
-  fn from(value: Dir) -> Self {
-    Self::new(1 << ((2 * Axis::from(value) as u8) % 8))
-  }
-}
-impl From<Axis> for Step {
-  #[inline]
-  fn from(value: Axis) -> Self {
-    Self::new(1 << ((2 * value as u8) % 8))
-  }
-}
-impl std::fmt::Display for Step {
-  fn fmt(
-    &self,
-    f: &mut std::fmt::Formatter<'_>,
-  ) -> std::fmt::Result {
-    f.write_str(match self {
-      Step::WE => "West->East",
-      Step::SN => "South->North",
-      Step::BT => "Bottom->Top",
-      Step::UNDEF => "Undefined",
     })
   }
 }

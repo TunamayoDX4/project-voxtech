@@ -14,7 +14,59 @@ use bytemuck::{Pod, Zeroable};
 #[derive(
   Debug, Clone, Copy, PartialEq, Eq, Hash, Pod, Zeroable,
 )]
-pub struct InnerBlockPos(u8);
+pub struct InnerBlockPos(pub u8);
+impl InnerBlockPos {
+  #[inline]
+  pub fn new(pos: u8) -> Self {
+    Self(pos & 63)
+  }
+  #[inline]
+  pub fn new_xyz(x: u8, y: u8, z: u8) -> Self {
+    Self::from([x, y, z, 0])
+  }
+  #[inline]
+  pub fn neigh_west(self) -> (bool, Self) {
+    let neigh = (self.0 & 3).wrapping_sub(1);
+    let outer = neigh == u8::MAX;
+    let ret = Self((self.0 & !3) | neigh & 3);
+    (outer, ret)
+  }
+  #[inline]
+  pub fn neigh_east(self) -> (bool, Self) {
+    let neigh = (self.0 | !3).wrapping_add(1);
+    let outer = neigh == 0;
+    let ret = Self((self.0 & !3) | neigh & 3);
+    (outer, ret)
+  }
+  #[inline]
+  pub fn neigh_south(self) -> (bool, Self) {
+    let neigh = ((self.0 >> 2) | 3).wrapping_sub(1);
+    let outer = neigh == u8::MAX;
+    let ret = Self((self.0 & !12) | (neigh & 3) << 2);
+    (outer, ret)
+  }
+  #[inline]
+  pub fn neigh_north(self) -> (bool, Self) {
+    let neigh = ((self.0 >> 2) | !3).wrapping_add(1);
+    let outer = neigh == 0;
+    let ret = Self((self.0 & !12) | (neigh & 3) << 2);
+    (outer, ret)
+  }
+  #[inline]
+  pub fn neigh_bottom(self) -> (bool, Self) {
+    let neigh = ((self.0 >> 4) | 3).wrapping_sub(1);
+    let outer = neigh == u8::MAX;
+    let ret = Self((self.0 & !48) | (neigh & 3) << 4);
+    (outer, ret)
+  }
+  #[inline]
+  pub fn neigh_top(self) -> (bool, Self) {
+    let neigh = ((self.0 >> 4) | !3).wrapping_add(1);
+    let outer = neigh == 0;
+    let ret = Self((self.0 & !48) | (neigh & 3) << 4);
+    (outer, ret)
+  }
+}
 impl From<[u8; 4]> for InnerBlockPos {
   fn from(value: [u8; 4]) -> Self {
     Self(
