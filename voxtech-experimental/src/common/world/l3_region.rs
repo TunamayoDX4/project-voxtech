@@ -1,4 +1,4 @@
-use crate::common::{Dir, InnerBlockPos};
+use crate::common::{BlockPos, Dir, InnerBlockPos};
 
 use super::{
   l0_cell,   //
@@ -13,7 +13,191 @@ pub struct Region {
   pub sector_halo:
     Option<Box<[l2_sector::SectorHaloArray; 64]>>,
 }
-impl Region {}
+impl Region {
+  pub fn iter_sector(
+    &self,
+    pos: &BlockPos,
+  ) -> Option<
+    impl Iterator<
+      Item = (
+        InnerBlockPos,
+        BlockPos,
+        &l2_sector::Sector,
+      ),
+    >,
+  > {
+    let Some(sector) = self.sector.as_ref() else {
+      return None;
+    };
+    let ret = (0..sector.len())
+      .map(|i| {
+        let i = InnerBlockPos::new(i as _);
+        let p = BlockPos::from(i).level_up(3);
+        (i, p)
+      })
+      .map(move |(i, p0)| {
+        let p = pos.merge(&p0, 3);
+        println!("S: {pos:?} + {p0:?}-> {p:?}");
+        (i, p)
+      })
+      .map(|(i, p)| (i, p, &sector[i.0 as usize]));
+    Some(ret)
+  }
+
+  pub fn update_neigh_west(&mut self, neigh: &Region) {
+    let Some(sector) = self.sector.as_mut() else {
+      return;
+    };
+    let sector_halo = self
+      .sector_halo
+      .get_or_insert_with(|| {
+        Box::new(std::array::from_fn(|_| {
+          Default::default()
+        }))
+      });
+    for i in (0..3).rev() {
+      for j in (0..16).map(|j| j * 4) {
+        sector_halo[j + i + 1]
+          .update_neigh_west(&sector[j + i]);
+      }
+    }
+    if let Some(neigh) = neigh.sector.as_ref() {
+      for i in (0..16).map(|i| i * 4) {
+        sector_halo[i].update_neigh_west(&neigh[i + 3]);
+      }
+    }
+  }
+  pub fn update_neigh_east(&mut self, neigh: &Region) {
+    let Some(sector) = self.sector.as_mut() else {
+      return;
+    };
+    let sector_halo = self
+      .sector_halo
+      .get_or_insert_with(|| {
+        Box::new(std::array::from_fn(|_| {
+          Default::default()
+        }))
+      });
+    for i in 0..3 {
+      for j in (0..16).map(|j| j * 4) {
+        sector_halo[j + i]
+          .update_neigh_east(&sector[j + i + 1]);
+      }
+    }
+    if let Some(neigh) = neigh.sector.as_ref() {
+      for i in (0..16).map(|i| i * 4) {
+        sector_halo[i + 3].update_neigh_east(&neigh[i]);
+      }
+    }
+  }
+  pub fn update_neigh_south(&mut self, neigh: &Region) {
+    let Some(sector) = self.sector.as_mut() else {
+      return;
+    };
+    let sector_halo = self
+      .sector_halo
+      .get_or_insert_with(|| {
+        Box::new(std::array::from_fn(|_| {
+          Default::default()
+        }))
+      });
+    for i in (0..3).rev().map(|i| i * 4) {
+      for j in
+        (0..16).map(|j| ((j & 12) << 2) | (j & 3))
+      {
+        sector_halo[j + i + 4]
+          .update_neigh_south(&sector[j + i]);
+      }
+    }
+    if let Some(neigh) = neigh.sector.as_ref() {
+      for i in
+        (0..16).map(|j| ((j & 12) << 2) | (j & 3))
+      {
+        sector_halo[i]
+          .update_neigh_south(&neigh[i + 3 * 4]);
+      }
+    }
+  }
+  pub fn update_neigh_north(&mut self, neigh: &Region) {
+    let Some(sector) = self.sector.as_mut() else {
+      return;
+    };
+    let sector_halo = self
+      .sector_halo
+      .get_or_insert_with(|| {
+        Box::new(std::array::from_fn(|_| {
+          Default::default()
+        }))
+      });
+    for i in (0..3).map(|i| i * 4) {
+      for j in
+        (0..16).map(|j| ((j & 12) << 2) | (j & 3))
+      {
+        sector_halo[j + i]
+          .update_neigh_north(&sector[j + i + 4]);
+      }
+    }
+    if let Some(neigh) = neigh.sector.as_ref() {
+      for i in
+        (0..16).map(|j| ((j & 12) << 2) | (j & 3))
+      {
+        sector_halo[i + 3 * 4]
+          .update_neigh_north(&neigh[i]);
+      }
+    }
+  }
+  pub fn update_neigh_bottom(
+    &mut self,
+    neigh: &Region,
+  ) {
+    let Some(sector) = self.sector.as_mut() else {
+      return;
+    };
+    let sector_halo = self
+      .sector_halo
+      .get_or_insert_with(|| {
+        Box::new(std::array::from_fn(|_| {
+          Default::default()
+        }))
+      });
+    for i in (0..3).rev().map(|i| i * 16) {
+      for j in 0..16 {
+        sector_halo[j + i + 16]
+          .update_neigh_bottom(&sector[j + i]);
+      }
+    }
+    if let Some(neigh) = neigh.sector.as_ref() {
+      for i in 0..16 {
+        sector_halo[i]
+          .update_neigh_bottom(&neigh[i + 3 * 16]);
+      }
+    }
+  }
+  pub fn update_neigh_top(&mut self, neigh: &Region) {
+    let Some(sector) = self.sector.as_mut() else {
+      return;
+    };
+    let sector_halo = self
+      .sector_halo
+      .get_or_insert_with(|| {
+        Box::new(std::array::from_fn(|_| {
+          Default::default()
+        }))
+      });
+    for i in (0..3).map(|i| i * 16) {
+      for j in 0..16 {
+        sector_halo[j + i]
+          .update_neigh_top(&sector[j + i + 16]);
+      }
+    }
+    if let Some(neigh) = neigh.sector.as_ref() {
+      for i in 0..16 {
+        sector_halo[i + 3 * 16]
+          .update_neigh_top(&neigh[i]);
+      }
+    }
+  }
+}
 
 pub struct RegionHaloArray([RegionHalo; 6]);
 impl Default for RegionHaloArray {

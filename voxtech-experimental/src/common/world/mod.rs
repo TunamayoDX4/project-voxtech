@@ -31,6 +31,12 @@ impl Dimension {
       halo: HashMap::new(),
     }
   }
+  pub fn iter(
+    &self,
+  ) -> impl Iterator<Item = (&BlockPos, &l3_region::Region)>
+  {
+    self.map.iter()
+  }
   pub fn spawn_region(
     &mut self,
     region_pos: BlockPos,
@@ -84,5 +90,119 @@ impl Dimension {
       return None;
     };
     Some((r, rha))
+  }
+  pub fn update_neigh_west(
+    &mut self,
+    target_region_pos: &BlockPos,
+  ) -> bool {
+    let target_region_pos = target_region_pos.cut_up(4);
+    let neigh_pos = target_region_pos
+      + BlockDist::new(-1, 0, 0).level_up(4);
+    let target_halo = self
+      .halo
+      .get_mut(&target_region_pos);
+    let neigh = self.map.get(&neigh_pos);
+    match (target_halo, neigh) {
+      (Some(target_halo), Some(neigh)) => {
+        target_halo.update_neigh_west(neigh);
+        true
+      }
+      _ => false,
+    }
+  }
+  pub fn update_neigh_east(
+    &mut self,
+    target_region_pos: &BlockPos,
+  ) -> bool {
+    let target_region_pos = target_region_pos.cut_up(4);
+    let neigh_pos = target_region_pos
+      + BlockDist::new(1, 0, 0).level_up(4);
+    let target_halo = self
+      .halo
+      .get_mut(&target_region_pos);
+    let neigh = self.map.get(&neigh_pos);
+    match (target_halo, neigh) {
+      (Some(target_halo), Some(neigh)) => {
+        target_halo.update_neigh_east(neigh);
+        true
+      }
+      _ => false,
+    }
+  }
+  pub fn update_neigh_south(
+    &mut self,
+    target_region_pos: &BlockPos,
+  ) -> bool {
+    let target_region_pos = target_region_pos.cut_up(4);
+    let neigh_pos = target_region_pos
+      + BlockDist::new(0, -1, 0).level_up(4);
+    let target_halo = self
+      .halo
+      .get_mut(&target_region_pos);
+    let neigh = self.map.get(&neigh_pos);
+    match (target_halo, neigh) {
+      (Some(target_halo), Some(neigh)) => {
+        target_halo.update_neigh_south(neigh);
+        true
+      }
+      _ => false,
+    }
+  }
+  pub fn update_neigh_north(
+    &mut self,
+    target_region_pos: &BlockPos,
+  ) -> bool {
+    let target_region_pos = target_region_pos.cut_up(4);
+    let neigh_pos = target_region_pos
+      + BlockDist::new(0, 1, 0).level_up(4);
+    let target_halo = self
+      .halo
+      .get_mut(&target_region_pos);
+    let neigh = self.map.get(&neigh_pos);
+    match (target_halo, neigh) {
+      (Some(target_halo), Some(neigh)) => {
+        target_halo.update_neigh_north(neigh);
+        true
+      }
+      _ => false,
+    }
+  }
+  pub fn update_neigh_bottom(
+    &mut self,
+    target_region_pos: &BlockPos,
+  ) -> bool {
+    let target_region_pos = target_region_pos.cut_up(4);
+    let neigh_pos = target_region_pos
+      + BlockDist::new(0, 0, -1).level_up(4);
+    let target_halo = self
+      .halo
+      .get_mut(&target_region_pos);
+    let neigh = self.map.get(&neigh_pos);
+    match (target_halo, neigh) {
+      (Some(target_halo), Some(neigh)) => {
+        target_halo.update_neigh_bottom(neigh);
+        true
+      }
+      _ => false,
+    }
+  }
+  pub fn update_neigh_top(
+    &mut self,
+    target_region_pos: &BlockPos,
+  ) -> bool {
+    let target_region_pos = target_region_pos.cut_up(4);
+    let neigh_pos = target_region_pos
+      + BlockDist::new(0, 0, 1).level_up(4);
+    let target_halo = self
+      .halo
+      .get_mut(&target_region_pos);
+    let neigh = self.map.get(&neigh_pos);
+    match (target_halo, neigh) {
+      (Some(target_halo), Some(neigh)) => {
+        target_halo.update_neigh_top(neigh);
+        true
+      }
+      _ => false,
+    }
   }
 }

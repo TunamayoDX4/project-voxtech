@@ -41,7 +41,7 @@ impl GfxBundle {
     self.world = Some(world);
   }
 
-  pub fn world(
+  pub fn world_modify(
     &mut self,
     f: impl FnOnce(&wgpu_ctx::WGPUCtx, &mut world::WorldRdr),
   ) {

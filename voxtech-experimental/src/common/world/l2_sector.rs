@@ -1,6 +1,6 @@
-use crate::common::Dir;
+use crate::common::{BlockPos, Dir, InnerBlockPos};
 
-use super::{l0_cell, l1_chunk};
+use super::l1_chunk;
 
 pub struct Sector {
   pub chunk: Option<Box<[l1_chunk::Chunk; 64]>>,
@@ -8,11 +8,33 @@ pub struct Sector {
     Option<Box<[l1_chunk::ChunkHaloArray; 64]>>,
 }
 impl Sector {
-  pub fn update_neigh_west(
-    &mut self,
-    neigh: &Sector,
-  ) {
-    let neigh = neigh.chunk.as_ref();
+  pub fn iter_chunk(
+    &self,
+    pos: &BlockPos,
+  ) -> Option<
+    impl Iterator<
+      Item = (
+        InnerBlockPos,
+        BlockPos,
+        &l1_chunk::Chunk,
+      ),
+    >,
+  > {
+    let Some(chunk) = self.chunk.as_ref() else {
+      return None;
+    };
+    let ret = (0..chunk.len())
+      .map(|i| {
+        let i = InnerBlockPos::new(i as _);
+        let p = BlockPos::from(i).level_up(3);
+        (i, p)
+      })
+      .map(|(i, p)| (i, pos.merge(&p, 3)))
+      .map(|(i, p)| (i, p, &chunk[i.0 as usize]));
+    Some(ret)
+  }
+
+  pub fn update_neigh_west(&mut self, neigh: &Sector) {
     let Some(chunk) = self.chunk.as_mut() else {
       return;
     };
@@ -23,20 +45,19 @@ impl Sector {
           Default::default()
         }))
       });
-    for i in (0..chunk.len()).map(|i| i * 4) {
-      if let Some(neigh) = neigh {
+    for i in (0..3).rev() {
+      for j in (0..16).map(|j| j * 4) {
+        chunk_halo[j + i + 1]
+          .update_neigh_west(&chunk[j + i]);
+      }
+    }
+    if let Some(neigh) = neigh.chunk.as_ref() {
+      for i in (0..16).map(|i| i * 4) {
         chunk_halo[i].update_neigh_west(&neigh[i + 3]);
       }
-      chunk_halo[i + 1].update_neigh_west(&chunk[i]);
-      chunk_halo[i + 2].update_neigh_west(&chunk[i + 1]);
-      chunk_halo[i + 3].update_neigh_west(&chunk[i + 2]);
     }
   }
-  pub fn update_neigh_west(
-    &mut self,
-    neigh: &Sector,
-  ) {
-    let neigh = neigh.chunk.as_ref();
+  pub fn update_neigh_east(&mut self, neigh: &Sector) {
     let Some(chunk) = self.chunk.as_mut() else {
       return;
     };
@@ -47,13 +68,123 @@ impl Sector {
           Default::default()
         }))
       });
-    for i in (0..chunk.len()).map(|i| i * 4) {
-      if let Some(neigh) = neigh {
-        chunk_halo[i].update_neigh_west(&neigh[i + 3]);
+    for i in 0..3 {
+      for j in (0..16).map(|j| j * 4) {
+        chunk_halo[j + i]
+          .update_neigh_east(&chunk[j + i + 1]);
       }
-      chunk_halo[i + 1].update_neigh_west(&chunk[i]);
-      chunk_halo[i + 2].update_neigh_west(&chunk[i + 1]);
-      chunk_halo[i + 3].update_neigh_west(&chunk[i + 2]);
+    }
+    if let Some(neigh) = neigh.chunk.as_ref() {
+      for i in (0..16).map(|i| i * 4) {
+        chunk_halo[i + 3].update_neigh_east(&neigh[i]);
+      }
+    }
+  }
+  pub fn update_neigh_south(&mut self, neigh: &Sector) {
+    let Some(chunk) = self.chunk.as_mut() else {
+      return;
+    };
+    let chunk_halo = self
+      .chunk_halo
+      .get_or_insert_with(|| {
+        Box::new(std::array::from_fn(|_| {
+          Default::default()
+        }))
+      });
+    for i in (0..3).rev().map(|i| i * 4) {
+      for j in
+        (0..16).map(|j| ((j & 12) << 2) | (j & 3))
+      {
+        chunk_halo[j + i + 4]
+          .update_neigh_west(&chunk[j + i]);
+      }
+    }
+    if let Some(neigh) = neigh.chunk.as_ref() {
+      for i in
+        (0..16).map(|j| ((j & 12) << 2) | (j & 3))
+      {
+        chunk_halo[i]
+          .update_neigh_west(&neigh[i + 3 * 4]);
+      }
+    }
+  }
+  pub fn update_neigh_north(&mut self, neigh: &Sector) {
+    let Some(chunk) = self.chunk.as_mut() else {
+      return;
+    };
+    let chunk_halo = self
+      .chunk_halo
+      .get_or_insert_with(|| {
+        Box::new(std::array::from_fn(|_| {
+          Default::default()
+        }))
+      });
+    for i in (0..3).map(|i| i * 4) {
+      for j in
+        (0..16).map(|j| ((j & 12) << 2) | (j & 3))
+      {
+        chunk_halo[j + i]
+          .update_neigh_east(&chunk[j + i + 4]);
+      }
+    }
+    if let Some(neigh) = neigh.chunk.as_ref() {
+      for i in
+        (0..16).map(|j| ((j & 12) << 2) | (j & 3))
+      {
+        chunk_halo[i + 3 * 4]
+          .update_neigh_east(&neigh[i]);
+      }
+    }
+  }
+  pub fn update_neigh_bottom(
+    &mut self,
+    neigh: &Sector,
+  ) {
+    let Some(chunk) = self.chunk.as_mut() else {
+      return;
+    };
+    let chunk_halo = self
+      .chunk_halo
+      .get_or_insert_with(|| {
+        Box::new(std::array::from_fn(|_| {
+          Default::default()
+        }))
+      });
+    for i in (0..3).rev().map(|i| i * 16) {
+      for j in 0..16 {
+        chunk_halo[j + i + 16]
+          .update_neigh_bottom(&chunk[j + i]);
+      }
+    }
+    if let Some(neigh) = neigh.chunk.as_ref() {
+      for i in 0..16 {
+        chunk_halo[i]
+          .update_neigh_bottom(&neigh[i + 3 * 16]);
+      }
+    }
+  }
+  pub fn update_neigh_top(&mut self, neigh: &Sector) {
+    let Some(chunk) = self.chunk.as_mut() else {
+      return;
+    };
+    let chunk_halo = self
+      .chunk_halo
+      .get_or_insert_with(|| {
+        Box::new(std::array::from_fn(|_| {
+          Default::default()
+        }))
+      });
+    for i in (0..3).map(|i| i * 16) {
+      for j in 0..16 {
+        chunk_halo[j + i]
+          .update_neigh_top(&chunk[j + i + 16]);
+      }
+    }
+    if let Some(neigh) = neigh.chunk.as_ref() {
+      for i in 0..16 {
+        chunk_halo[i + 3 * 16]
+          .update_neigh_top(&neigh[i]);
+      }
     }
   }
 }

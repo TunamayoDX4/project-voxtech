@@ -14,6 +14,8 @@ pub use aliases::*;
 
 pub mod gfx;
 
+pub mod world_instance;
+
 pub mod control;
 pub mod player;
 
@@ -25,7 +27,7 @@ pub mod types;
 pub struct App {
   window: Option<Arc<Window>>,
   gfx: Option<gfx::GfxBundle>,
-  world: Option<common::World>,
+  world: Option<world_instance::WorldInstance>,
   user_input: control::UserControlInput,
   player: player::Player,
   player_camera: gfx::world::camera3d::Camera3DInstance,
@@ -59,36 +61,9 @@ impl ApplicationHandler for App {
     }
     self.window = Some(Arc::clone(&window));
 
-    self.world = Some(common::World::new());
-    let world = self.world.as_mut().unwrap();
-    world.dim.spawn_region(
-      common::BlockPos::new(0, 0, 0),
-      |_| {
-        let mut sector =
-          Box::new(std::array::from_fn(|_| {
-            common::l2_sector::Sector {
-              chunk_halo: Default::default(),
-              chunk: Some(Box::new(
-                std::array::from_fn(|_| {
-                  common::l1_chunk::Chunk {
-                    cell: Some(Box::new(
-                      std::array::from_fn(|_| {
-                        common::l0_cell::Cell(
-                          std::array::from_fn(|_| 1),
-                        )
-                      }),
-                    )),
-                  }
-                }),
-              )),
-            }
-          }));
-        common::l3_region::Region {
-          sector: Some(sector),
-          sector_halo: Default::default(),
-        }
-      },
-    );
+    self.world =
+      Some(world_instance::WorldInstance::new());
+    let world = self.world.as_ref().unwrap();
 
     let mut gfx =
       pollster::block_on(gfx::GfxBundle::new(window))
@@ -99,110 +74,7 @@ impl ApplicationHandler for App {
       &self.player_camera_cfg,
       &self.player_camera,
     );
-    gfx.world(|ctx, w| {
-      w.chunk.insert(
-        common::BlockPos::new(0, 0, 0),
-        || {
-          gfx::world::chunk::ChunkObject::new(
-            ctx,
-            common::BlockPos::new(0, 0, 0).into(),
-            &w.chunk_layout,
-            std::array::from_fn(|_| {
-              (0..1088).map(|i| {
-                gfx::world::tile::types::BakedInstance {
-                  stride: i,
-                  tex_pos: [0., 0.],
-                  tex_scale: [0., 0.],
-                }
-              })
-            }),
-          )
-        },
-      );
-
-      w.chunk.insert(
-        common::BlockPos::new(16, 0, 0),
-        || {
-          gfx::world::chunk::ChunkObject::new(
-            ctx,
-            common::BlockPos::new(16, 0, 0).into(),
-            &w.chunk_layout,
-            std::array::from_fn(|_| {
-              (0..4).map(|i| {
-                gfx::world::tile::types::BakedInstance {
-                  stride: i,
-                  tex_pos: [0., 0.],
-                  tex_scale: [0., 0.],
-                }
-              })
-            }),
-          )
-        },
-      );
-
-      w.chunk.insert(
-        common::BlockPos::new(0, 16, 0),
-        || {
-          gfx::world::chunk::ChunkObject::new(
-            ctx,
-            common::BlockPos::new(0, 16, 0).into(),
-            &w.chunk_layout,
-            std::array::from_fn(|_| {
-              (0..16).map(|i| {
-                gfx::world::tile::types::BakedInstance {
-                  stride: i,
-                  tex_pos: [0., 0.],
-                  tex_scale: [0., 0.],
-                }
-              })
-            }),
-          )
-        },
-      );
-
-      w.chunk.insert(
-        common::BlockPos::new(16, 16, 0),
-        || {
-          gfx::world::chunk::ChunkObject::new(
-            ctx,
-            common::BlockPos::new(16, 16, 0).into(),
-            &w.chunk_layout,
-            std::array::from_fn(|_| {
-              (0..16).map(|i| {
-                gfx::world::tile::types::BakedInstance {
-                  stride: i << 2,
-                  tex_pos: [0., 0.],
-                  tex_scale: [0., 0.],
-                }
-              })
-            }),
-          )
-        },
-      );
-
-      w.chunk.insert(
-        common::BlockPos::new(32, 16, 0),
-        || {
-          gfx::world::chunk::ChunkObject::new(
-            ctx,
-            common::BlockPos::new(32, 16, 0).into(),
-            &w.chunk_layout,
-            std::array::from_fn(|_| {
-              (0..16).map(|i| {
-                let narrow = i & 0b11;
-                let broad = (i & !3) << 2;
-                let stride = narrow + broad + 12;
-                gfx::world::tile::types::BakedInstance {
-                  stride,
-                  tex_pos: [0., 0.],
-                  tex_scale: [0., 0.],
-                }
-              })
-            }),
-          )
-        },
-      );
-    });
+    world.rendering(&mut gfx);
     self.gfx = Some(gfx);
   }
 
@@ -226,7 +98,7 @@ impl ApplicationHandler for App {
         self
           .player
           .update_camera(&mut self.player_camera);
-        gfx.world(|ctx, w| {
+        gfx.world_modify(|ctx, w| {
           w.update(
             ctx,
             &self.player_camera_cfg,
