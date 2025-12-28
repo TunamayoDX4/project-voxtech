@@ -13,6 +13,8 @@ use crate::{
   },
 };
 
+pub mod player;
+
 pub struct WorldInstance {
   world: World,
 }
