@@ -1,4 +1,6 @@
-use crate::common::{BlockDist, BlockPos, Dir, InnerBlockPos};
+use crate::common::{
+  BlockDist, BlockPos, Dir, InnerBlockPos,
+};
 
 use super::l1_chunk;
 
@@ -26,10 +28,10 @@ impl Sector {
     let ret = (0..chunk.len())
       .map(|i| {
         let i = InnerBlockPos::new(i as _);
-        let p = BlockPos::from(i).level_up(3) - BlockDist::new(1, 1, 1);
+        let p = BlockDist::from(i).level_up(2);
         (i, p)
       })
-      .map(|(i, p)| (i, pos.merge(&p, 3)))
+      .map(|(i, p)| (i, *pos + p))
       .map(|(i, p)| (i, p, &chunk[i.0 as usize]));
     Some(ret)
   }

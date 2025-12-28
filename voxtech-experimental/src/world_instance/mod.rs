@@ -21,8 +21,8 @@ pub struct WorldInstance {
 impl WorldInstance {
   pub fn new() -> Self {
     let mut world = World::new();
-    for x in -1..=1 {
-      for y in -1..=1 {
+    for x in -1..1 {
+      for y in -1..1 {
         let pos = BlockPos::new(x, y, -1);
         println!("RAW: {pos:?}");
         let pos = pos.level_up(4);

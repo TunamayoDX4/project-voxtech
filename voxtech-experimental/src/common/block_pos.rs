@@ -505,6 +505,28 @@ impl From<BlockDist> for [i64; 4] {
     value.0
   }
 }
+impl From<InnerBlockPos> for BlockDist {
+  #[inline]
+  fn from(value: InnerBlockPos) -> Self {
+    Self([
+      ((value.0 >> 0) & 3) as _,
+      ((value.0 >> 2) & 3) as _,
+      ((value.0 >> 4) & 3) as _,
+      ((value.0 >> 6) & 3) as _,
+    ])
+  }
+}
+impl From<BlockDist> for InnerBlockPos {
+  #[inline]
+  fn from(value: BlockDist) -> Self {
+    Self(
+      ((value.0[0] & 3) << 0) as u8
+        | ((value.0[1] & 3) << 2) as u8
+        | ((value.0[2] & 3) << 4) as u8
+        | ((value.0[3] & 3) << 6) as u8,
+    )
+  }
+}
 impl BlockDist {
   #[inline]
   pub fn new(x: i64, y: i64, z: i64) -> Self {
@@ -612,12 +634,7 @@ impl BlockDist {
   pub fn merge(&self, right: &Self, level: u8) -> Self {
     let left = self.cut_up(level);
     let right = right.cut_down(level);
-    Self([
-      left.0[0] + right.0[0],
-      left.0[1] + right.0[1],
-      left.0[2] + right.0[2],
-      left.0[3] + right.0[3],
-    ])
+    left | right
   }
 
   /// 2ビットで切り分ける

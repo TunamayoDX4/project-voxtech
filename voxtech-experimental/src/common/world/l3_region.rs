@@ -1,4 +1,6 @@
-use crate::common::{BlockDist, BlockPos, Dir, InnerBlockPos};
+use crate::common::{
+  BlockDist, BlockPos, Dir, InnerBlockPos,
+};
 
 use super::{
   l0_cell,   //
@@ -32,13 +34,10 @@ impl Region {
     let ret = (0..sector.len())
       .map(|i| {
         let i = InnerBlockPos::new(i as _);
-        let p = BlockPos::from(i).level_up(3) - BlockDist::new(1, 1, 1);
+        let p = BlockDist::from(i).level_up(3);
         (i, p)
       })
-      .map(move |(i, p0)| {
-        let p = pos.merge(&p0, 3);
-        (i, p)
-      })
+      .map(move |(i, p)| (i, *pos + p))
       .map(|(i, p)| (i, p, &sector[i.0 as usize]));
     Some(ret)
   }
