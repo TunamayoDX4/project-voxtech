@@ -171,6 +171,25 @@ impl AddAssign<BlockDist> for BlockPos {
     *self = *self + rhs;
   }
 }
+impl Sub<BlockDist> for BlockPos {
+  type Output = BlockPos;
+
+  #[inline]
+  fn sub(self, rhs: BlockDist) -> Self::Output {
+    Self([
+      self.0[0] - rhs.0[0],
+      self.0[1] - rhs.0[1],
+      self.0[2] - rhs.0[2],
+      self.0[3] - rhs.0[3],
+    ])
+  }
+}
+impl SubAssign<BlockDist> for BlockPos {
+  #[inline]
+  fn sub_assign(&mut self, rhs: BlockDist) {
+    *self = *self - rhs;
+  }
+}
 
 impl BitAnd<BlockPos> for BlockPos {
   type Output = BlockPos;
@@ -411,10 +430,6 @@ impl BlockPos {
   #[inline]
   pub fn cut_down(&self, level: u8) -> Self {
     let right = !(i64::MAX << 2 * level);
-    println!(
-      "{left:?}: {right:b}",
-      left = self
-    );
     *self & right
   }
 
@@ -444,7 +459,6 @@ impl BlockPos {
   pub fn merge(&self, right: &Self, level: u8) -> Self {
     let left = self.cut_up(level);
     let right = right.cut_down(level);
-    println!("{right:?}");
     Self([
       left.0[0] + right.0[0],
       left.0[1] + right.0[1],
@@ -568,7 +582,8 @@ impl BlockDist {
   /// 上位2*levelビットを切り下げる
   #[inline]
   pub fn cut_down(&self, level: u8) -> Self {
-    *self & !(i64::MAX << 2 * level)
+    let right = !(i64::MAX << 2 * level);
+    *self & right
   }
 
   /// 下位2ビットを切り上げる
@@ -595,7 +610,14 @@ impl BlockDist {
   /// 2*levelビットで結合する
   #[inline]
   pub fn merge(&self, right: &Self, level: u8) -> Self {
-    self.cut_down(level) | right.cut_up(level)
+    let left = self.cut_up(level);
+    let right = right.cut_down(level);
+    Self([
+      left.0[0] + right.0[0],
+      left.0[1] + right.0[1],
+      left.0[2] + right.0[2],
+      left.0[3] + right.0[3],
+    ])
   }
 
   /// 2ビットで切り分ける
@@ -610,7 +632,14 @@ impl BlockDist {
   /// 2ビットで結合する
   #[inline]
   pub fn merge_1(&self, right: &Self) -> Self {
-    self.cut_down_1() | right.cut_up_1()
+    let left = self.cut_up_1();
+    let right = right.cut_down_1();
+    Self([
+      left.0[0] + right.0[0],
+      left.0[1] + right.0[1],
+      left.0[2] + right.0[2],
+      left.0[3] + right.0[3],
+    ])
   }
 }
 impl Not for BlockDist {
