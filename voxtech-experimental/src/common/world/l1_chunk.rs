@@ -6,7 +6,62 @@ use super::l0_cell;
 pub struct Chunk {
   pub cell: Option<Box<[l0_cell::Cell; 64]>>,
 }
-impl Chunk {}
+impl Chunk {
+  /// 1ブロック西(-X)にずらす
+  #[inline]
+  pub fn stride_west(&mut self) -> bool {
+    let Some(cell) = self.cell.as_mut() else { return false };
+    for i in 0..64u8 {
+      cell[i as usize].stride_west();
+    }
+    true
+  }
+  /// 1ブロック東(+X)にずらす
+  #[inline]
+  pub fn stride_east(&mut self) -> bool {
+    let Some(cell) = self.cell.as_mut() else { return false };
+    for i in 0..64u8 {
+      cell[i as usize].stride_east();
+    }
+    true
+  }
+  /// 1ブロック南(-Y)にずらす
+  #[inline]
+  pub fn stride_south(&mut self) -> bool {
+    let Some(cell) = self.cell.as_mut() else { return false };
+    for i in 0..64u8 {
+      cell[i as usize].stride_south();
+    }
+    true
+  }
+  /// 1ブロック北(+Y)にずらす
+  #[inline]
+  pub fn stride_north(&mut self) -> bool {
+    let Some(cell) = self.cell.as_mut() else { return false };
+    for i in 0..64u8 {
+      cell[i as usize].stride_north();
+    }
+    true
+  }
+  /// 1ブロック下(-Z)にずらす
+  #[inline]
+  pub fn stride_bottom(&mut self) -> bool {
+    let Some(cell) = self.cell.as_mut() else { return false };
+    for i in 0..64u8 {
+      cell[i as usize].stride_bottom();
+    }
+    true
+  }
+  /// 1ブロック上(+Z)にずらす
+  #[inline]
+  pub fn stride_top(&mut self) -> bool {
+    let Some(cell) = self.cell.as_mut() else { return false };
+    for i in 0..64u8 {
+      cell[i as usize].stride_top();
+    }
+    true
+  }
+}
 
 pub struct ChunkHaloArray([ChunkHalo; 6]);
 impl Default for ChunkHaloArray {

@@ -10,8 +10,7 @@ struct ChunkUniform {
 
 struct InstanceInput {
   @location(8) stride: u32, 
-  @location(9) offset: vec2<f32>, 
-  @location(10) color: vec2<f32>,
+  @location(9) color: vec4<f32>,
 }
 
 struct VertexInput {
@@ -46,7 +45,7 @@ fn vs_main(
     0.0,
   );
   out.position = camera.view_proj * (vec4<f32>(chunk.stride) + model.position + stride);
-  out.color = model.color;
+  out.color = instance.color;
   return out;
 }
 

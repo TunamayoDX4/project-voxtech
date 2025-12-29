@@ -24,9 +24,7 @@ impl WorldInstance {
     for x in -1..1 {
       for y in -1..1 {
         let pos = BlockPos::new(x, y, -1);
-        println!("RAW: {pos:?}");
         let pos = pos.level_up(4);
-        println!("REGION: {pos:?}");
         world
           .dim
           .spawn_region(pos, |_| {
@@ -89,7 +87,6 @@ impl WorldInstance {
             {
               /*obj.write_instance(instance, dir);*/
             } else {
-              println!("{bpos:?}");
               wr.chunk.insert(bpos, || {
                 ChunkObject::new(
                   ctx,
@@ -102,8 +99,12 @@ impl WorldInstance {
                         {
                           Some(BakedInstance {
                             stride: i as u32,
-                            tex_pos: [0., 0.],
-                            tex_scale: [0., 0.],
+                            color: [
+                              ((i >> 0) & 15) as f32 / 15., 
+                              ((i >> 4) & 15) as f32 / 15., 
+                              ((i >> 8) & 15) as f32 / 15., 
+                              1., 
+                            ], 
                           })
                         } else {
                           None

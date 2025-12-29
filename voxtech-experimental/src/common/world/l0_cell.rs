@@ -51,6 +51,67 @@ impl Cell {
       r
     }))
   }
+
+  
+  /// 64分木の子要素を西方向(-X)へずらす
+  #[inline]
+  pub fn stride_west(&self) -> Self {
+    Self(std::array::from_fn(|i| {
+      let no_axis = i & !3;
+      let axis = (i - 1) & 3;  
+      self.0[no_axis + axis]
+    }))
+  }
+
+  /// 64分木の子要素を東方向(+X)へずらす
+  #[inline]
+  pub fn stride_east(&self) -> Self {
+    Self(std::array::from_fn(|i| {
+      let no_axis = i & !3;
+      let axis = (i + 1) & 3;  
+      self.0[no_axis + axis]
+    }))
+  }
+
+  /// 64分木の子要素を南方向(-Y)へずらす
+  #[inline]
+  pub fn stride_south(&self) -> Self {
+    Self(std::array::from_fn(|i| {
+      let no_axis = i & !12;
+      let axis = (i - 4) & 12;
+      self.0[no_axis + axis]
+    }))
+  }
+
+  /// 64分木の子要素を北方向(+Y)へずらす
+  #[inline]
+  pub fn stride_north(&self) -> Self {
+    Self(std::array::from_fn(|i| {
+      let no_axis = i & !12;
+      let axis = (i + 4) & 12;
+      self.0[no_axis + axis]
+    }))
+  }
+
+  /// 64分木の子要素を下方向(-Z)へずらす
+  #[inline]
+  pub fn stride_bottom(&self) -> Self {
+    Self(std::array::from_fn(|i| {
+      let no_axis = i & !48;
+      let axis = (i - 16) & 48;
+      self.0[no_axis + axis]
+    }))
+  }
+
+  /// 64分木の子要素を上方向(+Z)へずらす
+  #[inline]
+  pub fn stride_top(&self) -> Self {
+    Self(std::array::from_fn(|i| {
+      let no_axis = i & !48;
+      let axis = (i + 16) & 48;
+      self.0[no_axis + axis]
+    }))
+  }
 }
 
 #[repr(C, align(16))]
