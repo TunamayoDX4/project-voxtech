@@ -33,10 +33,22 @@ impl WorldInstance {
                 if 47 < i {
                   let chunk = Box::new(
                     std::array::from_fn(|i| {
-                      if 47 < i {
+                      if (47 < i)
+                        && ((i / 4) % 2 ^ i % 2) == 0
+                      {
                         let chunk = Box::new(
-                          std::array::from_fn(|_| {
-                            Cell([1; 64])
+                          std::array::from_fn(|i| {
+                            if ((i / 16) % 2
+                              ^ (i / 4) % 2
+                              ^ i % 2)
+                              == 0
+                            {
+                              Cell(std::array::from_fn(
+                                |i| i as _,
+                              ))
+                            } else {
+                              Cell([0; 64])
+                            }
                           }),
                         );
                         Chunk { cell: Some(chunk) }
@@ -95,16 +107,21 @@ impl WorldInstance {
                   std::array::from_fn(|_| {
                     (0..4096)
                       .map(|i| {
-                        if cells[i / 64].0[i % 64] == 1
-                        {
+                        let cell =
+                          cells[i / 64].0[i % 64];
+                        if cell != 0 {
+                          let rgba = [
+                            ((cell >> 0) & 3) as f32
+                              / 3.,
+                            ((cell >> 2) & 3) as f32
+                              / 3.,
+                            ((cell >> 4) & 3) as f32
+                              / 3.,
+                            1.,
+                          ];
                           Some(BakedInstance {
                             stride: i as u32,
-                            color: [
-                              ((i >> 0) & 15) as f32 / 15., 
-                              ((i >> 4) & 15) as f32 / 15., 
-                              ((i >> 8) & 15) as f32 / 15., 
-                              1., 
-                            ], 
+                            color: rgba,
                           })
                         } else {
                           None

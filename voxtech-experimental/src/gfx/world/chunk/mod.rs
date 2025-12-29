@@ -13,7 +13,10 @@ pub mod uniform;
 #[repr(C, align(8))]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct ChunkStorageKey {
+  /// チャンクストレージ上でのインデックスを格納するキー
   key: u32,
+
+  /// キーが同じチャンクの世代
   generation: NonZero<u32>,
 }
 
@@ -21,6 +24,7 @@ pub struct ChunkStorage {
   map: HashMap<BlockPos, u32>,
   pos: Vec<Option<BlockPos>>,
   generation: Vec<NonZero<u32>>,
+  modify_key: Vec<u16>,
   mem: Vec<Option<ChunkObject>>,
   remque: VecDeque<u32>,
 }
@@ -30,6 +34,7 @@ impl ChunkStorage {
       map: HashMap::new(),
       pos: Vec::new(),
       generation: Vec::new(),
+      modify_key: Vec::new(),
       mem: Vec::new(),
       remque: VecDeque::new(),
     }
@@ -56,6 +61,7 @@ impl ChunkStorage {
         .unwrap_or(NonZero::new(1).unwrap());
         self.pos[idx as usize] = Some(pos);
         self.generation[idx as usize] = generation;
+        self.modify_key[idx as usize] = 0;
         self.mem[idx as usize] = Some(obj());
 
         ChunkStorageKey {
@@ -68,6 +74,7 @@ impl ChunkStorage {
         let generation = NonZero::new(1).unwrap();
         self.pos.push(Some(pos));
         self.generation.push(generation);
+        self.modify_key.push(0);
         self.mem.push(Some(obj()));
 
         ChunkStorageKey {
@@ -158,6 +165,7 @@ impl ChunkStorage {
   ) -> Option<(ChunkStorageKey, &ChunkObject)> {
     let key = self.map.get(pos).copied()?;
     let generation = self.generation[key as usize];
+    let modify_key = self.modify_key[key as usize];
     let mem = self.mem[key as usize]
       .as_ref()
       .unwrap();

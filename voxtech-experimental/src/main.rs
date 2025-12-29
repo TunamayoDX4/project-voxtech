@@ -182,7 +182,7 @@ fn main() {
     player_camera_cfg:
       gfx::world::camera3d::Camera3DConfig {
         fovy: 45. * std::f64::consts::PI / 180.,
-        near: 0.5,
+        near: 0.1,
         far: 10000.,
       },
   };

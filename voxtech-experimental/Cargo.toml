@@ -4,13 +4,11 @@ version = "0.1.0"
 edition = "2024"
 
 [profile.release]
-target-cpu = "skylake"
 opt-level = "z"
 lto = "fat"
 strip = "debuginfo"
 
 [profile.dev]
-target-cpu = "skylake"
 opt-level = 1
 lto = false
 
