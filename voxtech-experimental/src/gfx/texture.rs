@@ -9,8 +9,8 @@ use wgpu::{
   AddressMode, BindGroup, BindGroupEntry,
   BindGroupLayout, BindGroupLayoutEntry,
   BindingResource, BindingType, CompareFunction,
-  Extent3d, FilterMode, Origin3d, Sampler,
-  SamplerBindingType, ShaderStages,
+  Extent3d, FilterMode, MipmapFilterMode, Origin3d,
+  Sampler, SamplerBindingType, ShaderStages,
   TexelCopyBufferLayout, TexelCopyTextureInfo,
   TextureAspect, TextureDimension, TextureFormat,
   TextureSampleType, TextureUsages, TextureView,
@@ -113,7 +113,7 @@ impl Texture {
         address_mode_w: AddressMode::ClampToEdge,
         min_filter: FilterMode::Nearest,
         mag_filter: FilterMode::Nearest,
-        mipmap_filter: FilterMode::Nearest,
+        mipmap_filter: MipmapFilterMode::Nearest,
         ..Default::default()
       },
     );
@@ -159,7 +159,7 @@ impl Texture {
         address_mode_w: AddressMode::ClampToEdge,
         mag_filter: FilterMode::Linear,
         min_filter: FilterMode::Linear,
-        mipmap_filter: FilterMode::Nearest,
+        mipmap_filter: MipmapFilterMode::Nearest,
         lod_min_clamp: 0.0,
         lod_max_clamp: 100.0,
         compare: Some(CompareFunction::LessEqual),

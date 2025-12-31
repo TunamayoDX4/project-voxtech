@@ -83,7 +83,7 @@ impl OpaqueTileRdr {
             &camera.bindgroup_layout,
             &chunk_uniform.bindgroup_layout,
           ],
-          push_constant_ranges: &[],
+          immediate_size: 0,
         },
       );
     let shader = ctx.device.create_shader_module(
@@ -125,7 +125,6 @@ impl OpaqueTileRdr {
             mask: !0,
             alpha_to_coverage_enabled: false,
           },
-          multiview: None,
           cache: None,
           vertex: wgpu::VertexState {
             module: &shader,
@@ -154,6 +153,7 @@ impl OpaqueTileRdr {
               write_mask: wgpu::ColorWrites::ALL,
             })],
           }),
+          multiview_mask: None,
         },
       );
 
@@ -206,6 +206,7 @@ impl OpaqueTileRdr {
           ),
           timestamp_writes: None,
           occlusion_query_set: None,
+          multiview_mask: None,
         },
       );
       rpass.set_pipeline(&self.rpipe);

@@ -170,7 +170,7 @@ impl ApplicationHandler for App {
                 .as_mut()
                 .unwrap()[48];
               let cells =
-                sector.chunk.as_mut().unwrap()[48]
+                sector.chunk.as_mut().unwrap()[49]
                   .cell
                   .as_mut()
                   .unwrap();
@@ -198,7 +198,7 @@ impl ApplicationHandler for App {
                   return;
                 }
               };
-              info[48].dirty_opq_tile = true;
+              info[49].dirty_opq_tile = true;
             }
             _ => {}
           }
