@@ -2,6 +2,20 @@ use crate::common::Dir;
 
 use super::l0_cell;
 
+#[repr(C)]
+#[derive(Debug, Clone, Copy)]
+pub struct ChunkInfo {
+  /// 不透明タイルが更新されているか？
+  pub dirty_opq_tile: bool,
+}
+impl Default for ChunkInfo {
+  fn default() -> Self {
+    Self {
+      dirty_opq_tile: false,
+    }
+  }
+}
+
 #[derive(Debug, Clone)]
 pub struct Chunk {
   pub cell: Option<Box<[l0_cell::Cell; 64]>>,
@@ -10,7 +24,9 @@ impl Chunk {
   /// 1ブロック西(-X)にずらす
   #[inline]
   pub fn stride_west(&mut self) -> bool {
-    let Some(cell) = self.cell.as_mut() else { return false };
+    let Some(cell) = self.cell.as_mut() else {
+      return false;
+    };
     for i in 0..64u8 {
       cell[i as usize].stride_west();
     }
@@ -19,7 +35,9 @@ impl Chunk {
   /// 1ブロック東(+X)にずらす
   #[inline]
   pub fn stride_east(&mut self) -> bool {
-    let Some(cell) = self.cell.as_mut() else { return false };
+    let Some(cell) = self.cell.as_mut() else {
+      return false;
+    };
     for i in 0..64u8 {
       cell[i as usize].stride_east();
     }
@@ -28,7 +46,9 @@ impl Chunk {
   /// 1ブロック南(-Y)にずらす
   #[inline]
   pub fn stride_south(&mut self) -> bool {
-    let Some(cell) = self.cell.as_mut() else { return false };
+    let Some(cell) = self.cell.as_mut() else {
+      return false;
+    };
     for i in 0..64u8 {
       cell[i as usize].stride_south();
     }
@@ -37,7 +57,9 @@ impl Chunk {
   /// 1ブロック北(+Y)にずらす
   #[inline]
   pub fn stride_north(&mut self) -> bool {
-    let Some(cell) = self.cell.as_mut() else { return false };
+    let Some(cell) = self.cell.as_mut() else {
+      return false;
+    };
     for i in 0..64u8 {
       cell[i as usize].stride_north();
     }
@@ -46,7 +68,9 @@ impl Chunk {
   /// 1ブロック下(-Z)にずらす
   #[inline]
   pub fn stride_bottom(&mut self) -> bool {
-    let Some(cell) = self.cell.as_mut() else { return false };
+    let Some(cell) = self.cell.as_mut() else {
+      return false;
+    };
     for i in 0..64u8 {
       cell[i as usize].stride_bottom();
     }
@@ -55,7 +79,9 @@ impl Chunk {
   /// 1ブロック上(+Z)にずらす
   #[inline]
   pub fn stride_top(&mut self) -> bool {
-    let Some(cell) = self.cell.as_mut() else { return false };
+    let Some(cell) = self.cell.as_mut() else {
+      return false;
+    };
     for i in 0..64u8 {
       cell[i as usize].stride_top();
     }

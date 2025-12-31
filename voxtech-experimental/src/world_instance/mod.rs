@@ -2,8 +2,11 @@
 
 use crate::{
   common::{
-    l0_cell::Cell, l1_chunk::Chunk, l2_sector::Sector,
-    l3_region::Region, BlockPos, World,
+    l0_cell::Cell,
+    l1_chunk::{Chunk, ChunkInfo},
+    l2_sector::Sector,
+    l3_region::Region,
+    BlockPos, Dir, World,
   },
   gfx::{
     world::{
@@ -31,6 +34,16 @@ impl WorldInstance {
             let sector =
               Box::new(std::array::from_fn(|i| {
                 if 47 < i {
+                  let chunk_info =
+                    std::array::from_fn(|i| {
+                      if (47 < i) {
+                        ChunkInfo {
+                          dirty_opq_tile: true,
+                        }
+                      } else {
+                        Default::default()
+                      }
+                    });
                   let chunk = Box::new(
                     std::array::from_fn(|i| {
                       if (47 < i)
@@ -58,11 +71,13 @@ impl WorldInstance {
                     }),
                   );
                   Sector {
+                    chunk_info,
                     chunk: Some(chunk),
                     chunk_halo: None,
                   }
                 } else {
                   Sector {
+                    chunk_info: [Default::default(); _],
                     chunk: None,
                     chunk_halo: None,
                   }
@@ -89,7 +104,15 @@ impl WorldInstance {
           else {
             continue;
           };
-          for (_ipos, bpos, chunk) in iter {
+          for (ipos, bpos, chunk) in iter {
+            // 更新不要(ブロックが書き換えられていない場合)であればスキップ
+            if !sector.chunk_info[ipos.0 as usize]
+              .dirty_opq_tile
+            {
+              continue;
+            }
+
+            // セルがそもそもない場合にもスキップ
             let Some(cells) = chunk.cell.as_ref()
             else {
               continue;
@@ -97,8 +120,36 @@ impl WorldInstance {
             if let Some((key, obj)) =
               wr.chunk.get_mut_by_pos(&bpos)
             {
+              // 更新処理
+              for i in 0..Dir::COUNT {
+                let dir = Dir::from(i);
+                obj.write_instance(
+                  (0..4096)
+                    .map(|i| {
+                      let cell =
+                        cells[i / 64].0[i % 64];
+                      if cell != 0 {
+                        let rgba = [
+                          ((cell >> 0) & 3) as f32 / 3.,
+                          ((cell >> 2) & 3) as f32 / 3.,
+                          ((cell >> 4) & 3) as f32 / 3.,
+                          1.,
+                        ];
+                        Some(BakedInstance {
+                          stride: i as u32,
+                          color: rgba,
+                        })
+                      } else {
+                        None
+                      }
+                    })
+                    .filter_map(|i| i),
+                  dir,
+                );
+              }
               /*obj.write_instance(instance, dir);*/
             } else {
+              // 新規登録処理
               wr.chunk.insert(bpos, || {
                 ChunkObject::new(
                   ctx,

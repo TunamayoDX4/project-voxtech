@@ -74,7 +74,6 @@ impl ApplicationHandler for App {
       &self.player_camera_cfg,
       &self.player_camera,
     );
-    world.rendering(&mut gfx);
     self.gfx = Some(gfx);
   }
 
@@ -98,6 +97,12 @@ impl ApplicationHandler for App {
         self
           .player
           .update_camera(&mut self.player_camera);
+
+        // ワールドの描画・更新
+        if let Some(world) = self.world.as_ref() {
+          world.rendering(gfx);
+        }
+
         gfx.world_modify(|ctx, w| {
           w.update(
             ctx,

@@ -5,6 +5,7 @@ use crate::common::{
 use super::l1_chunk;
 
 pub struct Sector {
+  pub chunk_info: [l1_chunk::ChunkInfo; 64],
   pub chunk: Option<Box<[l1_chunk::Chunk; 64]>>,
   pub chunk_halo:
     Option<Box<[l1_chunk::ChunkHaloArray; 64]>>,
