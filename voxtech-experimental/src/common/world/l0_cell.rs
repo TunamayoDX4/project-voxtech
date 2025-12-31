@@ -73,6 +73,21 @@ impl Cell {
     rotated
   }
 
+  /// 64分木の子要素を西方向(-X)へストライド(隣セルの考慮)
+  #[inline]
+  pub fn stride_west_neigh(
+    &self,
+    neigh: &Cell,
+  ) -> Self {
+    let neigh = CellHalo::make_halo_west(neigh);
+    let mut rotated = self.rotate_west();
+    // 不要な範囲外に追い出されたブロックをお隣にする
+    for i in 0..16 {
+      rotated.0[i * 4 + 3] = neigh.0[i];
+    }
+    rotated
+  }
+
   /// 64分木の子要素を東方向(+X)へローテート
   #[inline]
   pub fn rotate_east(&self) -> Self {
@@ -90,6 +105,21 @@ impl Cell {
     // 不要な範囲外に追い出されたブロックを消去する
     for i in 0..16 {
       rotated.0[i * 4] = 0;
+    }
+    rotated
+  }
+
+  /// 64分木の子要素を東方向(+X)へストライド(隣セルの考慮)
+  #[inline]
+  pub fn stride_east_neigh(
+    &self,
+    neigh: &Cell,
+  ) -> Self {
+    let neigh = CellHalo::make_halo_east(neigh);
+    let mut rotated = self.rotate_east();
+    // 不要な範囲外に追い出されたブロックをお隣にする
+    for i in 0..16 {
+      rotated.0[i * 4] = neigh.0[i];
     }
     rotated
   }
@@ -117,6 +147,23 @@ impl Cell {
     rotated
   }
 
+  /// 64分木の子要素を南方向(-Y)へストライド(隣セルの考慮)
+  #[inline]
+  pub fn stride_south_neigh(
+    &self,
+    neigh: &Cell,
+  ) -> Self {
+    let neigh = CellHalo::make_halo_south(neigh);
+    let mut rotated = self.rotate_south();
+    // 不要な範囲外に追い出されたブロックをお隣にする
+    for i in 0..16 {
+      let broad = (i & !3) * 4;
+      let narrow = i % 4;
+      rotated.0[broad + narrow + 12] = neigh.0[i];
+    }
+    rotated
+  }
+
   /// 64分木の子要素を北方向(+Y)へローテート
   #[inline]
   pub fn rotate_north(&self) -> Self {
@@ -136,6 +183,23 @@ impl Cell {
       let broad = (i & !3) * 4;
       let narrow = i % 4;
       rotated.0[broad + narrow] = 0;
+    }
+    rotated
+  }
+
+  /// 64分木の子要素を北方向(+Y)へストライド(隣セルの考慮)
+  #[inline]
+  pub fn stride_north_neigh(
+    &self,
+    neigh: &Cell,
+  ) -> Self {
+    let neigh = CellHalo::make_halo_north(neigh);
+    let mut rotated = self.rotate_north();
+    // 不要な範囲外に追い出されたブロックをお隣にする
+    for i in 0..16 {
+      let broad = (i & !3) * 4;
+      let narrow = i % 4;
+      rotated.0[broad + narrow + 12] = neigh.0[i];
     }
     rotated
   }
@@ -161,6 +225,21 @@ impl Cell {
     rotated
   }
 
+  /// 64分木の子要素を北方向(+Y)へストライド(隣セルの考慮)
+  #[inline]
+  pub fn stride_bottom_neigh(
+    &self,
+    neigh: &Cell,
+  ) -> Self {
+    let neigh = CellHalo::make_halo_bottom(neigh);
+    let mut rotated = self.rotate_bottom();
+    // 不要な範囲外に追い出されたブロックをお隣にする
+    for i in 0..16 {
+      rotated.0[i + 48] = neigh.0[i];
+    }
+    rotated
+  }
+
   /// 64分木の子要素を上方向(+Z)へローテート
   #[inline]
   pub fn rotate_top(&self) -> Self {
@@ -178,6 +257,18 @@ impl Cell {
     // 不要な範囲外に追い出されたブロックを消去する
     for i in 0..16 {
       rotated.0[i] = 0;
+    }
+    rotated
+  }
+
+  /// 64分木の子要素を北方向(+Y)へストライド(隣セルの考慮)
+  #[inline]
+  pub fn stride_top_neigh(&self, neigh: &Cell) -> Self {
+    let neigh = CellHalo::make_halo_top(neigh);
+    let mut rotated = self.rotate_top();
+    // 不要な範囲外に追い出されたブロックをお隣にする
+    for i in 0..16 {
+      rotated.0[i] = neigh.0[i];
     }
     rotated
   }

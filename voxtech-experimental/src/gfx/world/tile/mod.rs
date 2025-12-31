@@ -18,9 +18,8 @@ pub struct OpaqueTileInstances {
 impl OpaqueTileInstances {
   pub fn new(
     ctx: &WGPUCtx,
-    instance: impl Iterator<Item = types::BakedInstance>,
+    instance: Vec<types::BakedInstance>,
   ) -> Self {
-    let instance = instance.collect::<Vec<_>>();
     let buffer = ctx.device.create_buffer_init(
       &wgpu::util::BufferInitDescriptor {
         label: Some("Opaque tile instances array"),

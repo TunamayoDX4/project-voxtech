@@ -99,7 +99,10 @@ impl ApplicationHandler for App {
 
         // ワールドの描画・更新
         if let Some(world) = self.world.as_ref() {
-          world.rendering(gfx);
+          world.rendering(
+            gfx,
+            &self.player_camera.position,
+          );
         }
 
         gfx.world_modify(|ctx, w| {

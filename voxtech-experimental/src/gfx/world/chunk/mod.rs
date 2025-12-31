@@ -199,10 +199,13 @@ impl ChunkStorage {
       .mem
       .iter()
       .filter_map(|c| c.as_ref())
+      .filter(|c| c.opaque_tile[dir as usize].is_some())
     {
       chunk.uniform.rendering(rpass);
       let instance_len = chunk.opaque_tile
         [dir as usize]
+        .as_ref()
+        .unwrap()
         .rendering(rpass);
       rpass.draw_indexed(
         0..super::tile::types::TILE_INDICES.len() as _,
@@ -216,26 +219,25 @@ impl ChunkStorage {
 pub struct ChunkObject {
   uniform: uniform::ChunkUniformInstance,
   opaque_tile:
-    [OpaqueTileInstances; Dir::COUNT as usize],
+    [Option<OpaqueTileInstances>; Dir::COUNT as usize],
 }
 impl ChunkObject {
   pub fn new(
     ctx: &WGPUCtx,
     uniform: uniform::ChunkUniform,
     layout: &uniform::ChunkUniformLayout,
-    mut instance: [impl Iterator<Item = super::tile::types::BakedInstance>;
+    mut instance: [Option<Vec<super::tile::types::BakedInstance>>;
       Dir::COUNT as usize],
   ) -> Self {
     let uniform = uniform::ChunkUniformInstance::new(
       ctx, layout, uniform,
     );
     let opaque_tile = std::array::from_fn(|i| {
-      OpaqueTileInstances::new(
-        ctx,
-        std::mem::replace(&mut instance[i], unsafe {
-          std::mem::MaybeUninit::uninit().assume_init()
-        }),
-      )
+      instance[i]
+        .take()
+        .map(|instance| {
+          OpaqueTileInstances::new(ctx, instance)
+        })
     });
     Self {
       uniform,
@@ -251,8 +253,18 @@ impl ChunkObject {
     >,
     dir: Dir,
   ) {
-    let opqt = &mut self.opaque_tile[dir as usize];
-    opqt.write(instance);
-    opqt.update(ctx);
+    match &mut self.opaque_tile[dir as usize] {
+      Some(opqt) => {
+        opqt.write(instance);
+        opqt.update(ctx);
+      }
+      a => {
+        let opqt = OpaqueTileInstances::new(
+          ctx,
+          instance.collect(),
+        );
+        *a = Some(opqt)
+      }
+    }
   }
 }

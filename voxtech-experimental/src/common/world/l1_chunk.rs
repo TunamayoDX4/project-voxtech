@@ -1,4 +1,8 @@
-use crate::common::Dir;
+use parking_lot::RwLock;
+
+use crate::{
+  common::Dir, gfx::world::chunk::ChunkStorageKey,
+};
 
 use super::l0_cell;
 
@@ -7,16 +11,24 @@ use super::l0_cell;
 pub struct ChunkInfo {
   /// 不透明タイルが更新されているか？
   pub dirty_opq_tile: bool,
+
+  /// 可視性
+  pub visibility: [bool; Dir::COUNT as usize],
+
+  /// レンダラ・ストレージのキー
+  pub rdr_storage_key: Option<ChunkStorageKey>,
 }
 impl Default for ChunkInfo {
   fn default() -> Self {
     Self {
       dirty_opq_tile: false,
+      visibility: [true; Dir::COUNT as usize],
+      rdr_storage_key: None,
     }
   }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug)]
 pub struct Chunk {
   pub cell: Option<Box<[l0_cell::Cell; 64]>>,
 }

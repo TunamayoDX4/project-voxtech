@@ -1,11 +1,13 @@
 //! ワールドのゲーム上・処理上の実体…インスタンスを実装するモジュール
 
+use parking_lot::lock_api::RwLock;
+
 use crate::{
   common::{
     l0_cell::Cell,
     l1_chunk::{Chunk, ChunkInfo},
     l2_sector::Sector,
-    l3_region::Region,
+    l3_region::{self, Region},
     BlockPos, Dir, World,
   },
   gfx::{
@@ -43,7 +45,9 @@ impl WorldInstance {
                         == 0
                       {
                         ChunkInfo {
+                          visibility: [true; 6],
                           dirty_opq_tile: true,
+                          rdr_storage_key: None,
                         }
                       } else {
                         Default::default()
@@ -57,18 +61,10 @@ impl WorldInstance {
                         == 0
                       {
                         let chunk = Box::new(
-                          std::array::from_fn(|i| {
-                            if ((i / 16) % 2
-                              ^ (i / 4) % 2
-                              ^ i % 2)
-                              == 0
-                            {
-                              Cell(std::array::from_fn(
-                                |i| i as _,
-                              ))
-                            } else {
-                              Cell([0; 64])
-                            }
+                          std::array::from_fn(|_| {
+                            Cell(std::array::from_fn(
+                              |i| i as _,
+                            ))
                           }),
                         );
                         Chunk { cell: Some(chunk) }
@@ -104,13 +100,55 @@ impl WorldInstance {
     Self { world }
   }
 
-  pub fn rendering(&self, gfx: &mut GfxBundle) {
+  pub fn visibility_update(
+    &self,
+    camera_pos: &nalgebra::Point3<f64>,
+  ) {
+    for (pos, region) in self.world.dim.iter() {
+      let Some(iter_sector) = region.iter_sector(pos)
+      else {
+        continue;
+      };
+      let cpos = nalgebra::Vector3::new(
+        *pos.x() as f64,
+        *pos.y() as f64,
+        *pos.z() as f64,
+      );
+      let visibility =
+        Region::chk_visible_face(&(camera_pos - cpos));
+      for (ipos, bpos, sector) in iter_sector {
+        let Some(iter_chunk) = sector.iter_chunk(&bpos)
+        else {
+          continue;
+        };
+        let sector_visibility =
+          Sector::chk_visible_face(
+            ipos,
+            &(camera_pos - cpos),
+          );
+        let visibility: [bool; Dir::COUNT as usize] =
+          std::array::from_fn(|i| {
+            sector_visibility[i] && visibility[i]
+          });
+        let mut lock = sector.chunk_info.write();
+        for (ipos, _bpos, _chunk) in iter_chunk {
+          lock[ipos.0 as usize].visibility = visibility;
+        }
+      }
+    }
+  }
+
+  pub fn rendering(
+    &self,
+    gfx: &mut GfxBundle,
+    camera_pos: &nalgebra::Point3<f64>,
+  ) {
     gfx.world_modify(|ctx, wr| {
       for (pos, region) in self.world.dim.iter() {
         let Some(iter) = region.iter_sector(pos) else {
           continue;
         };
-        for (_ipos, bpos, sector) in iter {
+        for (ipos, bpos, sector) in iter {
           let Some(iter) = sector.iter_chunk(&bpos)
           else {
             continue;
@@ -139,100 +177,124 @@ impl WorldInstance {
             {
               // 更新処理
               for dir in Dir::iter() {
-                obj.write_instance(
-                  ctx,
-                  (0..64).flat_map(move |i| {
-                    let cell = cells[i];
-                    let strided_cell = match dir
-                      .invert()
-                    {
-                      Dir::WST => cell.stride_west(),
-                      Dir::EST => cell.stride_east(),
-                      Dir::STH => cell.stride_south(),
-                      Dir::NTH => cell.stride_north(),
-                      Dir::BTM => cell.stride_bottom(),
-                      Dir::TOP => cell.stride_top(),
-                      Dir::UNDEF => unreachable!(),
-                    };
-                    (0..64)
-                      .filter(move |p| {
-                        strided_cell.0[*p] == 0
-                          && cell.0[*p] != 0
-                      })
-                      .map(move |j| {
-                        let block = cell.0[j];
-                        let rgba = [
-                          ((block >> 0) & 3) as f32
-                            / 3.,
-                          ((block >> 2) & 3) as f32
-                            / 3.,
-                          ((block >> 4) & 3) as f32
-                            / 3.,
-                          1.,
-                        ];
-                        BakedInstance {
-                          stride: (i * 64 + j) as u32,
-                          color: rgba,
-                        }
-                      })
-                  }),
-                  dir,
-                );
+                if cinfo[ipos.0 as usize].visibility
+                  [dir as usize]
+                {
+                  obj.write_instance(
+                    ctx,
+                    generate_chunk_mesh(dir, cells),
+                    dir,
+                  );
+                }
               }
               /*obj.write_instance(instance, dir);*/
             } else {
               // 新規登録処理
-              wr.chunk.insert(bpos, || {
-                ChunkObject::new(
-                  ctx,
-                  bpos.into(),
-                  &wr.chunk_layout,
-                  std::array::from_fn(|dir_i| {
-                    let dir = Dir::from(dir_i as u8);
-                    (0..64).flat_map(move |i| {
-                      let cell = cells[i];
-                      let strided_cell = match dir
-                        .invert()
+              if let Some(key) =
+                wr.chunk.insert(bpos, || {
+                  ChunkObject::new(
+                    ctx,
+                    bpos.into(),
+                    &wr.chunk_layout,
+                    std::array::from_fn(|dir_i| {
+                      let dir = Dir::from(dir_i as u8);
+                      if cinfo[ipos.0 as usize]
+                        .visibility
+                        [dir as usize]
                       {
-                        Dir::WST => cell.stride_west(),
-                        Dir::EST => cell.stride_east(),
-                        Dir::STH => cell.stride_south(),
-                        Dir::NTH => cell.stride_north(),
-                        Dir::BTM => {
-                          cell.stride_bottom()
-                        }
-                        Dir::TOP => cell.stride_top(),
-                        Dir::UNDEF => unreachable!(),
-                      };
-                      (0..64)
-                        .filter(move |p| {
-                          strided_cell.0[*p] == 0
-                            && cell.0[*p] != 0
-                        })
-                        .map(move |j| {
-                          let block = cell.0[j];
-                          let rgba = [
-                            ((block >> 0) & 3) as f32
-                              / 3.,
-                            ((block >> 2) & 3) as f32
-                              / 3.,
-                            ((block >> 4) & 3) as f32
-                              / 3.,
-                            1.,
-                          ];
-                          BakedInstance {
-                            stride: (i * 64 + j) as u32,
-                            color: rgba,
-                          }
-                        })
-                    })
-                  }),
-                )
-              });
+                        Some(
+                          generate_chunk_mesh(
+                            dir, cells,
+                          )
+                          .collect(),
+                        )
+                      } else {
+                        None
+                      }
+                    }),
+                  )
+                })
+              {
+                cinfo.with_upgraded(|info| {
+                  info[ipos.0 as usize]
+                    .rdr_storage_key = Some(key)
+                })
+              }
             }
           }
         }
       }
     });
   }
+}
+
+fn generate_chunk_mesh(
+  dir: Dir,
+  cells: &[Cell; 64],
+) -> impl Iterator<Item = BakedInstance> {
+  (0..64).flat_map(move |i| {
+    let cell = cells[i];
+    let strided_cell = match dir.invert() {
+      Dir::WST => {
+        if (i & 3) < 3 {
+          cell.stride_west_neigh(&cells[i + 1])
+        } else {
+          cell.stride_west()
+        }
+      }
+      Dir::EST => {
+        if 0 < (i & 3) {
+          cell.stride_east_neigh(&cells[i - 1])
+        } else {
+          cell.stride_east()
+        }
+      }
+      Dir::STH => {
+        if (i & 12) < 12 {
+          cell.stride_south_neigh(&cells[i + 4])
+        } else {
+          cell.stride_south()
+        }
+      }
+      Dir::NTH => {
+        if 0 < (i & 12) {
+          cell.stride_north_neigh(&cells[i - 4])
+        } else {
+          cell.stride_north()
+        }
+      }
+      Dir::BTM => {
+        if (i & 48) < 48 {
+          cell.stride_bottom_neigh(&cells[i + 16])
+        } else {
+          cell.stride_bottom()
+        }
+      }
+      Dir::TOP => {
+        if 0 < (i & 48) {
+          cell.stride_top_neigh(&cells[i - 16])
+        } else {
+          cell.stride_top()
+        }
+      }
+      Dir::UNDEF => unreachable!(),
+    };
+    (0..64)
+      .filter(move |p| {
+        strided_cell.0[*p] == 0 && cell.0[*p] != 0
+      })
+      .map(move |j| {
+        let block = cell.0[j];
+        let rgba = [
+          ((block >> 0) & 3) as f32 / 3.,
+          ((block >> 2) & 3) as f32 / 3.,
+          ((block >> 4) & 3) as f32 / 3.,
+          1.,
+        ];
+        BakedInstance {
+          stride: (i * 64 + j) as u32,
+          color: rgba,
+        }
+      })
+  })
 }

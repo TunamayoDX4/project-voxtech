@@ -1,3 +1,5 @@
+use parking_lot::RwLock;
+
 use crate::common::{
   BlockDist, BlockPos, Dir, InnerBlockPos,
 };
@@ -194,6 +196,92 @@ impl Region {
           .update_neigh_top(&neigh[i]);
       }
     }
+  }
+
+  #[inline]
+  pub fn chk_visible_face(
+    relative_camera_pos: &nalgebra::Point3<f64>,
+  ) -> [bool; Dir::COUNT as usize] {
+    [
+      Self::chk_visible_west_face(relative_camera_pos),
+      Self::chk_visible_east_face(relative_camera_pos),
+      Self::chk_visible_south_face(relative_camera_pos),
+      Self::chk_visible_north_face(relative_camera_pos),
+      Self::chk_visible_bottom_face(
+        relative_camera_pos,
+      ),
+      Self::chk_visible_top_face(relative_camera_pos),
+    ]
+  }
+
+  /// 対象のリージョンの西面を描画するかを判断する。
+  #[inline]
+  pub fn chk_visible_west_face(
+    relative_camera_pos: &nalgebra::Point3<f64>,
+  ) -> bool {
+    let origin =
+      nalgebra::Point3::new(128., 128., 128.);
+    let vn = -nalgebra::Vector3::x();
+    let vp = relative_camera_pos - origin;
+    println!("{relative_camera_pos:?}, {vn:?}, {vp:?}");
+    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+  }
+
+  /// 対象のリージョンの東面を描画するかを判断する。
+  #[inline]
+  pub fn chk_visible_east_face(
+    relative_camera_pos: &nalgebra::Point3<f64>,
+  ) -> bool {
+    let origin = nalgebra::Point3::new(0., 128., 128.);
+    let vn = nalgebra::Vector3::x();
+    let vp = relative_camera_pos - origin;
+    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+  }
+
+  /// 対象のリージョンの南面を描画するかを判断する。
+  #[inline]
+  pub fn chk_visible_south_face(
+    relative_camera_pos: &nalgebra::Point3<f64>,
+  ) -> bool {
+    let origin =
+      nalgebra::Point3::new(128., 256., 128.);
+    let vn = -nalgebra::Vector3::y();
+    let vp = relative_camera_pos - origin;
+    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+  }
+
+  /// 対象のリージョンの北面を描画するかを判断する。
+  #[inline]
+  pub fn chk_visible_north_face(
+    relative_camera_pos: &nalgebra::Point3<f64>,
+  ) -> bool {
+    let origin = nalgebra::Point3::new(128., 0., 128.);
+    let vn = nalgebra::Vector3::y();
+    let vp = relative_camera_pos - origin;
+    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+  }
+
+  /// 対象のリージョンの下面を描画するかを判断する。
+  #[inline]
+  pub fn chk_visible_bottom_face(
+    relative_camera_pos: &nalgebra::Point3<f64>,
+  ) -> bool {
+    let origin =
+      nalgebra::Point3::new(128., 128., 256.);
+    let vn = -nalgebra::Vector3::z();
+    let vp = relative_camera_pos - origin;
+    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+  }
+
+  /// 対象のリージョンの上面を描画するかを判断する。
+  #[inline]
+  pub fn chk_visible_top_face(
+    relative_camera_pos: &nalgebra::Point3<f64>,
+  ) -> bool {
+    let origin = nalgebra::Point3::new(128., 128., 0.);
+    let vn = nalgebra::Vector3::z();
+    let vp = relative_camera_pos - origin;
+    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
   }
 }
 
