@@ -231,12 +231,12 @@ pub struct BakedInstance {
   /// ブロックのストライド
   /// 下位12bitのみを使用、
   pub stride: u32,
-  pub color: [f32; 4], 
+  pub color: [f32; 4],
 }
 impl BakedInstance {
   const ATTRIBS: [wgpu::VertexAttribute; 2] = wgpu::vertex_attr_array![
     8 => Uint32,
-    9 => Float32x4, 
+    9 => Float32x4,
   ];
 
   pub fn desc() -> wgpu::VertexBufferLayout<'static> {

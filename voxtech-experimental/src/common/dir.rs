@@ -60,7 +60,7 @@ impl Dir {
   pub fn invert(&self) -> Self {
     unsafe {
       std::mem::transmute(
-        (*self as u8 & !1) | !(*self as u8 & 1),
+        (*self as u8 & !1) | (!(*self as u8) & 1),
       )
     }
   }

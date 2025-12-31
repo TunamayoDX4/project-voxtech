@@ -245,11 +245,14 @@ impl ChunkObject {
 
   pub fn write_instance(
     &mut self,
+    ctx: &WGPUCtx,
     instance: impl Iterator<
       Item = super::tile::types::BakedInstance,
     >,
     dir: Dir,
   ) {
-    self.opaque_tile[dir as usize].write(instance);
+    let opqt = &mut self.opaque_tile[dir as usize];
+    opqt.write(instance);
+    opqt.update(ctx);
   }
 }

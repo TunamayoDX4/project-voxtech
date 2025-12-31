@@ -63,7 +63,6 @@ impl ApplicationHandler for App {
 
     self.world =
       Some(world_instance::WorldInstance::new());
-    let world = self.world.as_ref().unwrap();
 
     let mut gfx =
       pollster::block_on(gfx::GfxBundle::new(window))
@@ -138,6 +137,71 @@ impl ApplicationHandler for App {
           self
             .user_input
             .key_input(&event, window);
+        }
+        if let Some(world) = self.world.as_mut() {
+          if !event.state.is_pressed() {
+            return;
+          }
+          match event.physical_key {
+            winit::keyboard::PhysicalKey::Code(kc) => {
+              match kc {
+                winit::keyboard::KeyCode::ArrowLeft => {}
+                winit::keyboard::KeyCode::ArrowRight => {}
+                winit::keyboard::KeyCode::ArrowUp => {}
+                winit::keyboard::KeyCode::ArrowDown => {}
+                winit::keyboard::KeyCode::KeyT => {}
+                winit::keyboard::KeyCode::KeyB => {}
+                _ => {
+                  return;
+                }
+              }
+              let Some(region) =
+                world.world.dim.get_mut(
+                  &crate::common::BlockPos::new(
+                    0, 0, -256,
+                  ),
+                )
+              else {
+                return;
+              };
+              let sector = &mut region
+                .0
+                .sector
+                .as_mut()
+                .unwrap()[48];
+              let cells =
+                sector.chunk.as_mut().unwrap()[48]
+                  .cell
+                  .as_mut()
+                  .unwrap();
+              let mut info = sector.chunk_info.write();
+              cells[49] = match kc {
+                winit::keyboard::KeyCode::ArrowLeft => {
+                  cells[49].rotate_west()
+                }
+                winit::keyboard::KeyCode::ArrowRight => {
+                  cells[49].rotate_east()
+                }
+                winit::keyboard::KeyCode::ArrowUp => {
+                  cells[49].rotate_top()
+                }
+                winit::keyboard::KeyCode::ArrowDown => {
+                  cells[49].rotate_bottom()
+                }
+                winit::keyboard::KeyCode::KeyT => {
+                  cells[49].rotate_north()
+                }
+                winit::keyboard::KeyCode::KeyB => {
+                  cells[49].rotate_south()
+                }
+                _ => {
+                  return;
+                }
+              };
+              info[48].dirty_opq_tile = true;
+            }
+            _ => {}
+          }
         }
       }
       _ => {}

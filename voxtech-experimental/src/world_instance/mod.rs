@@ -14,12 +14,13 @@ use crate::{
     },
     GfxBundle,
   },
+  PRwLock,
 };
 
 pub mod player;
 
 pub struct WorldInstance {
-  world: World,
+  pub world: World,
 }
 impl WorldInstance {
   pub fn new() -> Self {
@@ -36,7 +37,11 @@ impl WorldInstance {
                 if 47 < i {
                   let chunk_info =
                     std::array::from_fn(|i| {
-                      if (47 < i) {
+                      if ((i / 16) % 2
+                        ^ (i / 4) % 2
+                        ^ i % 2)
+                        == 0
+                      {
                         ChunkInfo {
                           dirty_opq_tile: true,
                         }
@@ -46,8 +51,10 @@ impl WorldInstance {
                     });
                   let chunk = Box::new(
                     std::array::from_fn(|i| {
-                      if (47 < i)
-                        && ((i / 4) % 2 ^ i % 2) == 0
+                      if ((i / 16) % 2
+                        ^ (i / 4) % 2
+                        ^ i % 2)
+                        == 0
                       {
                         let chunk = Box::new(
                           std::array::from_fn(|i| {
@@ -71,13 +78,17 @@ impl WorldInstance {
                     }),
                   );
                   Sector {
-                    chunk_info,
+                    chunk_info: PRwLock::new(
+                      chunk_info,
+                    ),
                     chunk: Some(chunk),
                     chunk_halo: None,
                   }
                 } else {
                   Sector {
-                    chunk_info: [Default::default(); _],
+                    chunk_info: PRwLock::new(
+                      [Default::default(); _],
+                    ),
                     chunk: None,
                     chunk_halo: None,
                   }
@@ -105,12 +116,18 @@ impl WorldInstance {
             continue;
           };
           for (ipos, bpos, chunk) in iter {
+            let mut cinfo = sector
+              .chunk_info
+              .upgradable_read();
             // 更新不要(ブロックが書き換えられていない場合)であればスキップ
-            if !sector.chunk_info[ipos.0 as usize]
-              .dirty_opq_tile
-            {
+            if !cinfo[ipos.0 as usize].dirty_opq_tile {
               continue;
             }
+            // 更新フラグをリセットする
+            cinfo.with_upgraded(|cinfo| {
+              cinfo[ipos.0 as usize].dirty_opq_tile =
+                false
+            });
 
             // セルがそもそもない場合にもスキップ
             let Some(cells) = chunk.cell.as_ref()
@@ -121,29 +138,44 @@ impl WorldInstance {
               wr.chunk.get_mut_by_pos(&bpos)
             {
               // 更新処理
-              for i in 0..Dir::COUNT {
-                let dir = Dir::from(i);
+              for dir in Dir::iter() {
                 obj.write_instance(
-                  (0..4096)
-                    .map(|i| {
-                      let cell =
-                        cells[i / 64].0[i % 64];
-                      if cell != 0 {
+                  ctx,
+                  (0..64).flat_map(move |i| {
+                    let cell = cells[i];
+                    let strided_cell = match dir
+                      .invert()
+                    {
+                      Dir::WST => cell.stride_west(),
+                      Dir::EST => cell.stride_east(),
+                      Dir::STH => cell.stride_south(),
+                      Dir::NTH => cell.stride_north(),
+                      Dir::BTM => cell.stride_bottom(),
+                      Dir::TOP => cell.stride_top(),
+                      Dir::UNDEF => unreachable!(),
+                    };
+                    (0..64)
+                      .filter(move |p| {
+                        strided_cell.0[*p] == 0
+                          && cell.0[*p] != 0
+                      })
+                      .map(move |j| {
+                        let block = cell.0[j];
                         let rgba = [
-                          ((cell >> 0) & 3) as f32 / 3.,
-                          ((cell >> 2) & 3) as f32 / 3.,
-                          ((cell >> 4) & 3) as f32 / 3.,
+                          ((block >> 0) & 3) as f32
+                            / 3.,
+                          ((block >> 2) & 3) as f32
+                            / 3.,
+                          ((block >> 4) & 3) as f32
+                            / 3.,
                           1.,
                         ];
-                        Some(BakedInstance {
-                          stride: i as u32,
+                        BakedInstance {
+                          stride: (i * 64 + j) as u32,
                           color: rgba,
-                        })
-                      } else {
-                        None
-                      }
-                    })
-                    .filter_map(|i| i),
+                        }
+                      })
+                  }),
                   dir,
                 );
               }
@@ -155,30 +187,45 @@ impl WorldInstance {
                   ctx,
                   bpos.into(),
                   &wr.chunk_layout,
-                  std::array::from_fn(|_| {
-                    (0..4096)
-                      .map(|i| {
-                        let cell =
-                          cells[i / 64].0[i % 64];
-                        if cell != 0 {
+                  std::array::from_fn(|dir_i| {
+                    let dir = Dir::from(dir_i as u8);
+                    (0..64).flat_map(move |i| {
+                      let cell = cells[i];
+                      let strided_cell = match dir
+                        .invert()
+                      {
+                        Dir::WST => cell.stride_west(),
+                        Dir::EST => cell.stride_east(),
+                        Dir::STH => cell.stride_south(),
+                        Dir::NTH => cell.stride_north(),
+                        Dir::BTM => {
+                          cell.stride_bottom()
+                        }
+                        Dir::TOP => cell.stride_top(),
+                        Dir::UNDEF => unreachable!(),
+                      };
+                      (0..64)
+                        .filter(move |p| {
+                          strided_cell.0[*p] == 0
+                            && cell.0[*p] != 0
+                        })
+                        .map(move |j| {
+                          let block = cell.0[j];
                           let rgba = [
-                            ((cell >> 0) & 3) as f32
+                            ((block >> 0) & 3) as f32
                               / 3.,
-                            ((cell >> 2) & 3) as f32
+                            ((block >> 2) & 3) as f32
                               / 3.,
-                            ((cell >> 4) & 3) as f32
+                            ((block >> 4) & 3) as f32
                               / 3.,
                             1.,
                           ];
-                          Some(BakedInstance {
-                            stride: i as u32,
+                          BakedInstance {
+                            stride: (i * 64 + j) as u32,
                             color: rgba,
-                          })
-                        } else {
-                          None
-                        }
-                      })
-                      .filter_map(|i| i)
+                          }
+                        })
+                    })
                   }),
                 )
               });

@@ -52,40 +52,51 @@ impl Cell {
     }))
   }
 
-  
-  /// 64分木の子要素を西方向(-X)へずらす
+  /// 64分木の子要素を西方向(-X)へローテート
+  #[inline]
+  pub fn rotate_west(&self) -> Self {
+    Self(std::array::from_fn(|i| {
+      let no_axis = i & !3;
+      let axis = (i + 1) & 3;
+      self.0[no_axis | axis]
+    }))
+  }
+
+  /// 64分木の子要素を西方向(-X)へストライド
   #[inline]
   pub fn stride_west(&self) -> Self {
+    let mut rotated = self.rotate_west();
+    // 不要な範囲外に追い出されたブロックを消去する
+    for i in 0..16 {
+      rotated.0[i * 4 + 3] = 0;
+    }
+    rotated
+  }
+
+  /// 64分木の子要素を東方向(+X)へローテート
+  #[inline]
+  pub fn rotate_east(&self) -> Self {
     Self(std::array::from_fn(|i| {
       let no_axis = i & !3;
-      let axis = (i - 1) & 3;  
+      let axis = (i + 3) & 3;
       self.0[no_axis + axis]
     }))
   }
 
-  /// 64分木の子要素を東方向(+X)へずらす
+  /// 64分木の子要素を東方向(+X)へストライド
   #[inline]
   pub fn stride_east(&self) -> Self {
-    Self(std::array::from_fn(|i| {
-      let no_axis = i & !3;
-      let axis = (i + 1) & 3;  
-      self.0[no_axis + axis]
-    }))
+    let mut rotated = self.rotate_east();
+    // 不要な範囲外に追い出されたブロックを消去する
+    for i in 0..16 {
+      rotated.0[i * 4] = 0;
+    }
+    rotated
   }
 
-  /// 64分木の子要素を南方向(-Y)へずらす
+  /// 64分木の子要素を南方向(-Y)へローテート
   #[inline]
-  pub fn stride_south(&self) -> Self {
-    Self(std::array::from_fn(|i| {
-      let no_axis = i & !12;
-      let axis = (i - 4) & 12;
-      self.0[no_axis + axis]
-    }))
-  }
-
-  /// 64分木の子要素を北方向(+Y)へずらす
-  #[inline]
-  pub fn stride_north(&self) -> Self {
+  pub fn rotate_south(&self) -> Self {
     Self(std::array::from_fn(|i| {
       let no_axis = i & !12;
       let axis = (i + 4) & 12;
@@ -93,24 +104,82 @@ impl Cell {
     }))
   }
 
-  /// 64分木の子要素を下方向(-Z)へずらす
+  /// 64分木の子要素を南方向(-Y)へストライド
   #[inline]
-  pub fn stride_bottom(&self) -> Self {
+  pub fn stride_south(&self) -> Self {
+    let mut rotated = self.rotate_south();
+    // 不要な範囲外に追い出されたブロックを消去する
+    for i in 0..16 {
+      let broad = (i & !3) * 4;
+      let narrow = i % 4;
+      rotated.0[broad + narrow + 12] = 0;
+    }
+    rotated
+  }
+
+  /// 64分木の子要素を北方向(+Y)へローテート
+  #[inline]
+  pub fn rotate_north(&self) -> Self {
     Self(std::array::from_fn(|i| {
-      let no_axis = i & !48;
-      let axis = (i - 16) & 48;
+      let no_axis = i & !12;
+      let axis = (i + 12) & 12;
       self.0[no_axis + axis]
     }))
   }
 
-  /// 64分木の子要素を上方向(+Z)へずらす
+  /// 64分木の子要素を北方向(+Y)へストライド
   #[inline]
-  pub fn stride_top(&self) -> Self {
+  pub fn stride_north(&self) -> Self {
+    let mut rotated = self.rotate_north();
+    // 不要な範囲外に追い出されたブロックを消去する
+    for i in 0..16 {
+      let broad = (i & !3) * 4;
+      let narrow = i % 4;
+      rotated.0[broad + narrow] = 0;
+    }
+    rotated
+  }
+
+  /// 64分木の子要素を下方向(-Z)へローテート
+  #[inline]
+  pub fn rotate_bottom(&self) -> Self {
     Self(std::array::from_fn(|i| {
       let no_axis = i & !48;
       let axis = (i + 16) & 48;
       self.0[no_axis + axis]
     }))
+  }
+
+  /// 64分木の子要素を下方向(-Z)へストライド
+  #[inline]
+  pub fn stride_bottom(&self) -> Self {
+    let mut rotated = self.rotate_bottom();
+    // 不要な範囲外に追い出されたブロックを消去する
+    for i in 0..16 {
+      rotated.0[i + 48] = 0;
+    }
+    rotated
+  }
+
+  /// 64分木の子要素を上方向(+Z)へローテート
+  #[inline]
+  pub fn rotate_top(&self) -> Self {
+    Self(std::array::from_fn(|i| {
+      let no_axis = i & !48;
+      let axis = (i + 48) & 48;
+      self.0[no_axis + axis]
+    }))
+  }
+
+  /// 64分木の子要素を上方向(+Z)へストライド
+  #[inline]
+  pub fn stride_top(&self) -> Self {
+    let mut rotated = self.rotate_top();
+    // 不要な範囲外に追い出されたブロックを消去する
+    for i in 0..16 {
+      rotated.0[i] = 0;
+    }
+    rotated
   }
 }
 

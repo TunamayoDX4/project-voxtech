@@ -21,6 +21,7 @@ pub struct Chunk {
   pub cell: Option<Box<[l0_cell::Cell; 64]>>,
 }
 impl Chunk {
+  /*
   /// 1ブロック西(-X)にずらす
   #[inline]
   pub fn stride_west(&mut self) -> bool {
@@ -87,6 +88,7 @@ impl Chunk {
     }
     true
   }
+   */
 }
 
 pub struct ChunkHaloArray([ChunkHalo; 6]);
