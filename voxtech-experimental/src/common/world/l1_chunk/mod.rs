@@ -1,7 +1,7 @@
 use parking_lot::RwLock;
 
 use crate::{
-  common::Dir, gfx::world::chunk::ChunkStorageKey,
+  common::{Dir, InnerBlockPos}, gfx::world::chunk::ChunkStorageKey,
 };
 
 use super::l0_cell;
@@ -33,74 +33,118 @@ pub struct Chunk {
   pub cell: Option<Box<[l0_cell::Cell; 64]>>,
 }
 impl Chunk {
-  /*
-  /// 1ブロック西(-X)にずらす
+  
+
   #[inline]
-  pub fn stride_west(&mut self) -> bool {
-    let Some(cell) = self.cell.as_mut() else {
-      return false;
-    };
-    for i in 0..64u8 {
-      cell[i as usize].stride_west();
-    }
-    true
+  pub fn chk_visible_face(
+    sector_pos: InnerBlockPos, 
+    chunk_pos: InnerBlockPos,
+    relative_camera_pos: &nalgebra::Point3<f64>,
+  ) -> [bool; Dir::COUNT as usize] {
+    let stride = nalgebra::Vector3::new(
+      ((sector_pos.0 << 2) & 12 | ((chunk_pos.0 >> 0) & 3)) as f64 * 16.,
+      ((sector_pos.0 << 0 ) & 12 | ((chunk_pos.0 >> 2) & 3)) as f64 * 16.,
+      ((sector_pos.0 << -2) & 12 | ((chunk_pos.0 >> 4) & 3)) as f64 * 16.,
+    );
+    [
+      Self::chk_visible_west_face(
+        stride,
+        relative_camera_pos,
+      ),
+      Self::chk_visible_east_face(
+        stride,
+        relative_camera_pos,
+      ),
+      Self::chk_visible_south_face(
+        stride,
+        relative_camera_pos,
+      ),
+      Self::chk_visible_north_face(
+        stride,
+        relative_camera_pos,
+      ),
+      Self::chk_visible_bottom_face(
+        stride,
+        relative_camera_pos,
+      ),
+      Self::chk_visible_top_face(
+        stride,
+        relative_camera_pos,
+      ),
+    ]
   }
-  /// 1ブロック東(+X)にずらす
+
+  /// 対象のリージョンの西面を描画するかを判断する。
   #[inline]
-  pub fn stride_east(&mut self) -> bool {
-    let Some(cell) = self.cell.as_mut() else {
-      return false;
-    };
-    for i in 0..64u8 {
-      cell[i as usize].stride_east();
-    }
-    true
+  pub fn chk_visible_west_face(
+    stride: nalgebra::Vector3<f64>,
+    relative_camera_pos: &nalgebra::Point3<f64>,
+  ) -> bool {
+    let origin =
+      nalgebra::Point3::new(16., 8., 8.) + stride;
+    let vp = relative_camera_pos - origin;
+    vp.x <= f64::EPSILON
   }
-  /// 1ブロック南(-Y)にずらす
+
+  /// 対象のリージョンの東面を描画するかを判断する。
   #[inline]
-  pub fn stride_south(&mut self) -> bool {
-    let Some(cell) = self.cell.as_mut() else {
-      return false;
-    };
-    for i in 0..64u8 {
-      cell[i as usize].stride_south();
-    }
-    true
+  pub fn chk_visible_east_face(
+    stride: nalgebra::Vector3<f64>,
+    relative_camera_pos: &nalgebra::Point3<f64>,
+  ) -> bool {
+    let origin =
+      nalgebra::Point3::new(0., 8., 8.) + stride;
+    let vp = relative_camera_pos - origin;
+    -f64::EPSILON <= vp.x
   }
-  /// 1ブロック北(+Y)にずらす
+
+  /// 対象のリージョンの南面を描画するかを判断する。
   #[inline]
-  pub fn stride_north(&mut self) -> bool {
-    let Some(cell) = self.cell.as_mut() else {
-      return false;
-    };
-    for i in 0..64u8 {
-      cell[i as usize].stride_north();
-    }
-    true
+  pub fn chk_visible_south_face(
+    stride: nalgebra::Vector3<f64>,
+    relative_camera_pos: &nalgebra::Point3<f64>,
+  ) -> bool {
+    let origin =
+      nalgebra::Point3::new(8., 16., 8.) + stride;
+    let vp = relative_camera_pos - origin;
+    vp.y <= f64::EPSILON
   }
-  /// 1ブロック下(-Z)にずらす
+
+  /// 対象のリージョンの北面を描画するかを判断する。
   #[inline]
-  pub fn stride_bottom(&mut self) -> bool {
-    let Some(cell) = self.cell.as_mut() else {
-      return false;
-    };
-    for i in 0..64u8 {
-      cell[i as usize].stride_bottom();
-    }
-    true
+  pub fn chk_visible_north_face(
+    stride: nalgebra::Vector3<f64>,
+    relative_camera_pos: &nalgebra::Point3<f64>,
+  ) -> bool {
+    let origin =
+      nalgebra::Point3::new(8., 0., 8.) + stride;
+    let vp = relative_camera_pos - origin;
+    -f64::EPSILON <= vp.y
   }
-  /// 1ブロック上(+Z)にずらす
+
+  /// 対象のリージョンの下面を描画するかを判断する。
   #[inline]
-  pub fn stride_top(&mut self) -> bool {
-    let Some(cell) = self.cell.as_mut() else {
-      return false;
-    };
-    for i in 0..64u8 {
-      cell[i as usize].stride_top();
-    }
-    true
+  pub fn chk_visible_bottom_face(
+    stride: nalgebra::Vector3<f64>,
+    relative_camera_pos: &nalgebra::Point3<f64>,
+  ) -> bool {
+    let origin =
+      nalgebra::Point3::new(8., 8., 16.) + stride;
+    let vp = relative_camera_pos - origin;
+    vp.z <= f64::EPSILON
   }
-   */
+
+  /// 対象のリージョンの上面を描画するかを判断する。
+  #[inline]
+  pub fn chk_visible_top_face(
+    stride: nalgebra::Vector3<f64>,
+    relative_camera_pos: &nalgebra::Point3<f64>,
+  ) -> bool {
+    let origin =
+      nalgebra::Point3::new(8., 8., 0.) + stride;
+    let vp = relative_camera_pos - origin;
+    -f64::EPSILON <= vp.z
+  }
 }
 
 pub struct ChunkHaloArray([ChunkHalo; 6]);

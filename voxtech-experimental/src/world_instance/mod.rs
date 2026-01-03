@@ -103,6 +103,7 @@ impl WorldInstance {
   pub fn visibility_update(
     &self,
     camera_pos: &nalgebra::Point3<f64>,
+    gfx: &mut GfxBundle, 
   ) {
     for (pos, region) in self.world.dim.iter() {
       let Some(iter_sector) = region.iter_sector(pos)
@@ -117,20 +118,31 @@ impl WorldInstance {
       let relat_cpos = camera_pos - rpos;
       let visibility =
         Region::chk_visible_face(&relat_cpos);
-      for (ipos, bpos, sector) in iter_sector {
+      for (sector_ipos, bpos, sector) in iter_sector {
         let Some(iter_chunk) = sector.iter_chunk(&bpos)
         else {
           continue;
         };
         let sector_visibility =
-          Sector::chk_visible_face(ipos, &relat_cpos);
+          Sector::chk_visible_face(sector_ipos, &relat_cpos);
         let visibility: [bool; Dir::COUNT as usize] =
           std::array::from_fn(|i| {
             sector_visibility[i] && visibility[i]
           });
-        let mut lock = sector.chunk_info.write();
-        for (ipos, _bpos, _chunk) in iter_chunk {
-          lock[ipos.0 as usize].visibility = visibility;
+        let mut lock = sector.chunk_info.upgradable_read();
+        for (chunk_ipos, _bpos, _chunk) in iter_chunk {
+          let chunk_visibility = Chunk::chk_visible_face(
+            sector_ipos, chunk_ipos, &relat_cpos
+          );
+          let visibility: [bool; Dir::COUNT as usize] = 
+            std::array::from_fn(|i| {
+              chunk_visibility[i] && visibility[i]
+            });
+          if lock[chunk_ipos.0 as usize].visibility != visibility {
+            lock.with_upgraded(|lock| {
+              lock[chunk_ipos.0 as usize].visibility = visibility;
+            })
+          }
         }
       }
     }

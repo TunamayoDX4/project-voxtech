@@ -101,6 +101,7 @@ impl ApplicationHandler for App {
         if let Some(world) = self.world.as_mut() {
           world.visibility_update(
             &self.player_camera.position,
+            gfx,
           );
           world.rendering(gfx);
         }
