@@ -220,11 +220,9 @@ impl Region {
     relative_camera_pos: &nalgebra::Point3<f64>,
   ) -> bool {
     let origin =
-      nalgebra::Point3::new(128., 128., 128.);
-    let vn = -nalgebra::Vector3::x();
+      nalgebra::Point3::new(256., 128., 128.);
     let vp = relative_camera_pos - origin;
-    println!("{relative_camera_pos:?}, {vn:?}, {vp:?}");
-    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+    vp.x <= f64::EPSILON
   }
 
   /// 対象のリージョンの東面を描画するかを判断する。
@@ -233,9 +231,8 @@ impl Region {
     relative_camera_pos: &nalgebra::Point3<f64>,
   ) -> bool {
     let origin = nalgebra::Point3::new(0., 128., 128.);
-    let vn = nalgebra::Vector3::x();
     let vp = relative_camera_pos - origin;
-    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+    -f64::EPSILON <= vp.x
   }
 
   /// 対象のリージョンの南面を描画するかを判断する。
@@ -245,9 +242,8 @@ impl Region {
   ) -> bool {
     let origin =
       nalgebra::Point3::new(128., 256., 128.);
-    let vn = -nalgebra::Vector3::y();
     let vp = relative_camera_pos - origin;
-    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+    vp.y <= f64::EPSILON
   }
 
   /// 対象のリージョンの北面を描画するかを判断する。
@@ -256,9 +252,8 @@ impl Region {
     relative_camera_pos: &nalgebra::Point3<f64>,
   ) -> bool {
     let origin = nalgebra::Point3::new(128., 0., 128.);
-    let vn = nalgebra::Vector3::y();
     let vp = relative_camera_pos - origin;
-    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+    -f64::EPSILON <= vp.y
   }
 
   /// 対象のリージョンの下面を描画するかを判断する。
@@ -268,9 +263,8 @@ impl Region {
   ) -> bool {
     let origin =
       nalgebra::Point3::new(128., 128., 256.);
-    let vn = -nalgebra::Vector3::z();
     let vp = relative_camera_pos - origin;
-    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+    vp.z <= f64::EPSILON
   }
 
   /// 対象のリージョンの上面を描画するかを判断する。
@@ -279,9 +273,8 @@ impl Region {
     relative_camera_pos: &nalgebra::Point3<f64>,
   ) -> bool {
     let origin = nalgebra::Point3::new(128., 128., 0.);
-    let vn = nalgebra::Vector3::z();
     let vp = relative_camera_pos - origin;
-    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+    -f64::EPSILON <= vp.z
   }
 }
 

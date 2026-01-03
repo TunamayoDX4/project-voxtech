@@ -98,11 +98,11 @@ impl ApplicationHandler for App {
           .update_camera(&mut self.player_camera);
 
         // ワールドの描画・更新
-        if let Some(world) = self.world.as_ref() {
-          world.rendering(
-            gfx,
+        if let Some(world) = self.world.as_mut() {
+          world.visibility_update(
             &self.player_camera.position,
           );
+          world.rendering(gfx);
         }
 
         gfx.world_modify(|ctx, w| {
@@ -201,7 +201,9 @@ impl ApplicationHandler for App {
                   return;
                 }
               };
-              info[49].dirty_opq_tile = true;
+              (0..6).for_each(|i| {
+                info[49].dirty_opq_tile[i] = true
+              });
             }
             _ => {}
           }

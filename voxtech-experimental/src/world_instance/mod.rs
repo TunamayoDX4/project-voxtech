@@ -46,7 +46,7 @@ impl WorldInstance {
                       {
                         ChunkInfo {
                           visibility: [true; 6],
-                          dirty_opq_tile: true,
+                          dirty_opq_tile: [true; 6],
                           rdr_storage_key: None,
                         }
                       } else {
@@ -109,23 +109,21 @@ impl WorldInstance {
       else {
         continue;
       };
-      let cpos = nalgebra::Vector3::new(
+      let rpos = nalgebra::Vector3::new(
         *pos.x() as f64,
         *pos.y() as f64,
         *pos.z() as f64,
       );
+      let relat_cpos = camera_pos - rpos;
       let visibility =
-        Region::chk_visible_face(&(camera_pos - cpos));
+        Region::chk_visible_face(&relat_cpos);
       for (ipos, bpos, sector) in iter_sector {
         let Some(iter_chunk) = sector.iter_chunk(&bpos)
         else {
           continue;
         };
         let sector_visibility =
-          Sector::chk_visible_face(
-            ipos,
-            &(camera_pos - cpos),
-          );
+          Sector::chk_visible_face(ipos, &relat_cpos);
         let visibility: [bool; Dir::COUNT as usize] =
           std::array::from_fn(|i| {
             sector_visibility[i] && visibility[i]
@@ -138,11 +136,7 @@ impl WorldInstance {
     }
   }
 
-  pub fn rendering(
-    &self,
-    gfx: &mut GfxBundle,
-    camera_pos: &nalgebra::Point3<f64>,
-  ) {
+  pub fn rendering(&self, gfx: &mut GfxBundle) {
     gfx.world_modify(|ctx, wr| {
       for (pos, region) in self.world.dim.iter() {
         let Some(iter) = region.iter_sector(pos) else {
@@ -158,14 +152,13 @@ impl WorldInstance {
               .chunk_info
               .upgradable_read();
             // 更新不要(ブロックが書き換えられていない場合)であればスキップ
-            if !cinfo[ipos.0 as usize].dirty_opq_tile {
+            if !cinfo[ipos.0 as usize]
+              .dirty_opq_tile
+              .iter()
+              .fold(false, |r, dirty| r || *dirty)
+            {
               continue;
             }
-            // 更新フラグをリセットする
-            cinfo.with_upgraded(|cinfo| {
-              cinfo[ipos.0 as usize].dirty_opq_tile =
-                false
-            });
 
             // セルがそもそもない場合にもスキップ
             let Some(cells) = chunk.cell.as_ref()
@@ -179,7 +172,15 @@ impl WorldInstance {
               for dir in Dir::iter() {
                 if cinfo[ipos.0 as usize].visibility
                   [dir as usize]
+                  && cinfo[ipos.0 as usize]
+                    .dirty_opq_tile
+                    [dir as usize]
                 {
+                  cinfo.with_upgraded(|cinfo| {
+                    cinfo[ipos.0 as usize]
+                      .dirty_opq_tile
+                      [dir as usize] = false
+                  });
                   obj.write_instance(
                     ctx,
                     generate_chunk_mesh(dir, cells),
@@ -202,6 +203,11 @@ impl WorldInstance {
                         .visibility
                         [dir as usize]
                       {
+                        cinfo.with_upgraded(|cinfo| {
+                          cinfo[ipos.0 as usize]
+                            .dirty_opq_tile
+                            [dir as usize] = false
+                        });
                         Some(
                           generate_chunk_mesh(
                             dir, cells,

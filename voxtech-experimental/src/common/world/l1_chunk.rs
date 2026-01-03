@@ -10,7 +10,7 @@ use super::l0_cell;
 #[derive(Debug, Clone, Copy)]
 pub struct ChunkInfo {
   /// 不透明タイルが更新されているか？
-  pub dirty_opq_tile: bool,
+  pub dirty_opq_tile: [bool; Dir::COUNT as usize],
 
   /// 可視性
   pub visibility: [bool; Dir::COUNT as usize],
@@ -21,7 +21,7 @@ pub struct ChunkInfo {
 impl Default for ChunkInfo {
   fn default() -> Self {
     Self {
-      dirty_opq_tile: false,
+      dirty_opq_tile: [false; Dir::COUNT as usize],
       visibility: [true; Dir::COUNT as usize],
       rdr_storage_key: None,
     }

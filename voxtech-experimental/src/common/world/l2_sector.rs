@@ -202,7 +202,7 @@ impl Sector {
     let stride = nalgebra::Vector3::new(
       ((ipos.0 >> 0) & 3) as f64 * 64.,
       ((ipos.0 >> 2) & 3) as f64 * 64.,
-      ((ipos.0 >> 6) & 3) as f64 * 64.,
+      ((ipos.0 >> 4) & 3) as f64 * 64.,
     );
     [
       Self::chk_visible_west_face(
@@ -240,9 +240,8 @@ impl Sector {
   ) -> bool {
     let origin =
       nalgebra::Point3::new(64., 32., 32.) + stride;
-    let vn = -nalgebra::Vector3::x();
     let vp = relative_camera_pos - origin;
-    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+    vp.x <= f64::EPSILON
   }
 
   /// 対象のリージョンの東面を描画するかを判断する。
@@ -253,9 +252,8 @@ impl Sector {
   ) -> bool {
     let origin =
       nalgebra::Point3::new(0., 32., 32.) + stride;
-    let vn = nalgebra::Vector3::x();
     let vp = relative_camera_pos - origin;
-    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+    -f64::EPSILON <= vp.x
   }
 
   /// 対象のリージョンの南面を描画するかを判断する。
@@ -266,9 +264,8 @@ impl Sector {
   ) -> bool {
     let origin =
       nalgebra::Point3::new(32., 64., 32.) + stride;
-    let vn = -nalgebra::Vector3::y();
     let vp = relative_camera_pos - origin;
-    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+    vp.y <= f64::EPSILON
   }
 
   /// 対象のリージョンの北面を描画するかを判断する。
@@ -279,9 +276,8 @@ impl Sector {
   ) -> bool {
     let origin =
       nalgebra::Point3::new(32., 0., 32.) + stride;
-    let vn = nalgebra::Vector3::y();
     let vp = relative_camera_pos - origin;
-    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+    -f64::EPSILON <= vp.y
   }
 
   /// 対象のリージョンの下面を描画するかを判断する。
@@ -292,9 +288,8 @@ impl Sector {
   ) -> bool {
     let origin =
       nalgebra::Point3::new(32., 32., 64.) + stride;
-    let vn = -nalgebra::Vector3::z();
     let vp = relative_camera_pos - origin;
-    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+    vp.z <= f64::EPSILON
   }
 
   /// 対象のリージョンの上面を描画するかを判断する。
@@ -305,9 +300,8 @@ impl Sector {
   ) -> bool {
     let origin =
       nalgebra::Point3::new(32., 32., 0.) + stride;
-    let vn = nalgebra::Vector3::z();
     let vp = relative_camera_pos - origin;
-    vn.angle(&vp) < std::f64::consts::FRAC_PI_2
+    -f64::EPSILON <= vp.z
   }
 }
 
