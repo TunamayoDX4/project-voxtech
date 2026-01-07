@@ -20,22 +20,22 @@ impl Player {
 
   pub fn update(&mut self, input: &UserControlInput) {
     if input.move_key.l {
-      self.velocity.x -= 5. / 60.
+      self.velocity.x -= 15. / 60.
     }
     if input.move_key.r {
-      self.velocity.x += 5. / 60.
+      self.velocity.x += 15. / 60.
     }
     if input.move_key.dn {
-      self.velocity.z -= 5. / 60.
+      self.velocity.z -= 15. / 60.
     }
     if input.move_key.up {
-      self.velocity.z += 5. / 60.
+      self.velocity.z += 15. / 60.
     }
     if input.move_key.bw {
-      self.velocity.y -= 5. / 60.
+      self.velocity.y -= 15. / 60.
     }
     if input.move_key.fw {
-      self.velocity.y += 5. / 60.
+      self.velocity.y += 15. / 60.
     }
     self.yaw = (self.yaw
       - (0.12

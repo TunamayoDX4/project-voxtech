@@ -1,7 +1,8 @@
 use parking_lot::RwLock;
 
 use crate::{
-  common::{Dir, InnerBlockPos}, gfx::world::chunk::ChunkStorageKey,
+  common::{Dir, InnerBlockPos},
+  gfx::world::chunk::ChunkStorageKey,
 };
 
 use super::l0_cell;
@@ -33,18 +34,19 @@ pub struct Chunk {
   pub cell: Option<Box<[l0_cell::Cell; 64]>>,
 }
 impl Chunk {
-  
-
   #[inline]
   pub fn chk_visible_face(
-    sector_pos: InnerBlockPos, 
+    sector_pos: InnerBlockPos,
     chunk_pos: InnerBlockPos,
     relative_camera_pos: &nalgebra::Point3<f64>,
   ) -> [bool; Dir::COUNT as usize] {
     let stride = nalgebra::Vector3::new(
-      ((sector_pos.0 << 2) & 12 | ((chunk_pos.0 >> 0) & 3)) as f64 * 16.,
-      ((sector_pos.0 << 0 ) & 12 | ((chunk_pos.0 >> 2) & 3)) as f64 * 16.,
-      ((sector_pos.0 << -2) & 12 | ((chunk_pos.0 >> 4) & 3)) as f64 * 16.,
+      (((sector_pos.0 >> 0) & 3) * 64
+        | ((chunk_pos.0 >> 0) & 3) * 16) as f64,
+      (((sector_pos.0 >> 2) & 3) * 64
+        | ((chunk_pos.0 >> 2) & 3) * 16) as f64,
+      (((sector_pos.0 >> 4) & 3) * 64
+        | ((chunk_pos.0 >> 4) & 3) * 16) as f64,
     );
     [
       Self::chk_visible_west_face(
@@ -144,45 +146,6 @@ impl Chunk {
       nalgebra::Point3::new(8., 8., 0.) + stride;
     let vp = relative_camera_pos - origin;
     -f64::EPSILON <= vp.z
-  }
-}
-
-pub struct ChunkHaloArray([ChunkHalo; 6]);
-impl Default for ChunkHaloArray {
-  fn default() -> Self {
-    Self(Default::default())
-  }
-}
-impl ChunkHaloArray {
-  #[inline]
-  pub fn update_neigh_west(&mut self, neigh: &Chunk) {
-    self.0[Dir::WST as usize] =
-      ChunkHalo::make_halo_east(neigh);
-  }
-  #[inline]
-  pub fn update_neigh_east(&mut self, neigh: &Chunk) {
-    self.0[Dir::EST as usize] =
-      ChunkHalo::make_halo_west(neigh);
-  }
-  #[inline]
-  pub fn update_neigh_south(&mut self, neigh: &Chunk) {
-    self.0[Dir::STH as usize] =
-      ChunkHalo::make_halo_north(neigh);
-  }
-  #[inline]
-  pub fn update_neigh_north(&mut self, neigh: &Chunk) {
-    self.0[Dir::NTH as usize] =
-      ChunkHalo::make_halo_south(neigh);
-  }
-  #[inline]
-  pub fn update_neigh_bottom(&mut self, neigh: &Chunk) {
-    self.0[Dir::BTM as usize] =
-      ChunkHalo::make_halo_top(neigh);
-  }
-  #[inline]
-  pub fn update_neigh_top(&mut self, neigh: &Chunk) {
-    self.0[Dir::TOP as usize] =
-      ChunkHalo::make_halo_bottom(neigh);
   }
 }
 

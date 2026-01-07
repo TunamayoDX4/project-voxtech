@@ -202,23 +202,26 @@ impl ChunkStorage {
       .filter(|c| c.opaque_tile[dir as usize].is_some())
     {
       chunk.uniform.rendering(rpass);
-      let instance_len = chunk.opaque_tile
+      if let Some(instance_len) = chunk.opaque_tile
         [dir as usize]
         .as_ref()
         .unwrap()
-        .rendering(rpass);
-      rpass.draw_indexed(
-        0..super::tile::types::TILE_INDICES.len() as _,
-        0,
-        0..instance_len,
-      );
+        .rendering(rpass)
+      {
+        rpass.draw_indexed(
+          0..super::tile::types::TILE_INDICES.len()
+            as _,
+          0,
+          0..instance_len.get(),
+        );
+      }
     }
   }
 }
 
 pub struct ChunkObject {
   uniform: uniform::ChunkUniformInstance,
-  opaque_tile:
+  pub opaque_tile:
     [Option<OpaqueTileInstances>; Dir::COUNT as usize],
 }
 impl ChunkObject {
@@ -245,6 +248,47 @@ impl ChunkObject {
     }
   }
 
+  pub fn new_a(
+    ctx: &WGPUCtx,
+    uniform: uniform::ChunkUniform,
+    layout: &uniform::ChunkUniformLayout,
+    instance: [Option<OpaqueTileInstances>;
+      Dir::COUNT as usize],
+  ) -> Self {
+    let uniform = uniform::ChunkUniformInstance::new(
+      ctx, layout, uniform,
+    );
+    Self {
+      uniform,
+      opaque_tile: instance,
+    }
+  }
+
+  pub fn write_instance_with<R>(
+    &mut self,
+    ctx: &WGPUCtx,
+    f: impl FnOnce(
+      &mut Vec<super::tile::types::BakedInstance>,
+    ) -> R,
+    dir: Dir,
+  ) -> R {
+    match &mut self.opaque_tile[dir as usize] {
+      Some(opqt) => {
+        let r = opqt.write_with(f);
+        opqt.update(ctx);
+        r
+      }
+      a => {
+        let mut buffer = Vec::new();
+        let r = f(&mut buffer);
+        a.insert(OpaqueTileInstances::new(
+          ctx, buffer,
+        ));
+        r
+      }
+    }
+  }
+
   pub fn write_instance(
     &mut self,
     ctx: &WGPUCtx,
@@ -266,5 +310,12 @@ impl ChunkObject {
         *a = Some(opqt)
       }
     }
+  }
+
+  pub fn remove_instance(
+    &mut self,
+    dir: Dir,
+  ) -> Option<OpaqueTileInstances> {
+    self.opaque_tile[dir as usize].take()
   }
 }

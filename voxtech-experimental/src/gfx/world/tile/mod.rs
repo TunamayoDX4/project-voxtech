@@ -1,5 +1,7 @@
 //! Tile描画用のレンダラ
 
+use std::num::NonZero;
+
 use wgpu::{
   util::DeviceExt, Buffer, BufferUsages,
   PipelineLayout, RenderPass, RenderPipeline,
@@ -13,7 +15,7 @@ pub mod types;
 
 pub struct OpaqueTileInstances {
   instance: Vec<types::BakedInstance>,
-  buffer: Buffer,
+  buffer: Option<Buffer>,
 }
 impl OpaqueTileInstances {
   pub fn new(
@@ -29,7 +31,26 @@ impl OpaqueTileInstances {
         usage: wgpu::BufferUsages::VERTEX,
       },
     );
-    Self { instance, buffer }
+    Self {
+      instance,
+      buffer: Some(buffer),
+    }
+  }
+
+  pub fn new_empty(capacity: usize) -> Self {
+    let instance = Vec::with_capacity(capacity);
+    Self {
+      instance,
+      buffer: None,
+    }
+  }
+
+  pub fn write_with<R>(
+    &mut self,
+    f: impl FnOnce(&mut Vec<types::BakedInstance>) -> R,
+  ) -> R {
+    self.instance.clear();
+    f(&mut self.instance)
   }
 
   pub fn write(
@@ -41,23 +62,31 @@ impl OpaqueTileInstances {
   }
 
   pub fn update(&mut self, ctx: &WGPUCtx) {
-    self.buffer = ctx.device.create_buffer_init(
-      &wgpu::util::BufferInitDescriptor {
-        label: Some("Opaque tile instances array"),
-        contents: bytemuck::cast_slice(
-          self.instance.as_slice(),
-        ),
-        usage: wgpu::BufferUsages::VERTEX,
-      },
-    )
+    self.buffer = if self.instance.len() != 0 {
+      Some(ctx.device.create_buffer_init(
+        &wgpu::util::BufferInitDescriptor {
+          label: Some("Opaque tile instances array"),
+          contents: bytemuck::cast_slice(
+            self.instance.as_slice(),
+          ),
+          usage: wgpu::BufferUsages::VERTEX,
+        },
+      ))
+    } else {
+      None
+    };
   }
 
   pub fn rendering(
     &self,
     rpass: &mut RenderPass,
-  ) -> u32 {
-    rpass.set_vertex_buffer(1, self.buffer.slice(..));
-    self.instance.len() as _
+  ) -> Option<NonZero<u32>> {
+    if let Some(buffer) = self.buffer.as_ref() {
+      rpass.set_vertex_buffer(1, buffer.slice(..));
+      NonZero::new(self.instance.len() as _)
+    } else {
+      None
+    }
   }
 }
 

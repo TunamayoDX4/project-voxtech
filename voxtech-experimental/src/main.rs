@@ -88,6 +88,12 @@ impl ApplicationHandler for App {
     match event {
       // 再描画処理
       WindowEvent::RedrawRequested => {
+        println!(
+          "{0:3.05}, {1:3.05}, {2:3.05}",
+          self.player_camera.position.x,
+          self.player_camera.position.y,
+          self.player_camera.position.z,
+        );
         // プレイヤーのビューの更新
         self
           .player
@@ -168,16 +174,14 @@ impl ApplicationHandler for App {
               else {
                 return;
               };
-              let sector = &mut region
-                .0
-                .sector
+              let sector = &mut region.0.sector.write();
+              let sector =
+                &sector.as_mut().unwrap()[48];
+              let mut chunk = sector.chunk.write();
+              let cells = chunk.as_mut().unwrap()[49]
+                .cell
                 .as_mut()
-                .unwrap()[48];
-              let cells =
-                sector.chunk.as_mut().unwrap()[49]
-                  .cell
-                  .as_mut()
-                  .unwrap();
+                .unwrap();
               let mut info = sector.chunk_info.write();
               cells[49] = match kc {
                 winit::keyboard::KeyCode::ArrowLeft => {

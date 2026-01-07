@@ -13,6 +13,8 @@ strip = "debuginfo"
 [profile.dev]
 opt-level = 1
 lto = false
+panic = "unwind"
+debug = true
 
 [dependencies.serde]
 version = "1"
