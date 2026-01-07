@@ -77,7 +77,7 @@ impl Sector {
       .flatten()
     {
       for yz in 0..16 {
-        chunk_halo[Dir::WST as usize][yz * 4] =
+        chunk_halo[Dir::WST as usize][yz * 4 + 3] =
           neigh[yz].clone();
       }
     }
@@ -110,14 +110,14 @@ impl Sector {
       .flatten()
     {
       for yz in 0..16 {
-        chunk_halo[Dir::WST as usize][yz * 4 + 3] =
+        chunk_halo[Dir::EST as usize][yz * 4] =
           neigh[yz].clone();
       }
     }
   }
   pub fn update_neigh_south(
     &self,
-    neigh: Option<&Sector>,
+    neigh: Option<&SectorHalo>,
   ) {
     let mut chunk = self.chunk.write();
     let Some(chunk) = chunk.as_mut() else {
@@ -140,20 +140,20 @@ impl Sector {
           ChunkHalo::make_halo_south(&chunk[xz + y + 4])
       }
     }
-    if let Some(neigh) = neigh.map(|n| n.chunk.read()) {
-      if let Some(neigh) = neigh.as_ref() {
-        for xz in
-          (0..16).map(|xz| ((xz & 12) << 2) | (xz & 3))
-        {
-          chunk_halo[Dir::STH as usize][xz] =
-            ChunkHalo::make_halo_south(&neigh[xz + 12])
-        }
+    if let Some(neigh) = neigh
+      .map(|n| n.chunk.as_ref())
+      .flatten()
+    {
+      for xz in 0..16 {
+        chunk_halo[Dir::STH as usize]
+          [(xz & 12) << 2 | (xz & 3) + 12] =
+          neigh[xz].clone();
       }
     }
   }
   pub fn update_neigh_north(
     &self,
-    neigh: Option<&Sector>,
+    neigh: Option<&SectorHalo>,
   ) {
     let mut chunk = self.chunk.write();
     let Some(chunk) = chunk.as_mut() else {
@@ -176,20 +176,20 @@ impl Sector {
           ChunkHalo::make_halo_north(&chunk[xz + y])
       }
     }
-    if let Some(neigh) = neigh.map(|n| n.chunk.read()) {
-      if let Some(neigh) = neigh.as_ref() {
-        for xz in
-          (0..16).map(|xz| ((xz & 12) << 2) | (xz & 3))
-        {
-          chunk_halo[Dir::NTH as usize][xz + 12] =
-            ChunkHalo::make_halo_north(&neigh[xz])
-        }
+    if let Some(neigh) = neigh
+      .map(|n| n.chunk.as_ref())
+      .flatten()
+    {
+      for xz in 0..16 {
+        chunk_halo[Dir::NTH as usize]
+          [(xz & 12) << 2 | (xz & 3)] =
+          neigh[xz].clone();
       }
     }
   }
   pub fn update_neigh_bottom(
     &self,
-    neigh: Option<&Sector>,
+    neigh: Option<&SectorHalo>,
   ) {
     let mut chunk = self.chunk.write();
     let Some(chunk) = chunk.as_mut() else {
@@ -212,18 +212,19 @@ impl Sector {
           )
       }
     }
-    if let Some(neigh) = neigh.map(|n| n.chunk.read()) {
-      if let Some(neigh) = neigh.as_ref() {
-        for xy in (0..16).map(|xy| xy * 16) {
-          chunk_halo[Dir::BTM as usize][xy] =
-            ChunkHalo::make_halo_bottom(&neigh[xy + 48])
-        }
+    if let Some(neigh) = neigh
+      .map(|n| n.chunk.as_ref())
+      .flatten()
+    {
+      for xy in 0..16 {
+        chunk_halo[Dir::BTM as usize][xy + 48] =
+          neigh[xy].clone();
       }
     }
   }
   pub fn update_neigh_top(
     &self,
-    neigh: Option<&Sector>,
+    neigh: Option<&SectorHalo>,
   ) {
     let mut chunk = self.chunk.write();
     let Some(chunk) = chunk.as_mut() else {
@@ -244,12 +245,13 @@ impl Sector {
           ChunkHalo::make_halo_top(&chunk[xy + z])
       }
     }
-    if let Some(neigh) = neigh.map(|n| n.chunk.read()) {
-      if let Some(neigh) = neigh.as_ref() {
-        for xy in (0..16).map(|xy| xy * 16) {
-          chunk_halo[Dir::TOP as usize][xy + 48] =
-            ChunkHalo::make_halo_top(&neigh[xy])
-        }
+    if let Some(neigh) = neigh
+      .map(|n| n.chunk.as_ref())
+      .flatten()
+    {
+      for xy in 0..16 {
+        chunk_halo[Dir::TOP as usize][xy] =
+          neigh[xy].clone();
       }
     }
   }
@@ -375,22 +377,22 @@ impl SectorHaloArray {
   #[inline]
   pub fn update_neigh_west(&mut self, neigh: &Sector) {
     self.0[Dir::WST as usize] =
-      SectorHalo::make_halo_east(neigh);
+      SectorHalo::make_halo_west(neigh);
   }
   #[inline]
   pub fn update_neigh_east(&mut self, neigh: &Sector) {
     self.0[Dir::EST as usize] =
-      SectorHalo::make_halo_west(neigh);
+      SectorHalo::make_halo_east(neigh);
   }
   #[inline]
   pub fn update_neigh_south(&mut self, neigh: &Sector) {
     self.0[Dir::STH as usize] =
-      SectorHalo::make_halo_north(neigh);
+      SectorHalo::make_halo_south(neigh);
   }
   #[inline]
   pub fn update_neigh_north(&mut self, neigh: &Sector) {
     self.0[Dir::NTH as usize] =
-      SectorHalo::make_halo_south(neigh);
+      SectorHalo::make_halo_north(neigh);
   }
   #[inline]
   pub fn update_neigh_bottom(
@@ -398,12 +400,12 @@ impl SectorHaloArray {
     neigh: &Sector,
   ) {
     self.0[Dir::BTM as usize] =
-      SectorHalo::make_halo_top(neigh);
+      SectorHalo::make_halo_bottom(neigh);
   }
   #[inline]
   pub fn update_neigh_top(&mut self, neigh: &Sector) {
     self.0[Dir::TOP as usize] =
-      SectorHalo::make_halo_bottom(neigh);
+      SectorHalo::make_halo_top(neigh);
   }
 }
 

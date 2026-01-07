@@ -178,36 +178,36 @@ impl ApplicationHandler for App {
               let sector =
                 &sector.as_mut().unwrap()[48];
               let mut chunk = sector.chunk.write();
-              let cells = chunk.as_mut().unwrap()[49]
+              let cells = chunk.as_mut().unwrap()[48]
                 .cell
                 .as_mut()
                 .unwrap();
               let mut info = sector.chunk_info.write();
-              cells[49] = match kc {
+              cells[48] = match kc {
                 winit::keyboard::KeyCode::ArrowLeft => {
-                  cells[49].rotate_west()
+                  cells[48].rotate_west()
                 }
                 winit::keyboard::KeyCode::ArrowRight => {
-                  cells[49].rotate_east()
+                  cells[48].rotate_east()
                 }
                 winit::keyboard::KeyCode::ArrowUp => {
-                  cells[49].rotate_top()
+                  cells[48].rotate_top()
                 }
                 winit::keyboard::KeyCode::ArrowDown => {
-                  cells[49].rotate_bottom()
+                  cells[48].rotate_bottom()
                 }
                 winit::keyboard::KeyCode::KeyT => {
-                  cells[49].rotate_north()
+                  cells[48].rotate_north()
                 }
                 winit::keyboard::KeyCode::KeyB => {
-                  cells[49].rotate_south()
+                  cells[48].rotate_south()
                 }
                 _ => {
                   return;
                 }
               };
               (0..6).for_each(|i| {
-                info[49].dirty_opq_tile[i] = true
+                info[48].dirty_opq_tile[i] = true
               });
             }
             _ => {}

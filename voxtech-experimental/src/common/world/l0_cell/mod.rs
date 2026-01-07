@@ -195,7 +195,7 @@ impl Cell {
     for i in 0..16 {
       let broad = (i & !3) * 4;
       let narrow = i % 4;
-      rotated.0[broad + narrow + 12] = neigh.0[i];
+      rotated.0[broad + narrow] = neigh.0[i];
     }
     rotated
   }

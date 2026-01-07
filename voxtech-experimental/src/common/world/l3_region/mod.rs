@@ -65,22 +65,25 @@ impl Region {
       });
     for x in (0..3).rev() {
       for yz in (0..16).map(|yz| yz * 4) {
-        //sector_halo[yz + x]
-        //  .update_neigh_west(&sector[yz + x + 1]);
-        // sector[yz + x].update_neigh_west(None);
+        sector_halo[yz + x]
+          .update_neigh_west(&sector[yz + x + 1]);
+        sector[yz + x].update_neigh_west(Some(
+          &sector_halo[yz + x].0[Dir::WST as usize],
+        ));
       }
-    }
-    for p in 0..64 {
-      sector[p].update_neigh_west(None);
     }
     if let Some(neigh) =
       neigh.map(|neigh| neigh.sector.read())
     {
       if let Some(neigh) = neigh.as_ref() {
-        for i in (0..16).map(|i| i * 4) {
-          sector_halo[i]
-            .update_neigh_west(&neigh[i + 3]);
+        for yz in (0..16).map(|yz| yz * 4) {
+          sector_halo[yz + 3]
+            .update_neigh_west(&neigh[yz]);
         }
+      }
+    } else {
+      for yz in (0..16).map(|yz| yz * 4) {
+        sector[yz + 3].update_neigh_west(None);
       }
     }
   }
@@ -104,7 +107,7 @@ impl Region {
         sector_halo[yz + x + 1]
           .update_neigh_east(&sector[yz + x]);
         sector[yz + x + 1].update_neigh_east(Some(
-          &sector_halo[yz + x].0[Dir::EST as usize],
+          &sector_halo[yz + x + 1].0[Dir::EST as usize],
         ));
       }
     }
@@ -112,146 +115,186 @@ impl Region {
       neigh.map(|neigh| neigh.sector.read())
     {
       if let Some(neigh) = neigh.as_ref() {
-        for i in (0..16).map(|i| i * 4) {
-          sector_halo[i + 3]
-            .update_neigh_east(&neigh[i]);
+        for yz in (0..16).map(|yz| yz * 4) {
+          sector_halo[yz]
+            .update_neigh_east(&neigh[yz + 3]);
         }
+      }
+    } else {
+      for yz in (0..16).map(|yz| yz * 4) {
+        sector[yz].update_neigh_east(None);
       }
     }
   }
-  /*
   pub fn update_neigh_south(
-    &mut self,
+    &self,
     neigh: Option<&Region>,
   ) {
-    let Some(sector) = self.sector.as_mut() else {
+    let mut sector = self.sector.write();
+    let Some(sector) = sector.as_mut() else {
       return;
     };
-    let sector_halo = self
-      .sector_halo
-      .get_or_insert_with(|| {
+    let mut sector_halo = self.sector_halo.write();
+    let sector_halo =
+      sector_halo.get_or_insert_with(|| {
         Box::new(std::array::from_fn(|_| {
           Default::default()
         }))
       });
     for y in (0..3).rev().map(|y| y * 4) {
       for xz in
-        (0..16).map(|xz| ((xz & 12) << 2) | (xz & 3))
+        (0..16).map(|xz| (xz & 12) << 2 | (xz & 3))
       {
         sector_halo[xz + y]
           .update_neigh_south(&sector[xz + y + 4]);
+        sector[xz + y].update_neigh_south(Some(
+          &sector_halo[xz + y].0[Dir::STH as usize],
+        ));
       }
     }
-    if let Some(neigh) = neigh
-      .as_ref()
-      .map(|r| r.sector.as_ref())
-      .flatten()
+    if let Some(neigh) =
+      neigh.map(|neigh| neigh.sector.read())
     {
-      for i in
-        (0..16).map(|j| ((j & 12) << 2) | (j & 3))
+      if let Some(neigh) = neigh.as_ref() {
+        for xz in
+          (0..16).map(|xz| (xz & 12) << 2 | (xz & 3))
+        {
+          sector_halo[xz + 12]
+            .update_neigh_south(&neigh[xz]);
+        }
+      }
+    } else {
+      for xz in
+        (0..16).map(|xz| (xz & 12) << 2 | (xz & 3))
       {
-        sector_halo[i]
-          .update_neigh_south(&neigh[i + 3 * 4]);
+        sector[xz + 12].update_neigh_south(None);
       }
     }
   }
   pub fn update_neigh_north(
-    &mut self,
+    &self,
     neigh: Option<&Region>,
   ) {
-    let Some(sector) = self.sector.as_mut() else {
+    let mut sector = self.sector.write();
+    let Some(sector) = sector.as_mut() else {
       return;
     };
-    let sector_halo = self
-      .sector_halo
-      .get_or_insert_with(|| {
+    let mut sector_halo = self.sector_halo.write();
+    let sector_halo =
+      sector_halo.get_or_insert_with(|| {
         Box::new(std::array::from_fn(|_| {
           Default::default()
         }))
       });
     for y in (0..3).rev().map(|y| y * 4) {
       for xz in
-        (0..16).map(|xz| ((xz & 12) << 2) | (xz & 3))
+        (0..16).map(|xz| (xz & 12) << 2 | (xz & 3))
       {
         sector_halo[xz + y + 4]
           .update_neigh_north(&sector[xz + y]);
+        sector[xz + y + 4].update_neigh_north(Some(
+          &sector_halo[xz + y + 4].0[Dir::NTH as usize],
+        ));
       }
     }
-    if let Some(neigh) = neigh
-      .as_ref()
-      .map(|r| r.sector.as_ref())
-      .flatten()
+    if let Some(neigh) =
+      neigh.map(|neigh| neigh.sector.read())
     {
-      for i in
-        (0..16).map(|j| ((j & 12) << 2) | (j & 3))
+      if let Some(neigh) = neigh.as_ref() {
+        for xz in
+          (0..16).map(|xz| (xz & 12) << 2 | (xz & 3))
+        {
+          sector_halo[xz]
+            .update_neigh_north(&neigh[xz + 12]);
+        }
+      }
+    } else {
+      for xz in
+        (0..16).map(|xz| (xz & 12) << 2 | (xz & 3))
       {
-        sector_halo[i + 3 * 4]
-          .update_neigh_north(&neigh[i]);
+        sector[xz].update_neigh_north(None);
       }
     }
   }
   pub fn update_neigh_bottom(
-    &mut self,
+    &self,
     neigh: Option<&Region>,
   ) {
-    let Some(sector) = self.sector.as_mut() else {
+    let mut sector = self.sector.write();
+    let Some(sector) = sector.as_mut() else {
       return;
     };
-    let sector_halo = self
-      .sector_halo
-      .get_or_insert_with(|| {
+    let mut sector_halo = self.sector_halo.write();
+    let sector_halo =
+      sector_halo.get_or_insert_with(|| {
         Box::new(std::array::from_fn(|_| {
           Default::default()
         }))
       });
-    for z in (0..3).rev().map(|z| z * 16) {
+    for z in (0..3).rev().map(|y| y * 16) {
       for xy in 0..16 {
         sector_halo[xy + z]
           .update_neigh_bottom(&sector[xy + z + 16]);
+        sector[xy + z].update_neigh_bottom(Some(
+          &sector_halo[xy + z].0[Dir::BTM as usize],
+        ));
       }
     }
-    if let Some(neigh) = neigh
-      .as_ref()
-      .map(|r| r.sector.as_ref())
-      .flatten()
+    if let Some(neigh) =
+      neigh.map(|neigh| neigh.sector.read())
     {
-      for i in 0..16 {
-        sector_halo[i]
-          .update_neigh_bottom(&neigh[i + 3 * 16]);
+      if let Some(neigh) = neigh.as_ref() {
+        for xy in 0..16 {
+          sector_halo[xy + 48]
+            .update_neigh_bottom(&neigh[xy]);
+        }
+      }
+    } else {
+      for xy in 0..16 {
+        sector[xy + 48].update_neigh_bottom(None);
       }
     }
   }
   pub fn update_neigh_top(
-    &mut self,
+    &self,
     neigh: Option<&Region>,
   ) {
-    let Some(sector) = self.sector.as_mut() else {
+    let mut sector = self.sector.write();
+    let Some(sector) = sector.as_mut() else {
       return;
     };
-    let sector_halo = self
-      .sector_halo
-      .get_or_insert_with(|| {
+    let mut sector_halo = self.sector_halo.write();
+    let sector_halo =
+      sector_halo.get_or_insert_with(|| {
         Box::new(std::array::from_fn(|_| {
           Default::default()
         }))
       });
-    for z in (0..3).rev().map(|z| z * 16) {
+    for z in (0..3).map(|y| y * 16) {
       for xy in 0..16 {
         sector_halo[xy + z + 16]
           .update_neigh_top(&sector[xy + z]);
+        sector[xy + z + 16].update_neigh_top(Some(
+          &sector_halo[xy + z + 16].0
+            [Dir::TOP as usize],
+        ));
       }
     }
-    if let Some(neigh) = neigh
-      .as_ref()
-      .map(|r| r.sector.as_ref())
-      .flatten()
+    if let Some(neigh) =
+      neigh.map(|neigh| neigh.sector.read())
     {
-      for i in 0..16 {
-        sector_halo[i + 3 * 16]
-          .update_neigh_top(&neigh[i]);
+      if let Some(neigh) = neigh.as_ref() {
+        for xy in 0..16 {
+          sector_halo[xy]
+            .update_neigh_top(&neigh[xy + 48]);
+        }
+      }
+    } else {
+      for xy in 0..16 {
+        sector[xy].update_neigh_top(None);
       }
     }
-  } */
+  }
 
   #[inline]
   pub fn chk_visible_face(

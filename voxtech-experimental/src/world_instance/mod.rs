@@ -40,7 +40,7 @@ impl WorldInstance {
           .spawn_region(pos, |_| {
             let sector =
               Box::new(std::array::from_fn(|i| {
-                if 47 < i {
+                if 31 < i {
                   let chunk_info =
                     std::array::from_fn(|_| {
                       ChunkInfo {
@@ -157,20 +157,24 @@ impl WorldInstance {
   pub fn rendering(&self, gfx: &mut GfxBundle) {
     gfx.world_modify(|ctx, wr| {
       for (pos, region) in self.world.dim.iter() {
-        // region.update_neigh_west(None);
-        // region.update_neigh_east(None);
+        region.update_neigh_west(None);
+        region.update_neigh_east(None);
+        region.update_neigh_south(None);
+        region.update_neigh_north(None);
+        region.update_neigh_bottom(None);
+        region.update_neigh_top(None);
         region.iter_sector(
           pos,
           |ipos, bpos, sector| {
             let mut cinfo = sector
               .chunk_info
               .upgradable_read();
-            sector.update_neigh_west(None);
-            sector.update_neigh_east(None);
-            sector.update_neigh_south(None);
-            sector.update_neigh_north(None);
-            sector.update_neigh_bottom(None);
-            sector.update_neigh_top(None);
+            // sector.update_neigh_west(None);
+            // sector.update_neigh_east(None);
+            // sector.update_neigh_south(None);
+            // sector.update_neigh_north(None);
+            // sector.update_neigh_bottom(None);
+            // sector.update_neigh_top(None);
             sector.iter_chunk(
               &bpos,
               |ipos, bpos, chunk| {
