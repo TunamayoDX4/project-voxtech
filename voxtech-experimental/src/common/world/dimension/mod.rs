@@ -73,7 +73,7 @@ impl Dimension {
     };
     Some((r, rha))
   }
-  pub fn update_neigh_west(
+  pub fn update_halo_west(
     &mut self,
     target_region_pos: &BlockPos,
   ) -> bool {
@@ -86,13 +86,13 @@ impl Dimension {
     let neigh = self.map.get(&neigh_pos);
     match (target_halo, neigh) {
       (Some(target_halo), Some(neigh)) => {
-        target_halo.update_neigh_west(neigh);
+        target_halo.update_halo_west(neigh);
         true
       }
       _ => false,
     }
   }
-  pub fn update_neigh_east(
+  pub fn update_halo_east(
     &mut self,
     target_region_pos: &BlockPos,
   ) -> bool {
@@ -105,13 +105,13 @@ impl Dimension {
     let neigh = self.map.get(&neigh_pos);
     match (target_halo, neigh) {
       (Some(target_halo), Some(neigh)) => {
-        target_halo.update_neigh_east(neigh);
+        target_halo.update_halo_east(neigh);
         true
       }
       _ => false,
     }
   }
-  pub fn update_neigh_south(
+  pub fn update_halo_south(
     &mut self,
     target_region_pos: &BlockPos,
   ) -> bool {
@@ -124,13 +124,13 @@ impl Dimension {
     let neigh = self.map.get(&neigh_pos);
     match (target_halo, neigh) {
       (Some(target_halo), Some(neigh)) => {
-        target_halo.update_neigh_south(neigh);
+        target_halo.update_halo_south(neigh);
         true
       }
       _ => false,
     }
   }
-  pub fn update_neigh_north(
+  pub fn update_halo_north(
     &mut self,
     target_region_pos: &BlockPos,
   ) -> bool {
@@ -143,13 +143,13 @@ impl Dimension {
     let neigh = self.map.get(&neigh_pos);
     match (target_halo, neigh) {
       (Some(target_halo), Some(neigh)) => {
-        target_halo.update_neigh_north(neigh);
+        target_halo.update_halo_north(neigh);
         true
       }
       _ => false,
     }
   }
-  pub fn update_neigh_bottom(
+  pub fn update_halo_bottom(
     &mut self,
     target_region_pos: &BlockPos,
   ) -> bool {
@@ -162,13 +162,13 @@ impl Dimension {
     let neigh = self.map.get(&neigh_pos);
     match (target_halo, neigh) {
       (Some(target_halo), Some(neigh)) => {
-        target_halo.update_neigh_bottom(neigh);
+        target_halo.update_halo_bottom(neigh);
         true
       }
       _ => false,
     }
   }
-  pub fn update_neigh_top(
+  pub fn update_halo_top(
     &mut self,
     target_region_pos: &BlockPos,
   ) -> bool {
@@ -181,7 +181,7 @@ impl Dimension {
     let neigh = self.map.get(&neigh_pos);
     match (target_halo, neigh) {
       (Some(target_halo), Some(neigh)) => {
-        target_halo.update_neigh_top(neigh);
+        target_halo.update_halo_top(neigh);
         true
       }
       _ => false,

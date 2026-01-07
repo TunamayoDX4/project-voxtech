@@ -88,12 +88,6 @@ impl ApplicationHandler for App {
     match event {
       // 再描画処理
       WindowEvent::RedrawRequested => {
-        println!(
-          "{0:3.05}, {1:3.05}, {2:3.05}",
-          self.player_camera.position.x,
-          self.player_camera.position.y,
-          self.player_camera.position.z,
-        );
         // プレイヤーのビューの更新
         self
           .player
@@ -178,36 +172,37 @@ impl ApplicationHandler for App {
               let sector =
                 &sector.as_mut().unwrap()[48];
               let mut chunk = sector.chunk.write();
-              let cells = chunk.as_mut().unwrap()[48]
+              let p = 48;
+              let cells = chunk.as_mut().unwrap()[p]
                 .cell
                 .as_mut()
                 .unwrap();
               let mut info = sector.chunk_info.write();
-              cells[48] = match kc {
+              cells[p] = match kc {
                 winit::keyboard::KeyCode::ArrowLeft => {
-                  cells[48].rotate_west()
+                  cells[p].rotate_west()
                 }
                 winit::keyboard::KeyCode::ArrowRight => {
-                  cells[48].rotate_east()
+                  cells[p].rotate_east()
                 }
                 winit::keyboard::KeyCode::ArrowUp => {
-                  cells[48].rotate_top()
+                  cells[p].rotate_top()
                 }
                 winit::keyboard::KeyCode::ArrowDown => {
-                  cells[48].rotate_bottom()
+                  cells[p].rotate_bottom()
                 }
                 winit::keyboard::KeyCode::KeyT => {
-                  cells[48].rotate_north()
+                  cells[p].rotate_north()
                 }
                 winit::keyboard::KeyCode::KeyB => {
-                  cells[48].rotate_south()
+                  cells[p].rotate_south()
                 }
                 _ => {
                   return;
                 }
               };
               (0..6).for_each(|i| {
-                info[48].dirty_opq_tile[i] = true
+                info[p].dirty_opq_tile[i] = true
               });
             }
             _ => {}

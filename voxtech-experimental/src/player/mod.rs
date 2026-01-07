@@ -32,10 +32,10 @@ impl Player {
       self.velocity.z += 15. / 60.
     }
     if input.move_key.bw {
-      self.velocity.y -= 15. / 60.
+      self.velocity.y -= 60. / 60.
     }
     if input.move_key.fw {
-      self.velocity.y += 15. / 60.
+      self.velocity.y += 60. / 60.
     }
     self.yaw = (self.yaw
       - (0.12

@@ -8,7 +8,7 @@ use crate::{
     l1_chunk::{Chunk, ChunkInfo},
     l2_sector::Sector,
     l3_region::{self, Region},
-    BlockPos, Dir, World,
+    BlockDist, BlockPos, Dir, World,
   },
   gfx::{
     wgpu_ctx::WGPUCtx,
@@ -31,65 +31,60 @@ pub struct WorldInstance {
 impl WorldInstance {
   pub fn new() -> Self {
     let mut world = World::new();
-    for x in -1..1 {
-      for y in -1..1 {
-        let pos = BlockPos::new(x, y, -1);
-        let pos = pos.level_up(4);
-        world
-          .dim
-          .spawn_region(pos, |_| {
-            let sector =
-              Box::new(std::array::from_fn(|i| {
-                if 31 < i {
-                  let chunk_info =
-                    std::array::from_fn(|_| {
-                      ChunkInfo {
-                        visibility: [true; 6],
-                        dirty_opq_tile: [true; 6],
-                        rdr_storage_key: None,
-                      }
-                    });
-                  let chunk = Box::new(
-                    std::array::from_fn(|_| {
-                      let chunk = Box::new(
-                        std::array::from_fn(|_| {
-                          Cell(std::array::from_fn(
-                            |i| {
-                              if i == 0 {
-                                0
-                              } else {
-                                i as _
-                              }
-                            },
-                          ))
-                        }),
-                      );
-                      Chunk { cell: Some(chunk) }
-                    }),
-                  );
-                  Sector {
-                    chunk_info: PRwLock::new(
-                      chunk_info,
-                    ),
-                    chunk: PRwLock::new(Some(chunk)),
-                    chunk_halo: PRwLock::new(None),
-                  }
-                } else {
-                  Sector {
-                    chunk_info: PRwLock::new(
-                      [Default::default(); 64],
-                    ),
-                    chunk: PRwLock::new(None),
-                    chunk_halo: PRwLock::new(None),
-                  }
+    for (x, y, z) in (-1..1).flat_map(|x| {
+      (-1..1).flat_map(move |y| {
+        (-1..0).map(move |z| (x, y, z))
+      })
+    }) {
+      let pos = BlockPos::new(x, y, z);
+      let pos = pos.level_up(4);
+      world
+        .dim
+        .spawn_region(pos, |_| {
+          let sector =
+            Box::new(std::array::from_fn(|i| {
+              if 47 < i {
+                let chunk_info =
+                  std::array::from_fn(|_| ChunkInfo {
+                    visibility: [true; 6],
+                    dirty_opq_tile: [true; 6],
+                    rdr_storage_key: None,
+                  });
+                let chunk =
+                  Box::new(std::array::from_fn(|_| {
+                    let chunk = Box::new(
+                      std::array::from_fn(|_| {
+                        Cell(std::array::from_fn(|i| {
+                          if i == 0 {
+                            0
+                          } else {
+                            i as _
+                          }
+                        }))
+                      }),
+                    );
+                    Chunk { cell: Some(chunk) }
+                  }));
+                Sector {
+                  chunk_info: PRwLock::new(chunk_info),
+                  chunk: PRwLock::new(Some(chunk)),
+                  chunk_halo: PRwLock::new(None),
                 }
-              }));
-            Region {
-              sector: RwLock::new(Some(sector)),
-              sector_halo: RwLock::new(None),
-            }
-          });
-      }
+              } else {
+                Sector {
+                  chunk_info: PRwLock::new(
+                    [Default::default(); 64],
+                  ),
+                  chunk: PRwLock::new(None),
+                  chunk_halo: PRwLock::new(None),
+                }
+              }
+            }));
+          Region {
+            sector: RwLock::new(Some(sector)),
+            sector_halo: RwLock::new(None),
+          }
+        });
     }
     Self { world }
   }
@@ -157,24 +152,72 @@ impl WorldInstance {
   pub fn rendering(&self, gfx: &mut GfxBundle) {
     gfx.world_modify(|ctx, wr| {
       for (pos, region) in self.world.dim.iter() {
-        region.update_neigh_west(None);
-        region.update_neigh_east(None);
-        region.update_neigh_south(None);
-        region.update_neigh_north(None);
-        region.update_neigh_bottom(None);
-        region.update_neigh_top(None);
+        region.update_halo_west(
+          self
+            .world
+            .dim
+            .get(
+              &(*pos
+                + BlockDist::new(1, 0, 0).level_up(4)),
+            )
+            .map(|(r, _h)| r),
+        );
+        region.update_halo_east(
+          self
+            .world
+            .dim
+            .get(
+              &(*pos
+                + BlockDist::new(-1, 0, 0).level_up(4)),
+            )
+            .map(|(r, _h)| r),
+        );
+        region.update_halo_south(
+          self
+            .world
+            .dim
+            .get(
+              &(*pos
+                + BlockDist::new(0, 1, 0).level_up(4)),
+            )
+            .map(|(r, _h)| r),
+        );
+        region.update_halo_north(
+          self
+            .world
+            .dim
+            .get(
+              &(*pos
+                + BlockDist::new(0, -1, 0).level_up(4)),
+            )
+            .map(|(r, _h)| r),
+        );
+        region.update_halo_bottom(
+          self
+            .world
+            .dim
+            .get(
+              &(*pos
+                + BlockDist::new(0, 0, 1).level_up(4)),
+            )
+            .map(|(r, _h)| r),
+        );
+        region.update_halo_top(
+          self
+            .world
+            .dim
+            .get(
+              &(*pos
+                + BlockDist::new(0, 0, -1).level_up(4)),
+            )
+            .map(|(r, _h)| r),
+        );
         region.iter_sector(
           pos,
           |ipos, bpos, sector| {
             let mut cinfo = sector
               .chunk_info
               .upgradable_read();
-            // sector.update_neigh_west(None);
-            // sector.update_neigh_east(None);
-            // sector.update_neigh_south(None);
-            // sector.update_neigh_north(None);
-            // sector.update_neigh_bottom(None);
-            // sector.update_neigh_top(None);
             sector.iter_chunk(
               &bpos,
               |ipos, bpos, chunk| {

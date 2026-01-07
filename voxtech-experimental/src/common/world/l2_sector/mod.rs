@@ -49,7 +49,7 @@ impl Sector {
     }
   }
 
-  pub fn update_neigh_west(
+  pub fn update_halo_west(
     &self,
     neigh: Option<&SectorHalo>,
   ) {
@@ -82,7 +82,7 @@ impl Sector {
       }
     }
   }
-  pub fn update_neigh_east(
+  pub fn update_halo_east(
     &self,
     neigh: Option<&SectorHalo>,
   ) {
@@ -115,7 +115,7 @@ impl Sector {
       }
     }
   }
-  pub fn update_neigh_south(
+  pub fn update_halo_south(
     &self,
     neigh: Option<&SectorHalo>,
   ) {
@@ -151,7 +151,7 @@ impl Sector {
       }
     }
   }
-  pub fn update_neigh_north(
+  pub fn update_halo_north(
     &self,
     neigh: Option<&SectorHalo>,
   ) {
@@ -187,7 +187,7 @@ impl Sector {
       }
     }
   }
-  pub fn update_neigh_bottom(
+  pub fn update_halo_bottom(
     &self,
     neigh: Option<&SectorHalo>,
   ) {
@@ -222,7 +222,7 @@ impl Sector {
       }
     }
   }
-  pub fn update_neigh_top(
+  pub fn update_halo_top(
     &self,
     neigh: Option<&SectorHalo>,
   ) {
@@ -375,35 +375,32 @@ impl Default for SectorHaloArray {
 }
 impl SectorHaloArray {
   #[inline]
-  pub fn update_neigh_west(&mut self, neigh: &Sector) {
+  pub fn make_halo_west(&mut self, neigh: &Sector) {
     self.0[Dir::WST as usize] =
       SectorHalo::make_halo_west(neigh);
   }
   #[inline]
-  pub fn update_neigh_east(&mut self, neigh: &Sector) {
+  pub fn make_halo_east(&mut self, neigh: &Sector) {
     self.0[Dir::EST as usize] =
       SectorHalo::make_halo_east(neigh);
   }
   #[inline]
-  pub fn update_neigh_south(&mut self, neigh: &Sector) {
+  pub fn make_halo_south(&mut self, neigh: &Sector) {
     self.0[Dir::STH as usize] =
       SectorHalo::make_halo_south(neigh);
   }
   #[inline]
-  pub fn update_neigh_north(&mut self, neigh: &Sector) {
+  pub fn make_halo_north(&mut self, neigh: &Sector) {
     self.0[Dir::NTH as usize] =
       SectorHalo::make_halo_north(neigh);
   }
   #[inline]
-  pub fn update_neigh_bottom(
-    &mut self,
-    neigh: &Sector,
-  ) {
+  pub fn make_halo_bottom(&mut self, neigh: &Sector) {
     self.0[Dir::BTM as usize] =
       SectorHalo::make_halo_bottom(neigh);
   }
   #[inline]
-  pub fn update_neigh_top(&mut self, neigh: &Sector) {
+  pub fn make_halo_top(&mut self, neigh: &Sector) {
     self.0[Dir::TOP as usize] =
       SectorHalo::make_halo_top(neigh);
   }
