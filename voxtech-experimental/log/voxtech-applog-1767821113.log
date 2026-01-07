@@ -1,0 +1,992 @@
+2026-01-07T21:25:13.668104Z  INFO main ThreadId(01) voxtech_experimental::frontend: 5: Initializing frondend initializing
+2026-01-07T21:25:13.674005Z  INFO main ThreadId(01) voxtech app init: voxtech_experimental::frontend::window: 31: starting app initialize
+2026-01-07T21:25:13.674168Z  INFO main ThreadId(01) voxtech app init:window init: voxtech_experimental::frontend::window: 34: starting window init
+2026-01-07T21:25:13.720756Z  INFO main ThreadId(01) voxtech app init:window init: voxtech_experimental::frontend::window: 49: window init succeed
+2026-01-07T21:25:13.720943Z  INFO main ThreadId(01) voxtech app init:gfx init: voxtech_experimental::frontend::window: 69: starting gfx initialize
+2026-01-07T21:25:13.742380Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 712: InstanceFlags::VALIDATION requested, but unable to find layer: VK_LAYER_KHRONOS_validation
+2026-01-07T21:25:13.742423Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	No valid vk_loader_settings.json file found, no loader settings will be active
+2026-01-07T21:25:13.742464Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.742517Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_app_package_manifest_path: Failed to find mapping layers packages by family name
+2026-01-07T21:25:13.742521Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.742523Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	Checking for Layer Manifest files in Registry at HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\Vulkan\ImplicitLayers
+2026-01-07T21:25:13.742524Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.742616Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_add_json_entry: Located json file "C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\amd-vulkan64.json" from PnP registry: E
+2026-01-07T21:25:13.742631Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.742731Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	Located json file "D:\Program Files (x86)\Steam\SteamOverlayVulkanLayer64.json" from registry "HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\Vulkan\ImplicitLayers"
+2026-01-07T21:25:13.742736Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.742741Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	Located json file "D:\Program Files (x86)\Steam\SteamFossilizeVulkanLayer64.json" from registry "HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\Vulkan\ImplicitLayers"
+2026-01-07T21:25:13.742743Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.742829Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	Found manifest file C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\amd-vulkan64.json (file version 1.0.0)
+2026-01-07T21:25:13.742834Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.742870Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	Found manifest file D:\Program Files (x86)\Steam\SteamOverlayVulkanLayer64.json (file version 1.0.0)
+2026-01-07T21:25:13.742874Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.742901Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	Found manifest file D:\Program Files (x86)\Steam\SteamFossilizeVulkanLayer64.json (file version 1.0.0)
+2026-01-07T21:25:13.742903Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.742913Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	Checking for Layer Manifest files in Registry at HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\Vulkan\ExplicitLayers
+2026-01-07T21:25:13.742914Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743063Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: opening device PCI\VEN_1002&DEV_73DF&SUBSYS_39801462&REV_C1\6&cf24139&0&00000009
+2026-01-07T21:25:13.743074Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743110Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(2) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:25:13.743113Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743121Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 4 - SWD\DRIVERENUM\AMDFDANS&7&263757B0&0
+2026-01-07T21:25:13.743123Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743141Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(4) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:25:13.743144Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743150Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 5 - SWD\DRIVERENUM\AMDOCL&7&263757B0&0
+2026-01-07T21:25:13.743151Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743166Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(5) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:25:13.743169Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743174Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 6 - SWD\DRIVERENUM\AMDWIN&7&263757B0&0
+2026-01-07T21:25:13.743176Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743190Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(6) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:25:13.743193Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743198Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 7 - DISPLAY\ENC2384\7&263757B0&0&UID512
+2026-01-07T21:25:13.743199Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743205Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 8 - DISPLAY\DELD062\7&263757B0&0&UID516
+2026-01-07T21:25:13.743207Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743213Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 9 - DISPLAY\WAC1103\7&263757B0&0&UID520
+2026-01-07T21:25:13.743214Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743220Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 10 - DISPLAY\DELA085\7&263757B0&0&UID524
+2026-01-07T21:25:13.743221Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743240Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: opening device PCI\VEN_1002&DEV_13C0&SUBSYS_364E1849&REV_CB\4&16012499&0&0041
+2026-01-07T21:25:13.743242Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743272Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(1) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:25:13.743275Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743280Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 11 - SWD\DRIVERENUM\AMDFDANS&5&748453E&0
+2026-01-07T21:25:13.743282Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743297Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(11) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:25:13.743298Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743303Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 12 - SWD\DRIVERENUM\AMDOCL&5&748453E&0
+2026-01-07T21:25:13.743305Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743319Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(12) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:25:13.743322Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743327Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 13 - SWD\DRIVERENUM\AMDWIN&5&748453E&0
+2026-01-07T21:25:13.743328Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743357Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(13) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:25:13.743363Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743371Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: found no registry files
+2026-01-07T21:25:13.743373Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743385Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	Found no registry files in HKEY_CURRENT_USER\SOFTWARE\Khronos\Vulkan\ExplicitLayers
+2026-01-07T21:25:13.743387Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743389Z  WARN main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_read_data_files_in_registry: Registry lookup failed to get layer manifest files.
+2026-01-07T21:25:13.743482Z  WARN main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743599Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_get_app_package_manifest_path: Failed to find mapping layers packages by family name
+2026-01-07T21:25:13.743605Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743607Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	Checking for Driver Manifest files in Registry at HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\Vulkan\Drivers
+2026-01-07T21:25:13.743609Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743664Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	windows_add_json_entry: Located json file "C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\amd-vulkan64.json" from PnP registry: E
+2026-01-07T21:25:13.743668Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.743931Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	Found no registry files in HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\Vulkan\Drivers
+2026-01-07T21:25:13.743941Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744045Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	Found ICD manifest file C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\amd-vulkan64.json, version 1.0.0
+2026-01-07T21:25:13.744050Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744096Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	Insert instance layer "VK_LAYER_AMD_switchable_graphics" (C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\.\amdvlk64.dll)
+2026-01-07T21:25:13.744099Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744532Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	vkCreateInstance layer callstack setup to:
+2026-01-07T21:25:13.744542Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744545Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	   <Application>
+2026-01-07T21:25:13.744546Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744547Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	     ||
+2026-01-07T21:25:13.744549Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744550Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	   <Loader>
+2026-01-07T21:25:13.744551Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744552Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	     ||
+2026-01-07T21:25:13.744554Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744555Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	   VK_LAYER_AMD_switchable_graphics
+2026-01-07T21:25:13.744557Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744558Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	           Type: Implicit
+2026-01-07T21:25:13.744559Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744561Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	           Enabled By: Implicit Layer
+2026-01-07T21:25:13.744562Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744564Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	               Disable Env Var:  DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1
+2026-01-07T21:25:13.744565Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744567Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	           Manifest: C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\amd-vulkan64.json
+2026-01-07T21:25:13.744569Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744570Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	           Library:  C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\.\amdvlk64.dll
+2026-01-07T21:25:13.744572Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744573Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	     ||
+2026-01-07T21:25:13.744574Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.744575Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	   <Drivers>
+2026-01-07T21:25:13.744576Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.773736Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 334: Instance version: 0x404135
+2026-01-07T21:25:13.773749Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 338: Enabling debug utils
+2026-01-07T21:25:13.773758Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 364: Enabling device properties2
+2026-01-07T21:25:13.773780Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: 149: Instance::new: created Vulkan backend
+2026-01-07T21:25:13.777033Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::dx12::instance: 98: Using FXC for shader compilation
+2026-01-07T21:25:13.777045Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: 149: Instance::new: created Dx12 backend
+2026-01-07T21:25:13.827964Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::gles::wgl: 539: Enabling GL debug output
+2026-01-07T21:25:13.853466Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: 149: Instance::new: created Gl backend
+2026-01-07T21:25:13.949867Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::gles::adapter: 227: Vendor: ATI Technologies Inc.
+2026-01-07T21:25:13.949887Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::gles::adapter: 228: Renderer: AMD Radeon RX 6700 XT
+2026-01-07T21:25:13.949888Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::gles::adapter: 229: Version: 4.6.0 Compatibility Profile Context 25.12.1.251128
+2026-01-07T21:25:13.949905Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::gles::adapter: 281: SL version: 4.60
+2026-01-07T21:25:13.949907Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::gles::adapter: 300: Supported GL Extensions: {
+    "GL_S3_s3tc",
+    "GL_AMD_texture_cube_map_array",
+    "GL_ARB_gl_spirv",
+    "GL_ARB_sparse_texture",
+    "GL_ARB_timer_query",
+    "GL_EXT_memory_object",
+    "GL_SGIS_texture_edge_clamp",
+    "GL_ARB_derivative_control",
+    "GL_ARB_texture_buffer_object_rgb32",
+    "GL_KHR_robust_buffer_access_behavior",
+    "GL_ARB_sample_shading",
+    "GL_ARB_shader_texture_lod",
+    "GL_ARB_texture_storage",
+    "GL_EXT_semaphore_win32",
+    "GL_EXT_bindable_uniform",
+    "GL_ARB_texture_barrier",
+    "GL_EXT_geometry_shader4",
+    "GL_ARB_shader_storage_buffer_object",
+    "GL_ARB_texture_multisample_no_array",
+    "GL_ARB_texture_border_clamp",
+    "GL_ARB_instanced_arrays",
+    "GL_EXT_texture3D",
+    "GL_KHR_shader_subgroup",
+    "GL_ARB_texture_storage_multisample",
+    "GL_ATI_meminfo",
+    "GL_EXT_texture_cube_map",
+    "GL_ARB_bindless_texture",
+    "GL_EXT_shader_image_load_store",
+    "GL_EXT_texture_buffer_object",
+    "GL_OES_EGL_image",
+    "GL_ARB_texture_stencil8",
+    "GL_EXT_point_parameters",
+    "GL_ARB_fragment_shader",
+    "GL_ARB_occlusion_query2",
+    "GL_ARB_post_depth_coverage",
+    "WGL_EXT_swap_control",
+    "GL_EXT_texture_edge_clamp",
+    "GL_ARB_fragment_program",
+    "GL_ARB_internalformat_query2",
+    "GL_ARB_shadow",
+    "GL_ARB_seamless_cubemap_per_texture",
+    "GL_ARB_transform_feedback_overflow_query",
+    "GL_NV_conditional_render",
+    "GL_ARB_clear_texture",
+    "GL_ARB_clear_buffer_object",
+    "GL_ARB_base_instance",
+    "GL_ARB_texture_multisample",
+    "GL_ARB_depth_clamp",
+    "GL_EXT_gpu_program_parameters",
+    "GL_EXT_texture",
+    "GL_ARB_draw_indirect",
+    "GL_ARB_shading_language_420pack",
+    "GL_ARB_buffer_storage",
+    "GL_ARB_texture_query_levels",
+    "GL_NV_shader_atomic_int64",
+    "GL_EXT_debug_label",
+    "GL_NV_texgen_reflection",
+    "GL_ARB_get_texture_sub_image",
+    "GL_EXT_texture_compression_latc",
+    "GL_ARB_debug_output",
+    "GL_ARB_conditional_render_inverted",
+    "GL_EXT_compiled_vertex_array",
+    "GL_EXT_texture_object",
+    "GL_ARB_internalformat_query",
+    "GL_ARB_vertex_program",
+    "GL_AMD_sample_positions",
+    "GL_ARB_shading_language_packing",
+    "GL_ARB_texture_env_combine",
+    "GL_EXT_texture_sRGB_RG8",
+    "GL_ARB_shadow_ambient",
+    "GL_NV_blend_square",
+    "GL_EXT_texture_swizzle",
+    "GL_ARB_parallel_shader_compile",
+    "GL_ARB_texture_swizzle",
+    "GL_AMD_seamless_cubemap_per_texture",
+    "GL_EXT_shader_integer_mix",
+    "GL_EXT_vertex_attrib_64bit",
+    "GL_ARB_sampler_objects",
+    "GL_ARB_framebuffer_sRGB",
+    "GL_ARB_half_float_vertex",
+    "GL_ARB_texture_buffer_range",
+    "GL_ARB_texture_env_dot3",
+    "GL_EXT_shader_image_load_formatted",
+    "GL_EXT_framebuffer_sRGB",
+    "GL_EXT_texture_sRGB_R8",
+    "GL_ARB_pixel_buffer_object",
+    "GL_ARB_texture_env_crossbar",
+    "GL_ARB_texture_filter_anisotropic",
+    "GL_ARB_vertex_attrib_binding",
+    "GL_NV_texture_barrier",
+    "GL_ARB_sample_locations",
+    "GL_ARB_shader_draw_parameters",
+    "GL_ARB_vertex_type_2_10_10_10_rev",
+    "GL_AMD_blend_minmax_factor",
+    "GL_ARB_compressed_texture_pixel_storage",
+    "GL_ARB_shader_objects",
+    "GL_EXT_direct_state_access",
+    "GL_ARB_direct_state_access",
+    "GL_EXT_framebuffer_multisample",
+    "GL_EXT_pixel_buffer_object",
+    "GL_EXT_texture_env_dot3",
+    "GL_EXT_blend_equation_separate",
+    "GL_EXT_subtexture",
+    "GL_EXT_texture_lod_bias",
+    "GL_EXT_texture_storage",
+    "GL_ATI_shader_texture_lod",
+    "GL_ARB_spirv_extensions",
+    "GL_ARB_copy_image",
+    "GL_EXT_timer_query",
+    "GL_EXT_shadow_funcs",
+    "GL_ARB_texture_gather",
+    "GL_ARB_multi_draw_indirect",
+    "GL_ARB_sparse_buffer",
+    "GL_EXT_framebuffer_blit",
+    "GL_ARB_compute_shader",
+    "GL_EXT_transform_feedback",
+    "GL_ARB_uniform_buffer_object",
+    "GL_EXT_fog_coord",
+    "GL_ARB_geometry_shader4",
+    "GL_NV_copy_image",
+    "GL_ARB_framebuffer_no_attachments",
+    "GL_ARB_half_float_pixel",
+    "GL_AMD_debug_output",
+    "GL_ARB_vertex_shader",
+    "GL_ARB_enhanced_layouts",
+    "GL_ARB_fragment_layer_viewport",
+    "GL_ARB_shader_viewport_layer_array",
+    "GL_KHR_blend_equation_advanced",
+    "GL_KHR_no_error",
+    "GL_ARB_texture_query_lod",
+    "GL_EXT_draw_buffers2",
+    "GL_ARB_color_buffer_float",
+    "GL_AMD_multi_draw_indirect",
+    "GL_EXT_depth_bounds_test",
+    "GL_EXT_packed_float",
+    "GL_EXT_secondary_color",
+    "GL_ARB_texture_view",
+    "GL_ARB_cull_distance",
+    "GL_ARB_shading_language_100",
+    "GL_ARB_invalidate_subdata",
+    "GL_ARB_shader_group_vote",
+    "GL_ARB_vertex_buffer_object",
+    "GL_ATI_texture_float",
+    "GL_KHR_debug",
+    "GL_SUN_multi_draw_arrays",
+    "GL_EXT_bgra",
+    "GL_ARB_multisample",
+    "GL_EXT_memory_object_win32",
+    "GL_ARB_texture_compression_bptc",
+    "GL_EXT_copy_texture",
+    "GL_ARB_get_program_binary",
+    "GL_ARB_seamless_cube_map",
+    "GL_KHR_blend_equation_advanced_coherent",
+    "GL_ARB_viewport_array",
+    "GL_ARB_shader_clock",
+    "GL_ARB_arrays_of_arrays",
+    "GL_EXT_texture_integer",
+    "GL_ARB_occlusion_query",
+    "GL_ARB_copy_buffer",
+    "GL_ARB_shader_precision",
+    "GL_ARB_transform_feedback_instanced",
+    "GL_ARB_blend_func_extended",
+    "GL_AMD_gpu_shader_int16",
+    "GL_ARB_explicit_attrib_location",
+    "GL_ARB_ES3_compatibility",
+    "GL_ARB_transform_feedback3",
+    "GL_ARB_vertex_attrib_64bit",
+    "GL_ARB_shader_subroutine",
+    "GL_ARB_window_pos",
+    "GL_ATI_separate_stencil",
+    "GL_EXT_copy_buffer",
+    "GL_EXT_stencil_wrap",
+    "GL_EXT_texture_lod",
+    "GL_ARB_ES3_2_compatibility",
+    "GL_ARB_draw_elements_base_vertex",
+    "GL_ARB_explicit_uniform_location",
+    "GL_ARB_texture_buffer_object",
+    "GL_ARB_compatibility",
+    "GL_ARB_separate_shader_objects",
+    "GL_ARB_texture_mirror_clamp_to_edge",
+    "GL_ARB_draw_buffers_blend",
+    "GL_ARB_texture_cube_map_array",
+    "GL_ARB_texture_float",
+    "GL_ARB_pipeline_statistics_query",
+    "GL_EXT_gpu_shader4",
+    "GL_KHR_parallel_shader_compile",
+    "GL_NV_half_float",
+    "GL_NV_primitive_restart",
+    "GL_SGIS_texture_lod",
+    "GL_EXT_texture_compression_rgtc",
+    "GL_ARB_provoking_vertex",
+    "GL_ARB_sync",
+    "GL_AMD_vertex_shader_layer",
+    "GL_ARB_ES3_1_compatibility",
+    "GL_ARB_point_parameters",
+    "GL_AMD_pinned_memory",
+    "GL_ARB_fragment_shader_interlock",
+    "GL_ARB_texture_mirrored_repeat",
+    "GL_EXT_separate_specular_color",
+    "GL_EXT_texture_compression_s3tc",
+    "GL_EXT_texture_shared_exponent",
+    "GL_ARB_texture_rectangle",
+    "GL_EXT_texture_sRGB_decode",
+    "GL_ARB_texture_rg",
+    "GL_ARB_texture_compression",
+    "GL_EXT_texture_env_combine",
+    "GL_NV_mesh_shader",
+    "GL_ARB_conservative_depth",
+    "GL_ARB_fragment_program_shadow",
+    "GL_ARB_vertex_array_object",
+    "GL_ARB_shader_bit_encoding",
+    "GL_ARB_shader_image_load_store",
+    "GL_AMD_gpu_shader_half_float",
+    "GL_AMD_depth_clamp_separate",
+    "GL_ARB_shader_ballot",
+    "GL_ARB_texture_cube_map",
+    "GL_EXT_draw_range_elements",
+    "GL_ATI_texture_mirror_once",
+    "GL_IBM_texture_mirrored_repeat",
+    "GL_EXT_blend_minmax",
+    "GL_EXT_packed_pixels",
+    "GL_AMD_conservative_depth",
+    "GL_ATI_draw_buffers",
+    "GL_SGIS_generate_mipmap",
+    "GL_ARB_draw_buffers",
+    "GL_ARB_multitexture",
+    "GL_EXT_blend_subtract",
+    "GL_NV_timeline_semaphore",
+    "GL_NV_float_buffer",
+    "GL_AMD_shader_trinary_minmax",
+    "GL_EXT_texture_snorm",
+    "GL_AMD_query_buffer_object",
+    "GL_ARB_depth_buffer_float",
+    "GL_ARB_transpose_matrix",
+    "GL_ARB_tessellation_shader",
+    "GL_ARB_draw_instanced",
+    "GL_ARB_multi_bind",
+    "GL_ARB_shader_atomic_counter_ops",
+    "GL_AMD_vertex_shader_viewport_index",
+    "GL_ARB_texture_env_add",
+    "GL_ARB_transform_feedback2",
+    "GL_ARB_shader_texture_image_samples",
+    "GL_EXT_nonuniform_qualifier",
+    "GL_OVR_multiview2",
+    "GL_ARB_transform_feedback",
+    "GL_AMD_gpu_shader_int64",
+    "GL_KHR_context_flush_control",
+    "GL_ARB_gpu_shader5",
+    "GL_ARB_gpu_shader_fp64",
+    "GL_ARB_stencil_texturing",
+    "GL_EXT_blend_func_separate",
+    "GL_EXT_draw_instanced",
+    "GL_ARB_map_buffer_range",
+    "GL_ARB_robustness",
+    "GL_OVR_multiview",
+    "GL_ARB_vertex_type_10f_11f_11f_rev",
+    "GL_ARB_texture_non_power_of_two",
+    "GL_ARB_program_interface_query",
+    "GL_EXT_framebuffer_object",
+    "GL_EXT_texture_array",
+    "GL_EXT_blend_color",
+    "GL_ARB_indirect_parameters",
+    "GL_ARB_depth_texture",
+    "GL_EXT_texture_compression_bptc",
+    "GL_EXT_texture_rectangle",
+    "GL_ARB_polygon_offset_clamp",
+    "GL_ARB_texture_rgb10_a2ui",
+    "GL_KHR_texture_compression_astc_ldr",
+    "GL_EXT_texture_filter_anisotropic",
+    "GL_EXT_packed_depth_stencil",
+    "GL_EXT_abgr",
+    "GL_EXT_texture_env_add",
+    "GL_ARB_gpu_shader_int64",
+    "GL_NV_depth_buffer_float",
+    "GL_EXT_polygon_offset_clamp",
+    "GL_ARB_shader_stencil_export",
+    "GL_EXT_semaphore",
+    "GL_ATI_texture_env_combine3",
+    "GL_ARB_query_buffer_object",
+    "GL_ARB_shader_atomic_counters",
+    "GL_ARB_texture_filter_minmax",
+    "GL_EXT_texture_sRGB",
+    "GL_ARB_vertex_array_bgra",
+    "GL_EXT_rescale_normal",
+    "GL_ARB_texture_compression_rgtc",
+    "GL_ARB_fragment_coord_conventions",
+    "GL_EXT_vertex_array_bgra",
+    "GL_ARB_clip_control",
+    "GL_ARB_shader_image_size",
+    "GL_EXT_texture_mirror_clamp",
+    "GL_EXT_provoking_vertex",
+    "GL_EXT_texture_shadow_lod",
+    "GL_ARB_ES2_compatibility",
+    "GL_ARB_framebuffer_object",
+    "GL_KHR_robustness",
+    "GL_ARB_point_sprite",
+    "GL_EXT_vertex_array",
+    "GL_EXT_multi_draw_arrays",
+}
+2026-01-07T21:25:13.950037Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: 547: Found 6 compatible adapters. Sorted by preference:
+2026-01-07T21:25:13.950040Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: 552: * AdapterInfo { name: "AMD Radeon RX 6700 XT", vendor: 4098, device: 29663, device_type: DiscreteGpu, device_pci_bus_id: "", driver: "AMD proprietary driver", driver_info: "25.12.1 (AMD proprietary shader compiler)", backend: Vulkan, subgroup_min_size: 32, subgroup_max_size: 64, transient_saves_memory: false }
+2026-01-07T21:25:13.950047Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: 552: * AdapterInfo { name: "AMD Radeon RX 6700 XT", vendor: 4098, device: 29663, device_type: DiscreteGpu, device_pci_bus_id: "0000:03:00.0", driver: "32.0.21037.1004", driver_info: "", backend: Dx12, subgroup_min_size: 32, subgroup_max_size: 64, transient_saves_memory: false }
+2026-01-07T21:25:13.950049Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: 552: * AdapterInfo { name: "AMD Radeon(TM) Graphics", vendor: 4098, device: 5056, device_type: IntegratedGpu, device_pci_bus_id: "", driver: "AMD proprietary driver", driver_info: "25.12.1 (AMD proprietary shader compiler)", backend: Vulkan, subgroup_min_size: 32, subgroup_max_size: 64, transient_saves_memory: false }
+2026-01-07T21:25:13.950052Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: 552: * AdapterInfo { name: "AMD Radeon(TM) Graphics", vendor: 4098, device: 5056, device_type: IntegratedGpu, device_pci_bus_id: "0000:10:00.0", driver: "32.0.21037.1004", driver_info: "", backend: Dx12, subgroup_min_size: 32, subgroup_max_size: 64, transient_saves_memory: false }
+2026-01-07T21:25:13.950054Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: 552: * AdapterInfo { name: "AMD Radeon RX 6700 XT", vendor: 0, device: 0, device_type: Other, device_pci_bus_id: "", driver: "", driver_info: "4.6.0 Compatibility Profile Context 25.12.1.251128", backend: Gl, subgroup_min_size: 4, subgroup_max_size: 128, transient_saves_memory: false }
+2026-01-07T21:25:13.950056Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: 552: * AdapterInfo { name: "Microsoft Basic Render Driver", vendor: 5140, device: 140, device_type: Cpu, device_pci_bus_id: "", driver: "10.0.26100.7309", driver_info: "", backend: Dx12, subgroup_min_size: 4, subgroup_max_size: 4, transient_saves_memory: false }
+2026-01-07T21:25:13.950058Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: 557: Request adapter result AdapterInfo { name: "AMD Radeon RX 6700 XT", vendor: 4098, device: 29663, device_type: DiscreteGpu, device_pci_bus_id: "", driver: "AMD proprietary driver", driver_info: "25.12.1 (AMD proprietary shader compiler)", backend: Vulkan, subgroup_min_size: 32, subgroup_max_size: 64, transient_saves_memory: false }
+2026-01-07T21:25:13.977337Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::adapter: 2067: Supported extensions: ["VK_KHR_swapchain", "VK_KHR_swapchain_mutable_format", "VK_EXT_robustness2", "VK_KHR_external_memory_win32", "VK_EXT_memory_budget"]
+2026-01-07T21:25:13.977497Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	Failed to find vkGetDeviceProcAddr in layer "C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\.\amdvlk64.dll"
+2026-01-07T21:25:13.977506Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.977510Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	vkCreateDevice layer callstack setup to:
+2026-01-07T21:25:13.977511Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.977513Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	   <Application>
+2026-01-07T21:25:13.977514Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.977515Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	     ||
+2026-01-07T21:25:13.977517Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.977518Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	   <Loader>
+2026-01-07T21:25:13.977519Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.977520Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	     ||
+2026-01-07T21:25:13.977521Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.977523Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	   <Device>
+2026-01-07T21:25:13.977524Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:13.977593Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 98: GENERAL [Loader Message (0x0)]
+	       Using "AMD Radeon RX 6700 XT" with driver: "C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\.\amdvlk64.dll"
+2026-01-07T21:25:13.977597Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: 150: 	objects: (type: INSTANCE, hndl: 0x26e8f5871a0, name: ?)
+2026-01-07T21:25:14.002239Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [0] = Literal(AbstractInt(6)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.002326Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [1] = Literal(I32(6)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:25:14.002329Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [2] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.002331Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [3] = Literal(I32(0)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:25:14.002333Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [4] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.002348Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [5] = Literal(I32(0)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:25:14.002349Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [6] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.002351Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [7] = Literal(I32(1)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:25:14.002353Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [8] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.002400Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [0] = GlobalVariable([1]) : Value(Pointer { base: [2], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.002409Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [1] = GlobalVariable([2]) : Value(Pointer { base: [3], space: Immediate })
+2026-01-07T21:25:14.002423Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [2] = AccessIndex { base: [1], index: 0 } : Value(Pointer { base: [0], space: Immediate })
+2026-01-07T21:25:14.002426Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [3] = Load { pointer: [2] } : Handle([0])
+2026-01-07T21:25:14.002432Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [4] = Access { base: [0], index: [3] } : Value(Pointer { base: [0], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.002434Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [5] = Load { pointer: [4] } : Handle([0])
+2026-01-07T21:25:14.002435Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [6] = GlobalVariable([1]) : Value(Pointer { base: [2], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.002436Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [7] = GlobalVariable([2]) : Value(Pointer { base: [3], space: Immediate })
+2026-01-07T21:25:14.002438Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [8] = AccessIndex { base: [7], index: 0 } : Value(Pointer { base: [0], space: Immediate })
+2026-01-07T21:25:14.002440Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [9] = Load { pointer: [8] } : Handle([0])
+2026-01-07T21:25:14.002441Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [10] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.002461Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.002467Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.002471Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [11] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002474Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [12] = Binary { op: Add, left: [9], right: [11] } : Handle([0])
+2026-01-07T21:25:14.002477Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [13] = Access { base: [6], index: [12] } : Value(Pointer { base: [0], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.002478Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [14] = Load { pointer: [13] } : Handle([0])
+2026-01-07T21:25:14.002480Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [15] = GlobalVariable([1]) : Value(Pointer { base: [2], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.002481Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [16] = GlobalVariable([2]) : Value(Pointer { base: [3], space: Immediate })
+2026-01-07T21:25:14.002483Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [17] = AccessIndex { base: [16], index: 0 } : Value(Pointer { base: [0], space: Immediate })
+2026-01-07T21:25:14.002484Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [18] = Load { pointer: [17] } : Handle([0])
+2026-01-07T21:25:14.002485Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [19] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.002487Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.002488Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.002489Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [20] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002491Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [21] = Binary { op: Add, left: [18], right: [20] } : Handle([0])
+2026-01-07T21:25:14.002495Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [22] = Access { base: [15], index: [21] } : Value(Pointer { base: [0], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.002497Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [23] = Load { pointer: [22] } : Handle([0])
+2026-01-07T21:25:14.002503Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32, u32
+2026-01-07T21:25:14.002507Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.002518Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [24] = Compose { ty: [4], components: [[5], [14], [23]] } : Handle([4])
+2026-01-07T21:25:14.002537Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [25] = Literal(U32(65535)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002541Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [26] = AccessIndex { base: [24], index: 0 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002543Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.002544Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.002546Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [27] = Binary { op: Greater, left: [26], right: [25] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.002550Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [28] = Unary { op: LogicalNot, expr: [27] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.002552Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [29] = Literal(Bool(true)) : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.002553Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [30] = LocalVariable([0]) : Value(Pointer { base: [5], space: Function })
+2026-01-07T21:25:14.002555Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [31] = AccessIndex { base: [24], index: 1 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002556Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.002557Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.002560Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [32] = Binary { op: Greater, left: [31], right: [25] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.002563Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [33] = LocalVariable([0]) : Value(Pointer { base: [5], space: Function })
+2026-01-07T21:25:14.002564Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [34] = Load { pointer: [33] } : Handle([5])
+2026-01-07T21:25:14.002566Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [35] = Unary { op: LogicalNot, expr: [34] } : Handle([5])
+2026-01-07T21:25:14.002567Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [36] = Literal(Bool(true)) : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.002568Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [37] = LocalVariable([1]) : Value(Pointer { base: [5], space: Function })
+2026-01-07T21:25:14.002569Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [38] = AccessIndex { base: [24], index: 2 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002571Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.002572Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.002573Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [39] = Binary { op: Greater, left: [38], right: [25] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.002578Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [40] = LocalVariable([1]) : Value(Pointer { base: [5], space: Function })
+2026-01-07T21:25:14.002579Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [41] = Load { pointer: [40] } : Handle([5])
+2026-01-07T21:25:14.002581Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [42] = GlobalVariable([0]) : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.002584Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [43] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002586Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [44] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002587Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [45] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002588Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [46] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002589Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [47] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002590Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [48] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002593Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32, u32, u32, u32, u32
+2026-01-07T21:25:14.002594Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.002603Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [49] = Compose { ty: [1], components: [[43], [44], [45], [46], [47], [48]] } : Handle([1])
+2026-01-07T21:25:14.002605Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [50] = GlobalVariable([0]) : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.002607Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [51] = AccessIndex { base: [24], index: 0 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002609Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [52] = AccessIndex { base: [24], index: 1 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002610Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [53] = AccessIndex { base: [24], index: 2 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002611Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [54] = AccessIndex { base: [24], index: 0 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002612Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [55] = AccessIndex { base: [24], index: 1 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002614Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [56] = AccessIndex { base: [24], index: 2 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.002616Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32, u32, u32, u32, u32
+2026-01-07T21:25:14.002617Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.002618Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [57] = Compose { ty: [1], components: [[51], [52], [53], [54], [55], [56]] } : Handle([1])
+2026-01-07T21:25:14.002632Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [9] = Literal(I32(0)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:25:14.002633Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [10] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.002766Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: 642: var GlobalVariable { name: Some("dst"), space: Storage { access: StorageAccess(LOAD | STORE) }, binding: Some(ResourceBinding { group: 0, binding: 0 }), ty: [1], init: None }
+2026-01-07T21:25:14.002773Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: 642: var GlobalVariable { name: Some("src"), space: Storage { access: StorageAccess(LOAD) }, binding: Some(ResourceBinding { group: 1, binding: 0 }), ty: [2], init: None }
+2026-01-07T21:25:14.002775Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: 642: var GlobalVariable { name: Some("offset"), space: Immediate, binding: None, ty: [3], init: None }
+2026-01-07T21:25:14.002810Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: 1654: var LocalVariable { name: None, ty: [5], init: None }
+2026-01-07T21:25:14.002816Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: 1654: var LocalVariable { name: None, ty: [5], init: None }
+2026-01-07T21:25:14.006446Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [0] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006459Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [1] = Literal(I32(0)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:25:14.006461Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [2] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006463Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [3] = Literal(I32(0)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:25:14.006465Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [4] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006466Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [5] = Literal(I32(1)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:25:14.006467Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [6] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006470Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [7] = Literal(I32(0)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:25:14.006471Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [8] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006473Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [9] = Literal(I32(2)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:25:14.006474Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [10] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006482Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [0] = FunctionArgument(0) : Handle([1])
+2026-01-07T21:25:14.006484Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [1] = FunctionArgument(1) : Handle([1])
+2026-01-07T21:25:14.006486Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [2] = Binary { op: ShiftRight, left: [0], right: [1] } : Handle([1])
+2026-01-07T21:25:14.006488Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [3] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006490Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006492Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006494Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [4] = Binary { op: And, left: [2], right: [3] } : Handle([1])
+2026-01-07T21:25:14.006495Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [5] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006496Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006497Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006499Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [6] = Binary { op: Equal, left: [4], right: [5] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.006504Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [0] = FunctionArgument(0) : Handle([6])
+2026-01-07T21:25:14.006506Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [1] = AccessIndex { base: [0], index: 0 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006507Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [2] = GlobalVariable([0]) : Value(Pointer { base: [3], space: Immediate })
+2026-01-07T21:25:14.006510Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [3] = AccessIndex { base: [2], index: 1 } : Value(Pointer { base: [1], space: Immediate })
+2026-01-07T21:25:14.006511Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [4] = Load { pointer: [3] } : Handle([1])
+2026-01-07T21:25:14.006513Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006514Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006515Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [5] = Binary { op: GreaterEqual, left: [1], right: [4] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.006517Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [6] = GlobalVariable([1]) : Value(Pointer { base: [4], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006519Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [7] = GlobalVariable([0]) : Value(Pointer { base: [3], space: Immediate })
+2026-01-07T21:25:14.006521Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [8] = AccessIndex { base: [7], index: 0 } : Value(Pointer { base: [1], space: Immediate })
+2026-01-07T21:25:14.006522Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [9] = Load { pointer: [8] } : Handle([1])
+2026-01-07T21:25:14.006523Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [10] = AccessIndex { base: [0], index: 0 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006525Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006526Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006527Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [11] = Binary { op: Add, left: [9], right: [10] } : Handle([1])
+2026-01-07T21:25:14.006529Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [12] = Access { base: [6], index: [11] } : Value(Pointer { base: [2], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006531Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [13] = Load { pointer: [12] } : Handle([2])
+2026-01-07T21:25:14.006533Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [14] = Literal(Bool(false)) : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.006543Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [15] = LocalVariable([0]) : Value(Pointer { base: [0], space: Function })
+2026-01-07T21:25:14.006546Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [16] = AccessIndex { base: [13], index: 0 } : Handle([1])
+2026-01-07T21:25:14.006549Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [17] = Literal(AbstractInt(31)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006556Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [18] = Literal(U32(31)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006557Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [19] = CallResult([0]) : Handle([0])
+2026-01-07T21:25:14.006559Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [20] = AccessIndex { base: [13], index: 0 } : Handle([1])
+2026-01-07T21:25:14.006561Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [21] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006562Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [22] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006564Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [23] = Binary { op: ShiftLeft, left: [20], right: [22] } : Handle([1])
+2026-01-07T21:25:14.006565Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [24] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006566Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [25] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006567Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [26] = Binary { op: ShiftRight, left: [23], right: [25] } : Handle([1])
+2026-01-07T21:25:14.006570Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [27] = AccessIndex { base: [13], index: 1 } : Handle([1])
+2026-01-07T21:25:14.006571Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [28] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006572Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [29] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006574Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [30] = Binary { op: ShiftLeft, left: [27], right: [29] } : Handle([1])
+2026-01-07T21:25:14.006575Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [31] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006577Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [32] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006578Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [33] = Binary { op: ShiftRight, left: [30], right: [32] } : Handle([1])
+2026-01-07T21:25:14.006580Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [34] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006581Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [35] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006583Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006584Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006585Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [36] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006586Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [37] = Binary { op: Add, left: [26], right: [36] } : Handle([1])
+2026-01-07T21:25:14.006588Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [38] = Access { base: [34], index: [37] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006589Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [39] = Load { pointer: [38] } : Handle([1])
+2026-01-07T21:25:14.006591Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [40] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006592Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [41] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006593Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006594Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006596Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [42] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006597Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [43] = Binary { op: Add, left: [26], right: [42] } : Handle([1])
+2026-01-07T21:25:14.006598Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [44] = Access { base: [40], index: [43] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006600Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [45] = Load { pointer: [44] } : Handle([1])
+2026-01-07T21:25:14.006601Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [46] = AccessIndex { base: [13], index: 1 } : Handle([1])
+2026-01-07T21:25:14.006603Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [47] = Literal(AbstractInt(30)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006605Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [48] = Literal(U32(30)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006606Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [49] = CallResult([0]) : Handle([0])
+2026-01-07T21:25:14.006608Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [50] = AccessIndex { base: [13], index: 2 } : Handle([1])
+2026-01-07T21:25:14.006609Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006610Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006611Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [51] = Binary { op: Less, left: [50], right: [39] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.006614Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [52] = Literal(Bool(false)) : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.006616Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [53] = LocalVariable([1]) : Value(Pointer { base: [0], space: Function })
+2026-01-07T21:25:14.006617Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [54] = Unary { op: LogicalNot, expr: [49] } : Handle([0])
+2026-01-07T21:25:14.006619Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [55] = LocalVariable([1]) : Value(Pointer { base: [0], space: Function })
+2026-01-07T21:25:14.006620Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [56] = Load { pointer: [55] } : Handle([0])
+2026-01-07T21:25:14.006622Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [57] = Load { pointer: [15] } : Handle([0])
+2026-01-07T21:25:14.006623Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [58] = Binary { op: InclusiveOr, left: [57], right: [56] } : Handle([0])
+2026-01-07T21:25:14.006625Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [59] = AccessIndex { base: [13], index: 2 } : Handle([1])
+2026-01-07T21:25:14.006626Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006627Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006628Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [60] = Binary { op: Subtract, left: [59], right: [39] } : Handle([1])
+2026-01-07T21:25:14.006630Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006631Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006632Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [61] = Binary { op: Less, left: [60], right: [45] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.006634Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [62] = Load { pointer: [15] } : Handle([0])
+2026-01-07T21:25:14.006636Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [63] = Binary { op: InclusiveOr, left: [62], right: [61] } : Handle([0])
+2026-01-07T21:25:14.006637Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [64] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006639Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [65] = Literal(AbstractInt(3)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006640Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006641Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006643Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [66] = Literal(U32(3)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006644Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [67] = Binary { op: Add, left: [26], right: [66] } : Handle([1])
+2026-01-07T21:25:14.006646Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [68] = As { expr: [19], kind: Uint, convert: Some(4) } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006647Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006648Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006649Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [69] = Binary { op: Add, left: [67], right: [68] } : Handle([1])
+2026-01-07T21:25:14.006651Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [70] = Access { base: [64], index: [69] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006652Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [71] = Load { pointer: [70] } : Handle([1])
+2026-01-07T21:25:14.006656Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [72] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006657Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [73] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006659Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006660Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006661Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [74] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006662Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [75] = Binary { op: Add, left: [26], right: [74] } : Handle([1])
+2026-01-07T21:25:14.006664Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [76] = Access { base: [72], index: [75] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006665Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [77] = Load { pointer: [76] } : Handle([1])
+2026-01-07T21:25:14.006667Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [78] = AccessIndex { base: [13], index: 1 } : Handle([1])
+2026-01-07T21:25:14.006668Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [79] = Literal(AbstractInt(31)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006670Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [80] = Literal(U32(31)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006671Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [81] = CallResult([0]) : Handle([0])
+2026-01-07T21:25:14.006673Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [82] = AccessIndex { base: [13], index: 3 } : Handle([1])
+2026-01-07T21:25:14.006674Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006675Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006676Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [83] = Binary { op: Less, left: [82], right: [71] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.006678Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [84] = Literal(Bool(false)) : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.006680Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [85] = LocalVariable([2]) : Value(Pointer { base: [0], space: Function })
+2026-01-07T21:25:14.006681Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [86] = Unary { op: LogicalNot, expr: [81] } : Handle([0])
+2026-01-07T21:25:14.006683Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [87] = LocalVariable([2]) : Value(Pointer { base: [0], space: Function })
+2026-01-07T21:25:14.006684Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [88] = Load { pointer: [87] } : Handle([0])
+2026-01-07T21:25:14.006685Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [89] = Load { pointer: [15] } : Handle([0])
+2026-01-07T21:25:14.006686Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [90] = Binary { op: InclusiveOr, left: [89], right: [88] } : Handle([0])
+2026-01-07T21:25:14.006688Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [91] = AccessIndex { base: [13], index: 3 } : Handle([1])
+2026-01-07T21:25:14.006689Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006690Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006691Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [92] = Binary { op: Subtract, left: [91], right: [71] } : Handle([1])
+2026-01-07T21:25:14.006693Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006694Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006695Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [93] = Binary { op: Less, left: [92], right: [77] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.006697Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [94] = Load { pointer: [15] } : Handle([0])
+2026-01-07T21:25:14.006699Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [95] = Binary { op: InclusiveOr, left: [94], right: [93] } : Handle([0])
+2026-01-07T21:25:14.006700Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [96] = Override([0]) : Handle([0])
+2026-01-07T21:25:14.006701Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [97] = Unary { op: LogicalNot, expr: [96] } : Handle([0])
+2026-01-07T21:25:14.006702Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [98] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006704Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006705Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006706Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [99] = Binary { op: NotEqual, left: [71], right: [98] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:25:14.006709Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [100] = Load { pointer: [15] } : Handle([0])
+2026-01-07T21:25:14.006711Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [101] = Binary { op: InclusiveOr, left: [100], right: [99] } : Handle([0])
+2026-01-07T21:25:14.006712Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [102] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006713Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [103] = Literal(U32(3)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006714Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [104] = Override([1]) : Handle([0])
+2026-01-07T21:25:14.006720Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006721Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006722Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [105] = Select { condition: [104], accept: [103], reject: [102] } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006724Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [106] = Load { pointer: [15] } : Handle([0])
+2026-01-07T21:25:14.006726Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [107] = Override([1]) : Handle([0])
+2026-01-07T21:25:14.006727Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [108] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006729Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [109] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006730Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006731Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006732Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [110] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006734Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [111] = Binary { op: Add, left: [33], right: [110] } : Handle([1])
+2026-01-07T21:25:14.006735Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [112] = Access { base: [108], index: [111] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006737Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [113] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006738Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [114] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006740Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [115] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006741Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006742Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006744Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [116] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006745Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [117] = Binary { op: Add, left: [33], right: [116] } : Handle([1])
+2026-01-07T21:25:14.006746Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [118] = Access { base: [114], index: [117] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006748Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [119] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006749Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [120] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006751Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [121] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006752Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006753Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006755Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [122] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006756Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [123] = Binary { op: Add, left: [33], right: [122] } : Handle([1])
+2026-01-07T21:25:14.006757Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [124] = Access { base: [120], index: [123] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006759Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [125] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006761Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006762Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006764Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [126] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006765Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [127] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:25:14.006766Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [128] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006769Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006770Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006771Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [129] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006772Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [130] = Binary { op: Add, left: [127], right: [129] } : Handle([1])
+2026-01-07T21:25:14.006774Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [131] = Access { base: [126], index: [130] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006776Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [132] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006777Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006778Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006780Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [133] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006781Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [134] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:25:14.006782Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [135] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006784Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006785Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006786Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [136] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006788Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [137] = Binary { op: Add, left: [134], right: [136] } : Handle([1])
+2026-01-07T21:25:14.006789Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [138] = Access { base: [133], index: [137] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006791Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [139] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006792Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006794Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006795Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [140] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006796Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [141] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:25:14.006797Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [142] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006799Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006800Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006801Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [143] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006802Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [144] = Binary { op: Add, left: [141], right: [143] } : Handle([1])
+2026-01-07T21:25:14.006804Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [145] = Access { base: [140], index: [144] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006806Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [146] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006808Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006809Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006810Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [147] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006812Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [148] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:25:14.006813Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [149] = Literal(AbstractInt(3)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006814Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006815Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006817Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [150] = Literal(U32(3)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006818Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [151] = Binary { op: Add, left: [148], right: [150] } : Handle([1])
+2026-01-07T21:25:14.006819Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [152] = Access { base: [147], index: [151] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006821Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [153] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006823Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006824Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006825Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [154] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006827Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [155] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:25:14.006828Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [156] = Literal(AbstractInt(4)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006830Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006831Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006832Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [157] = Literal(U32(4)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006833Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [158] = Binary { op: Add, left: [155], right: [157] } : Handle([1])
+2026-01-07T21:25:14.006835Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [159] = Access { base: [154], index: [158] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006836Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [160] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006838Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [161] = Override([1]) : Handle([0])
+2026-01-07T21:25:14.006839Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [162] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006841Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [163] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006842Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006843Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006844Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [164] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006846Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [165] = Binary { op: Add, left: [33], right: [164] } : Handle([1])
+2026-01-07T21:25:14.006847Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [166] = Access { base: [162], index: [165] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006849Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [167] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006850Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [168] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006852Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006853Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006854Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [169] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006856Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [170] = Binary { op: Add, left: [26], right: [169] } : Handle([1])
+2026-01-07T21:25:14.006857Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [171] = As { expr: [19], kind: Uint, convert: Some(4) } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006858Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006859Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006860Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [172] = Binary { op: Add, left: [170], right: [171] } : Handle([1])
+2026-01-07T21:25:14.006862Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [173] = Access { base: [167], index: [172] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006863Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [174] = Load { pointer: [173] } : Handle([1])
+2026-01-07T21:25:14.006865Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [175] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006866Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [176] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006868Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006869Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006870Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [177] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006872Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [178] = Binary { op: Add, left: [33], right: [177] } : Handle([1])
+2026-01-07T21:25:14.006873Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [179] = Access { base: [175], index: [178] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006875Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [180] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006877Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [181] = Literal(AbstractInt(3)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006878Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006879Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006880Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [182] = Literal(U32(3)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006882Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [183] = Binary { op: Add, left: [26], right: [182] } : Handle([1])
+2026-01-07T21:25:14.006883Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [184] = As { expr: [19], kind: Uint, convert: Some(4) } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006885Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006886Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006887Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [185] = Binary { op: Add, left: [183], right: [184] } : Handle([1])
+2026-01-07T21:25:14.006888Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [186] = Access { base: [180], index: [185] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006890Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [187] = Load { pointer: [186] } : Handle([1])
+2026-01-07T21:25:14.006892Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [188] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006893Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [189] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006895Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006896Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006897Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [190] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006898Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [191] = Binary { op: Add, left: [33], right: [190] } : Handle([1])
+2026-01-07T21:25:14.006900Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [192] = Access { base: [188], index: [191] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006901Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [193] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006903Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006904Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006905Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [194] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006907Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [195] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:25:14.006908Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [196] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006910Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006911Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006912Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [197] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006913Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [198] = Binary { op: Add, left: [195], right: [197] } : Handle([1])
+2026-01-07T21:25:14.006914Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [199] = Access { base: [194], index: [198] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006916Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [200] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006918Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [201] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006919Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006920Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006922Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [202] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006923Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [203] = Binary { op: Add, left: [26], right: [202] } : Handle([1])
+2026-01-07T21:25:14.006924Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [204] = Access { base: [200], index: [203] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006926Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [205] = Load { pointer: [204] } : Handle([1])
+2026-01-07T21:25:14.006927Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006928Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006930Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [206] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006931Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [207] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:25:14.006932Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [208] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006934Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006935Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006936Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [209] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006937Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [210] = Binary { op: Add, left: [207], right: [209] } : Handle([1])
+2026-01-07T21:25:14.006939Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [211] = Access { base: [206], index: [210] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006941Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [212] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006942Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [213] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006944Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006945Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006946Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [214] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006947Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [215] = Binary { op: Add, left: [26], right: [214] } : Handle([1])
+2026-01-07T21:25:14.006948Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [216] = Access { base: [212], index: [215] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006950Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [217] = Load { pointer: [216] } : Handle([1])
+2026-01-07T21:25:14.006952Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006953Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006954Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [218] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006955Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [219] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:25:14.006957Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [220] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006958Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006959Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006960Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [221] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006962Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [222] = Binary { op: Add, left: [219], right: [221] } : Handle([1])
+2026-01-07T21:25:14.006963Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [223] = Access { base: [218], index: [222] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006965Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [224] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006966Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [225] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006968Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006969Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006970Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [226] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006971Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [227] = Binary { op: Add, left: [26], right: [226] } : Handle([1])
+2026-01-07T21:25:14.006973Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [228] = Access { base: [224], index: [227] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006974Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [229] = Load { pointer: [228] } : Handle([1])
+2026-01-07T21:25:14.006976Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.006977Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006978Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [230] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006979Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [231] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:25:14.006981Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [232] = Literal(AbstractInt(3)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006982Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006983Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006984Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [233] = Literal(U32(3)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006986Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [234] = Binary { op: Add, left: [231], right: [233] } : Handle([1])
+2026-01-07T21:25:14.006987Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [235] = Access { base: [230], index: [234] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.006989Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [236] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006991Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [237] = Literal(AbstractInt(3)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.006992Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.006993Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.006994Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [238] = Literal(U32(3)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.006996Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [239] = Binary { op: Add, left: [26], right: [238] } : Handle([1])
+2026-01-07T21:25:14.006997Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [240] = Access { base: [236], index: [239] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.006999Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [241] = Load { pointer: [240] } : Handle([1])
+2026-01-07T21:25:14.007001Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:25:14.007002Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.007003Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [242] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.007004Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [243] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:25:14.007006Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [244] = Literal(AbstractInt(4)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.007007Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.007008Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.007009Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [245] = Literal(U32(4)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.007011Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [246] = Binary { op: Add, left: [243], right: [245] } : Handle([1])
+2026-01-07T21:25:14.007012Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [247] = Access { base: [242], index: [246] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:25:14.007014Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [248] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.007015Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [249] = Literal(AbstractInt(4)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.007017Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:25:14.007018Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: 338:     consensus: u32
+2026-01-07T21:25:14.007019Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [250] = Literal(U32(4)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:25:14.007020Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [251] = Binary { op: Add, left: [26], right: [250] } : Handle([1])
+2026-01-07T21:25:14.007022Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [252] = Access { base: [248], index: [251] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:25:14.007023Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [253] = Load { pointer: [252] } : Handle([1])
+2026-01-07T21:25:14.007026Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [11] = Literal(I32(0)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:25:14.007027Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: 117: Resolving [12] = Literal(AbstractInt(64)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:25:14.007069Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: 642: var GlobalVariable { name: Some("metadata_range"), space: Immediate, binding: None, ty: [3], init: None }
+2026-01-07T21:25:14.007071Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: 642: var GlobalVariable { name: Some("metadata"), space: Storage { access: StorageAccess(LOAD) }, binding: Some(ResourceBinding { group: 0, binding: 0 }), ty: [4], init: None }
+2026-01-07T21:25:14.007073Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: 642: var GlobalVariable { name: Some("src"), space: Storage { access: StorageAccess(LOAD) }, binding: Some(ResourceBinding { group: 1, binding: 0 }), ty: [5], init: None }
+2026-01-07T21:25:14.007074Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: 642: var GlobalVariable { name: Some("dst"), space: Storage { access: StorageAccess(LOAD | STORE) }, binding: Some(ResourceBinding { group: 2, binding: 0 }), ty: [5], init: None }
+2026-01-07T21:25:14.007092Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: 1654: var LocalVariable { name: Some("failed"), ty: [0], init: Some([14]) }
+2026-01-07T21:25:14.007094Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: 1654: var LocalVariable { name: None, ty: [0], init: None }
+2026-01-07T21:25:14.007095Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: 1654: var LocalVariable { name: None, ty: [0], init: None }
+2026-01-07T21:25:14.007216Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: 642: var GlobalVariable { name: Some("metadata_range"), space: Immediate, binding: None, ty: [3], init: None }
+2026-01-07T21:25:14.007220Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: 642: var GlobalVariable { name: Some("metadata"), space: Storage { access: StorageAccess(LOAD) }, binding: Some(ResourceBinding { group: 0, binding: 0 }), ty: [4], init: None }
+2026-01-07T21:25:14.007222Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: 642: var GlobalVariable { name: Some("src"), space: Storage { access: StorageAccess(LOAD) }, binding: Some(ResourceBinding { group: 1, binding: 0 }), ty: [5], init: None }
+2026-01-07T21:25:14.007224Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: 642: var GlobalVariable { name: Some("dst"), space: Storage { access: StorageAccess(LOAD | STORE) }, binding: Some(ResourceBinding { group: 2, binding: 0 }), ty: [5], init: None }
+2026-01-07T21:25:14.007237Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: 1654: var LocalVariable { name: Some("failed"), ty: [0], init: Some([14]) }
+2026-01-07T21:25:14.007240Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: 1654: var LocalVariable { name: None, ty: [0], init: None }
+2026-01-07T21:25:14.007241Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: 1654: var LocalVariable { name: None, ty: [0], init: None }
+2026-01-07T21:25:14.019081Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::device::resource: 4903: configuring surface with SurfaceConfiguration { usage: TextureUsages(RENDER_ATTACHMENT), format: Rgba8UnormSrgb, width: 1280, height: 720, present_mode: Fifo, desired_maximum_frame_latency: 2, alpha_mode: Auto, view_formats: [] }
+2026-01-07T21:25:14.084109Z  INFO main ThreadId(01) voxtech app init: voxtech_experimental::frontend::window: 90: voxtech app init succeed
+2026-01-07T21:25:15.473785Z  INFO main ThreadId(01) voxtech_experimental::frontend::window: 108: Received close requested.

@@ -1,0 +1,990 @@
+2026-01-07T21:06:44.606945Z  INFO main ThreadId(01) voxtech app init: voxtech_experimental::frontend::window: src\frontend\window\mod.rs:32: starting app initialize
+2026-01-07T21:06:44.606999Z  INFO main ThreadId(01) voxtech app init:window init: voxtech_experimental::frontend::window: src\frontend\window\mod.rs:35: starting window init
+2026-01-07T21:06:44.641862Z  INFO main ThreadId(01) voxtech app init:window init: voxtech_experimental::frontend::window: src\frontend\window\mod.rs:50: window init succeed
+2026-01-07T21:06:44.641893Z  INFO main ThreadId(01) voxtech app init:gfx init: voxtech_experimental::frontend::window: src\frontend\window\mod.rs:70: starting gfx initialize
+2026-01-07T21:06:44.661961Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:712: InstanceFlags::VALIDATION requested, but unable to find layer: VK_LAYER_KHRONOS_validation
+2026-01-07T21:06:44.662012Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	No valid vk_loader_settings.json file found, no loader settings will be active
+2026-01-07T21:06:44.662051Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662097Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_app_package_manifest_path: Failed to find mapping layers packages by family name
+2026-01-07T21:06:44.662099Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662101Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	Checking for Layer Manifest files in Registry at HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\Vulkan\ImplicitLayers
+2026-01-07T21:06:44.662103Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662153Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_add_json_entry: Located json file "C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\amd-vulkan64.json" from PnP registry: E
+2026-01-07T21:06:44.662157Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662206Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	Located json file "D:\Program Files (x86)\Steam\SteamOverlayVulkanLayer64.json" from registry "HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\Vulkan\ImplicitLayers"
+2026-01-07T21:06:44.662210Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662215Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	Located json file "D:\Program Files (x86)\Steam\SteamFossilizeVulkanLayer64.json" from registry "HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\Vulkan\ImplicitLayers"
+2026-01-07T21:06:44.662217Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662274Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	Found manifest file C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\amd-vulkan64.json (file version 1.0.0)
+2026-01-07T21:06:44.662279Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662313Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	Found manifest file D:\Program Files (x86)\Steam\SteamOverlayVulkanLayer64.json (file version 1.0.0)
+2026-01-07T21:06:44.662317Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662346Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	Found manifest file D:\Program Files (x86)\Steam\SteamFossilizeVulkanLayer64.json (file version 1.0.0)
+2026-01-07T21:06:44.662349Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662358Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	Checking for Layer Manifest files in Registry at HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\Vulkan\ExplicitLayers
+2026-01-07T21:06:44.662360Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662450Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: opening device PCI\VEN_1002&DEV_73DF&SUBSYS_39801462&REV_C1\6&cf24139&0&00000009
+2026-01-07T21:06:44.662454Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662472Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(2) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:06:44.662475Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662482Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 4 - SWD\DRIVERENUM\AMDFDANS&7&263757B0&0
+2026-01-07T21:06:44.662483Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662501Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(4) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:06:44.662505Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662510Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 5 - SWD\DRIVERENUM\AMDOCL&7&263757B0&0
+2026-01-07T21:06:44.662512Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662528Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(5) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:06:44.662531Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662536Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 6 - SWD\DRIVERENUM\AMDWIN&7&263757B0&0
+2026-01-07T21:06:44.662538Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662553Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(6) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:06:44.662557Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662561Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 7 - DISPLAY\ENC2384\7&263757B0&0&UID512
+2026-01-07T21:06:44.662563Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662570Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 8 - DISPLAY\DELD062\7&263757B0&0&UID516
+2026-01-07T21:06:44.662571Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662577Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 9 - DISPLAY\WAC1103\7&263757B0&0&UID520
+2026-01-07T21:06:44.662579Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662585Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 10 - DISPLAY\DELA085\7&263757B0&0&UID524
+2026-01-07T21:06:44.662586Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662604Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: opening device PCI\VEN_1002&DEV_13C0&SUBSYS_364E1849&REV_CB\4&16012499&0&0041
+2026-01-07T21:06:44.662608Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662626Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(1) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:06:44.662629Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662634Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 11 - SWD\DRIVERENUM\AMDFDANS&5&748453E&0
+2026-01-07T21:06:44.662636Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662651Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(11) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:06:44.662655Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662659Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 12 - SWD\DRIVERENUM\AMDOCL&5&748453E&0
+2026-01-07T21:06:44.662661Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662676Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(12) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:06:44.662679Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662684Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: Opening child device 13 - SWD\DRIVERENUM\AMDWIN&5&748453E&0
+2026-01-07T21:06:44.662685Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662700Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_entry: Device ID(13) Does not contain a value for "VulkanExplicitLayers"
+2026-01-07T21:06:44.662704Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662708Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_device_registry_files: found no registry files
+2026-01-07T21:06:44.662709Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662719Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	Found no registry files in HKEY_CURRENT_USER\SOFTWARE\Khronos\Vulkan\ExplicitLayers
+2026-01-07T21:06:44.662722Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662724Z  WARN main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_read_data_files_in_registry: Registry lookup failed to get layer manifest files.
+2026-01-07T21:06:44.662726Z  WARN main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662763Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_get_app_package_manifest_path: Failed to find mapping layers packages by family name
+2026-01-07T21:06:44.662766Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662774Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	Checking for Driver Manifest files in Registry at HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\Vulkan\Drivers
+2026-01-07T21:06:44.662776Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.662821Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	windows_add_json_entry: Located json file "C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\amd-vulkan64.json" from PnP registry: E
+2026-01-07T21:06:44.662825Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663196Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	Found no registry files in HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\Vulkan\Drivers
+2026-01-07T21:06:44.663203Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663279Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	Found ICD manifest file C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\amd-vulkan64.json, version 1.0.0
+2026-01-07T21:06:44.663284Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663331Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	Insert instance layer "VK_LAYER_AMD_switchable_graphics" (C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\.\amdvlk64.dll)
+2026-01-07T21:06:44.663333Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663467Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	vkCreateInstance layer callstack setup to:
+2026-01-07T21:06:44.663472Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663474Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	   <Application>
+2026-01-07T21:06:44.663475Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663477Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	     ||
+2026-01-07T21:06:44.663478Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663480Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	   <Loader>
+2026-01-07T21:06:44.663481Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663483Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	     ||
+2026-01-07T21:06:44.663484Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663485Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	   VK_LAYER_AMD_switchable_graphics
+2026-01-07T21:06:44.663487Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663488Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	           Type: Implicit
+2026-01-07T21:06:44.663490Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663492Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	           Enabled By: Implicit Layer
+2026-01-07T21:06:44.663494Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663496Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	               Disable Env Var:  DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1
+2026-01-07T21:06:44.663497Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663499Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	           Manifest: C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\amd-vulkan64.json
+2026-01-07T21:06:44.663501Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663502Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	           Library:  C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\.\amdvlk64.dll
+2026-01-07T21:06:44.663504Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663505Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	     ||
+2026-01-07T21:06:44.663506Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.663508Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	   <Drivers>
+2026-01-07T21:06:44.663509Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.690573Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:334: Instance version: 0x404135
+2026-01-07T21:06:44.690584Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:338: Enabling debug utils
+2026-01-07T21:06:44.690597Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:364: Enabling device properties2
+2026-01-07T21:06:44.690616Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-core-28.0.0\src\instance.rs:149: Instance::new: created Vulkan backend
+2026-01-07T21:06:44.693902Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::dx12::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\dx12\instance.rs:98: Using FXC for shader compilation
+2026-01-07T21:06:44.693914Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-core-28.0.0\src\instance.rs:149: Instance::new: created Dx12 backend
+2026-01-07T21:06:44.743008Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::gles::wgl: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\gles\wgl.rs:539: Enabling GL debug output
+2026-01-07T21:06:44.763841Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-core-28.0.0\src\instance.rs:149: Instance::new: created Gl backend
+2026-01-07T21:06:44.855840Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::gles::adapter: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\gles\adapter.rs:227: Vendor: ATI Technologies Inc.
+2026-01-07T21:06:44.855864Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::gles::adapter: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\gles\adapter.rs:228: Renderer: AMD Radeon RX 6700 XT
+2026-01-07T21:06:44.855866Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::gles::adapter: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\gles\adapter.rs:229: Version: 4.6.0 Compatibility Profile Context 25.12.1.251128
+2026-01-07T21:06:44.855883Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::gles::adapter: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\gles\adapter.rs:281: SL version: 4.60
+2026-01-07T21:06:44.855884Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::gles::adapter: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\gles\adapter.rs:300: Supported GL Extensions: {
+    "GL_EXT_texture_filter_anisotropic",
+    "GL_ARB_vertex_attrib_binding",
+    "GL_EXT_texture_swizzle",
+    "GL_ARB_vertex_program",
+    "GL_EXT_texture_compression_bptc",
+    "GL_EXT_texture_object",
+    "GL_ARB_framebuffer_no_attachments",
+    "GL_NV_depth_buffer_float",
+    "GL_ARB_pixel_buffer_object",
+    "GL_ARB_sampler_objects",
+    "GL_EXT_memory_object",
+    "GL_ARB_framebuffer_sRGB",
+    "GL_SGIS_texture_edge_clamp",
+    "GL_ARB_geometry_shader4",
+    "GL_ARB_texture_query_lod",
+    "GL_EXT_texture_env_dot3",
+    "GL_EXT_timer_query",
+    "GL_KHR_blend_equation_advanced",
+    "GL_EXT_texture_buffer_object",
+    "GL_ARB_draw_indirect",
+    "GL_KHR_debug",
+    "GL_ARB_texture_mirror_clamp_to_edge",
+    "GL_EXT_debug_label",
+    "GL_EXT_geometry_shader4",
+    "GL_ARB_conservative_depth",
+    "GL_EXT_fog_coord",
+    "GL_KHR_blend_equation_advanced_coherent",
+    "GL_ARB_texture_buffer_object",
+    "GL_ARB_fragment_shader_interlock",
+    "GL_EXT_texture_compression_s3tc",
+    "GL_ARB_point_parameters",
+    "GL_NV_blend_square",
+    "GL_ARB_texture_view",
+    "GL_EXT_texture_cube_map",
+    "GL_ARB_half_float_vertex",
+    "GL_ARB_explicit_uniform_location",
+    "GL_ARB_fragment_layer_viewport",
+    "GL_EXT_direct_state_access",
+    "GL_KHR_parallel_shader_compile",
+    "GL_NV_float_buffer",
+    "GL_ARB_shading_language_100",
+    "GL_ARB_shader_subroutine",
+    "GL_ARB_bindless_texture",
+    "GL_EXT_packed_depth_stencil",
+    "GL_EXT_draw_instanced",
+    "GL_ATI_draw_buffers",
+    "GL_ARB_get_program_binary",
+    "GL_ARB_texture_cube_map_array",
+    "GL_EXT_framebuffer_multisample",
+    "GL_SGIS_texture_lod",
+    "GL_EXT_copy_texture",
+    "GL_EXT_texture",
+    "GL_AMD_conservative_depth",
+    "GL_ARB_texture_non_power_of_two",
+    "GL_OES_EGL_image",
+    "GL_EXT_shader_image_load_store",
+    "GL_KHR_no_error",
+    "GL_ARB_fragment_shader",
+    "GL_ARB_multi_draw_indirect",
+    "GL_KHR_robustness",
+    "GL_EXT_gpu_shader4",
+    "GL_ARB_occlusion_query",
+    "GL_ARB_shadow",
+    "GL_ARB_debug_output",
+    "GL_ARB_stencil_texturing",
+    "GL_ARB_multitexture",
+    "GL_ARB_draw_buffers_blend",
+    "GL_ARB_clear_buffer_object",
+    "GL_ARB_texture_env_dot3",
+    "GL_ARB_texture_filter_minmax",
+    "GL_ARB_texture_env_add",
+    "GL_ARB_gpu_shader5",
+    "GL_ARB_gpu_shader_fp64",
+    "GL_EXT_abgr",
+    "GL_EXT_texture_array",
+    "GL_KHR_shader_subgroup",
+    "GL_NV_mesh_shader",
+    "GL_ARB_texture_barrier",
+    "GL_EXT_texture_sRGB_R8",
+    "GL_AMD_debug_output",
+    "GL_ARB_ES3_1_compatibility",
+    "GL_EXT_framebuffer_object",
+    "GL_ARB_direct_state_access",
+    "GL_ARB_texture_rg",
+    "GL_ARB_draw_buffers",
+    "GL_ARB_buffer_storage",
+    "GL_ARB_vertex_attrib_64bit",
+    "GL_ARB_shader_group_vote",
+    "GL_ARB_texture_gather",
+    "GL_ARB_shader_texture_lod",
+    "GL_AMD_vertex_shader_viewport_index",
+    "GL_EXT_texture_rectangle",
+    "GL_ARB_multi_bind",
+    "GL_NV_timeline_semaphore",
+    "GL_ARB_texture_rgb10_a2ui",
+    "GL_ARB_clip_control",
+    "GL_ARB_polygon_offset_clamp",
+    "GL_ARB_shader_storage_buffer_object",
+    "GL_ARB_arrays_of_arrays",
+    "GL_ARB_texture_buffer_object_rgb32",
+    "GL_AMD_multi_draw_indirect",
+    "GL_EXT_transform_feedback",
+    "GL_ARB_vertex_type_2_10_10_10_rev",
+    "GL_ARB_window_pos",
+    "GL_ARB_copy_image",
+    "GL_ARB_shader_texture_image_samples",
+    "GL_ARB_shading_language_packing",
+    "GL_ARB_transform_feedback",
+    "GL_ARB_shading_language_420pack",
+    "GL_AMD_gpu_shader_int64",
+    "GL_EXT_rescale_normal",
+    "GL_ARB_explicit_attrib_location",
+    "GL_ARB_vertex_array_bgra",
+    "GL_EXT_semaphore_win32",
+    "GL_ARB_shader_atomic_counter_ops",
+    "GL_EXT_gpu_program_parameters",
+    "GL_ATI_separate_stencil",
+    "GL_ARB_tessellation_shader",
+    "GL_ARB_copy_buffer",
+    "GL_AMD_vertex_shader_layer",
+    "GL_ARB_shader_viewport_layer_array",
+    "GL_ARB_viewport_array",
+    "GL_ARB_fragment_program",
+    "GL_EXT_depth_bounds_test",
+    "GL_ARB_transpose_matrix",
+    "GL_ARB_shader_objects",
+    "GL_ARB_texture_multisample",
+    "GL_ARB_texture_multisample_no_array",
+    "GL_EXT_vertex_array",
+    "GL_ARB_seamless_cubemap_per_texture",
+    "GL_EXT_texture_shadow_lod",
+    "GL_AMD_pinned_memory",
+    "GL_ARB_gl_spirv",
+    "GL_ARB_blend_func_extended",
+    "GL_ARB_transform_feedback_overflow_query",
+    "GL_ARB_shader_draw_parameters",
+    "GL_AMD_query_buffer_object",
+    "GL_ARB_ES2_compatibility",
+    "GL_EXT_texture_shared_exponent",
+    "GL_EXT_shader_image_load_formatted",
+    "GL_SUN_multi_draw_arrays",
+    "GL_ARB_shader_precision",
+    "GL_ARB_draw_elements_base_vertex",
+    "GL_EXT_secondary_color",
+    "GL_ARB_compressed_texture_pixel_storage",
+    "GL_ARB_parallel_shader_compile",
+    "GL_AMD_gpu_shader_int16",
+    "GL_ARB_query_buffer_object",
+    "GL_ATI_texture_float",
+    "GL_EXT_framebuffer_blit",
+    "GL_EXT_texture_integer",
+    "GL_OVR_multiview",
+    "GL_EXT_bindable_uniform",
+    "GL_NV_half_float",
+    "GL_ARB_indirect_parameters",
+    "GL_ARB_internalformat_query",
+    "GL_EXT_blend_equation_separate",
+    "GL_KHR_context_flush_control",
+    "GL_ARB_point_sprite",
+    "GL_ARB_shader_clock",
+    "GL_ARB_vertex_type_10f_11f_11f_rev",
+    "GL_EXT_separate_specular_color",
+    "GL_ARB_cull_distance",
+    "GL_AMD_gpu_shader_half_float",
+    "GL_ARB_provoking_vertex",
+    "GL_AMD_blend_minmax_factor",
+    "GL_ARB_conditional_render_inverted",
+    "GL_ARB_vertex_array_object",
+    "GL_EXT_packed_float",
+    "GL_EXT_texture_edge_clamp",
+    "GL_ARB_multisample",
+    "GL_ARB_texture_env_crossbar",
+    "GL_KHR_robust_buffer_access_behavior",
+    "GL_AMD_texture_cube_map_array",
+    "GL_ARB_shadow_ambient",
+    "GL_ARB_sparse_texture",
+    "GL_EXT_texture3D",
+    "GL_EXT_vertex_array_bgra",
+    "GL_ARB_texture_query_levels",
+    "GL_ARB_clear_texture",
+    "GL_ARB_texture_stencil8",
+    "GL_ARB_texture_compression_rgtc",
+    "GL_ARB_vertex_buffer_object",
+    "GL_EXT_texture_compression_latc",
+    "GL_ARB_texture_mirrored_repeat",
+    "GL_ARB_post_depth_coverage",
+    "GL_EXT_pixel_buffer_object",
+    "GL_ARB_shader_image_size",
+    "GL_ARB_compute_shader",
+    "GL_ARB_sparse_buffer",
+    "GL_EXT_blend_minmax",
+    "GL_EXT_texture_mirror_clamp",
+    "GL_ARB_internalformat_query2",
+    "GL_ARB_color_buffer_float",
+    "GL_ARB_draw_instanced",
+    "GL_ARB_fragment_coord_conventions",
+    "GL_ARB_program_interface_query",
+    "GL_ARB_transform_feedback2",
+    "GL_ARB_texture_compression_bptc",
+    "GL_EXT_multi_draw_arrays",
+    "GL_EXT_packed_pixels",
+    "GL_ARB_texture_cube_map",
+    "GL_NV_primitive_restart",
+    "GL_NV_shader_atomic_int64",
+    "GL_ARB_seamless_cube_map",
+    "GL_ARB_compatibility",
+    "GL_ARB_depth_clamp",
+    "GL_ARB_uniform_buffer_object",
+    "GL_EXT_blend_color",
+    "GL_EXT_blend_func_separate",
+    "GL_EXT_texture_compression_rgtc",
+    "GL_ARB_instanced_arrays",
+    "GL_ATI_texture_env_combine3",
+    "GL_EXT_compiled_vertex_array",
+    "GL_ARB_texture_env_combine",
+    "GL_EXT_bgra",
+    "GL_ARB_occlusion_query2",
+    "GL_ARB_invalidate_subdata",
+    "GL_ARB_robustness",
+    "GL_AMD_seamless_cubemap_per_texture",
+    "GL_ARB_enhanced_layouts",
+    "GL_ARB_shader_ballot",
+    "GL_EXT_subtexture",
+    "GL_AMD_shader_trinary_minmax",
+    "GL_ARB_pipeline_statistics_query",
+    "GL_ATI_shader_texture_lod",
+    "WGL_EXT_swap_control",
+    "GL_ARB_spirv_extensions",
+    "GL_ARB_map_buffer_range",
+    "GL_ARB_transform_feedback_instanced",
+    "GL_ARB_ES3_compatibility",
+    "GL_ATI_texture_mirror_once",
+    "GL_NV_copy_image",
+    "GL_SGIS_generate_mipmap",
+    "GL_NV_conditional_render",
+    "GL_ARB_shader_image_load_store",
+    "GL_ARB_texture_border_clamp",
+    "GL_ARB_transform_feedback3",
+    "GL_EXT_shader_integer_mix",
+    "GL_ATI_meminfo",
+    "GL_EXT_point_parameters",
+    "GL_EXT_texture_lod",
+    "GL_EXT_memory_object_win32",
+    "GL_EXT_stencil_wrap",
+    "GL_ARB_base_instance",
+    "GL_EXT_texture_lod_bias",
+    "GL_AMD_sample_positions",
+    "GL_AMD_depth_clamp_separate",
+    "GL_ARB_separate_shader_objects",
+    "GL_OVR_multiview2",
+    "GL_EXT_draw_buffers2",
+    "GL_EXT_draw_range_elements",
+    "GL_ARB_texture_buffer_range",
+    "GL_ARB_sync",
+    "GL_ARB_gpu_shader_int64",
+    "GL_EXT_framebuffer_sRGB",
+    "GL_NV_texgen_reflection",
+    "GL_ARB_texture_storage_multisample",
+    "GL_ARB_sample_shading",
+    "GL_ARB_depth_texture",
+    "GL_EXT_blend_subtract",
+    "GL_EXT_provoking_vertex",
+    "GL_EXT_texture_snorm",
+    "GL_EXT_copy_buffer",
+    "GL_EXT_texture_storage",
+    "GL_EXT_texture_sRGB_RG8",
+    "GL_ARB_texture_rectangle",
+    "GL_IBM_texture_mirrored_repeat",
+    "GL_KHR_texture_compression_astc_ldr",
+    "GL_EXT_shadow_funcs",
+    "GL_EXT_texture_env_combine",
+    "GL_EXT_texture_sRGB_decode",
+    "GL_ARB_texture_swizzle",
+    "GL_ARB_sample_locations",
+    "GL_ARB_depth_buffer_float",
+    "GL_EXT_texture_env_add",
+    "GL_ARB_derivative_control",
+    "GL_ARB_texture_filter_anisotropic",
+    "GL_ARB_shader_stencil_export",
+    "GL_ARB_texture_storage",
+    "GL_ARB_shader_atomic_counters",
+    "GL_ARB_ES3_2_compatibility",
+    "GL_EXT_vertex_attrib_64bit",
+    "GL_ARB_get_texture_sub_image",
+    "GL_ARB_timer_query",
+    "GL_NV_texture_barrier",
+    "GL_ARB_vertex_shader",
+    "GL_EXT_texture_sRGB",
+    "GL_EXT_nonuniform_qualifier",
+    "GL_ARB_texture_compression",
+    "GL_S3_s3tc",
+    "GL_EXT_semaphore",
+    "GL_ARB_half_float_pixel",
+    "GL_ARB_fragment_program_shadow",
+    "GL_ARB_framebuffer_object",
+    "GL_ARB_shader_bit_encoding",
+    "GL_ARB_texture_float",
+    "GL_EXT_polygon_offset_clamp",
+}
+2026-01-07T21:06:44.856009Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-core-28.0.0\src\instance.rs:547: Found 6 compatible adapters. Sorted by preference:
+2026-01-07T21:06:44.856012Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-core-28.0.0\src\instance.rs:552: * AdapterInfo { name: "AMD Radeon RX 6700 XT", vendor: 4098, device: 29663, device_type: DiscreteGpu, device_pci_bus_id: "", driver: "AMD proprietary driver", driver_info: "25.12.1 (AMD proprietary shader compiler)", backend: Vulkan, subgroup_min_size: 32, subgroup_max_size: 64, transient_saves_memory: false }
+2026-01-07T21:06:44.856019Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-core-28.0.0\src\instance.rs:552: * AdapterInfo { name: "AMD Radeon RX 6700 XT", vendor: 4098, device: 29663, device_type: DiscreteGpu, device_pci_bus_id: "0000:03:00.0", driver: "32.0.21037.1004", driver_info: "", backend: Dx12, subgroup_min_size: 32, subgroup_max_size: 64, transient_saves_memory: false }
+2026-01-07T21:06:44.856022Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-core-28.0.0\src\instance.rs:552: * AdapterInfo { name: "AMD Radeon(TM) Graphics", vendor: 4098, device: 5056, device_type: IntegratedGpu, device_pci_bus_id: "", driver: "AMD proprietary driver", driver_info: "25.12.1 (AMD proprietary shader compiler)", backend: Vulkan, subgroup_min_size: 32, subgroup_max_size: 64, transient_saves_memory: false }
+2026-01-07T21:06:44.856024Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-core-28.0.0\src\instance.rs:552: * AdapterInfo { name: "AMD Radeon(TM) Graphics", vendor: 4098, device: 5056, device_type: IntegratedGpu, device_pci_bus_id: "0000:10:00.0", driver: "32.0.21037.1004", driver_info: "", backend: Dx12, subgroup_min_size: 32, subgroup_max_size: 64, transient_saves_memory: false }
+2026-01-07T21:06:44.856027Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-core-28.0.0\src\instance.rs:552: * AdapterInfo { name: "AMD Radeon RX 6700 XT", vendor: 0, device: 0, device_type: Other, device_pci_bus_id: "", driver: "", driver_info: "4.6.0 Compatibility Profile Context 25.12.1.251128", backend: Gl, subgroup_min_size: 4, subgroup_max_size: 128, transient_saves_memory: false }
+2026-01-07T21:06:44.856029Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-core-28.0.0\src\instance.rs:552: * AdapterInfo { name: "Microsoft Basic Render Driver", vendor: 5140, device: 140, device_type: Cpu, device_pci_bus_id: "", driver: "10.0.26100.7309", driver_info: "", backend: Dx12, subgroup_min_size: 4, subgroup_max_size: 4, transient_saves_memory: false }
+2026-01-07T21:06:44.856031Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-core-28.0.0\src\instance.rs:557: Request adapter result AdapterInfo { name: "AMD Radeon RX 6700 XT", vendor: 4098, device: 29663, device_type: DiscreteGpu, device_pci_bus_id: "", driver: "AMD proprietary driver", driver_info: "25.12.1 (AMD proprietary shader compiler)", backend: Vulkan, subgroup_min_size: 32, subgroup_max_size: 64, transient_saves_memory: false }
+2026-01-07T21:06:44.886131Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::adapter: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\adapter.rs:2067: Supported extensions: ["VK_KHR_swapchain", "VK_KHR_swapchain_mutable_format", "VK_EXT_robustness2", "VK_KHR_external_memory_win32", "VK_EXT_memory_budget"]
+2026-01-07T21:06:44.886293Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	Failed to find vkGetDeviceProcAddr in layer "C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\.\amdvlk64.dll"
+2026-01-07T21:06:44.886303Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.886307Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	vkCreateDevice layer callstack setup to:
+2026-01-07T21:06:44.886308Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.886310Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	   <Application>
+2026-01-07T21:06:44.886312Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.886313Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	     ||
+2026-01-07T21:06:44.886314Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.886316Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	   <Loader>
+2026-01-07T21:06:44.886317Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.886319Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	     ||
+2026-01-07T21:06:44.886320Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.886322Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	   <Device>
+2026-01-07T21:06:44.886323Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.886395Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:98: GENERAL [Loader Message (0x0)]
+	       Using "AMD Radeon RX 6700 XT" with driver: "C:\WINDOWS\System32\DriverStore\FileRepository\u0196283.inf_amd64_3979d16563294d92\B025522\.\amdvlk64.dll"
+2026-01-07T21:06:44.886399Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_hal::vulkan::instance: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-hal-28.0.0\src\vulkan\instance.rs:150: 	objects: (type: INSTANCE, hndl: 0x2578a260040, name: ?)
+2026-01-07T21:06:44.911353Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [0] = Literal(AbstractInt(6)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.911433Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [1] = Literal(I32(6)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:06:44.911437Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [2] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.911440Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [3] = Literal(I32(0)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:06:44.911441Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [4] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.911455Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [5] = Literal(I32(0)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:06:44.911457Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [6] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.911459Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [7] = Literal(I32(1)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:06:44.911461Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [8] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.911504Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [0] = GlobalVariable([1]) : Value(Pointer { base: [2], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.911512Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [1] = GlobalVariable([2]) : Value(Pointer { base: [3], space: Immediate })
+2026-01-07T21:06:44.911526Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [2] = AccessIndex { base: [1], index: 0 } : Value(Pointer { base: [0], space: Immediate })
+2026-01-07T21:06:44.911530Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [3] = Load { pointer: [2] } : Handle([0])
+2026-01-07T21:06:44.911539Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [4] = Access { base: [0], index: [3] } : Value(Pointer { base: [0], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.911542Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [5] = Load { pointer: [4] } : Handle([0])
+2026-01-07T21:06:44.911544Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [6] = GlobalVariable([1]) : Value(Pointer { base: [2], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.911545Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [7] = GlobalVariable([2]) : Value(Pointer { base: [3], space: Immediate })
+2026-01-07T21:06:44.911548Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [8] = AccessIndex { base: [7], index: 0 } : Value(Pointer { base: [0], space: Immediate })
+2026-01-07T21:06:44.911549Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [9] = Load { pointer: [8] } : Handle([0])
+2026-01-07T21:06:44.911551Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [10] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.911568Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.911573Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.911579Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [11] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911583Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [12] = Binary { op: Add, left: [9], right: [11] } : Handle([0])
+2026-01-07T21:06:44.911586Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [13] = Access { base: [6], index: [12] } : Value(Pointer { base: [0], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.911587Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [14] = Load { pointer: [13] } : Handle([0])
+2026-01-07T21:06:44.911589Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [15] = GlobalVariable([1]) : Value(Pointer { base: [2], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.911590Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [16] = GlobalVariable([2]) : Value(Pointer { base: [3], space: Immediate })
+2026-01-07T21:06:44.911593Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [17] = AccessIndex { base: [16], index: 0 } : Value(Pointer { base: [0], space: Immediate })
+2026-01-07T21:06:44.911594Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [18] = Load { pointer: [17] } : Handle([0])
+2026-01-07T21:06:44.911595Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [19] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.911597Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.911599Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.911600Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [20] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911601Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [21] = Binary { op: Add, left: [18], right: [20] } : Handle([0])
+2026-01-07T21:06:44.911605Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [22] = Access { base: [15], index: [21] } : Value(Pointer { base: [0], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.911607Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [23] = Load { pointer: [22] } : Handle([0])
+2026-01-07T21:06:44.911610Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32, u32
+2026-01-07T21:06:44.911612Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.911616Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [24] = Compose { ty: [4], components: [[5], [14], [23]] } : Handle([4])
+2026-01-07T21:06:44.911631Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [25] = Literal(U32(65535)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911634Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [26] = AccessIndex { base: [24], index: 0 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911636Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.911637Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.911638Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [27] = Binary { op: Greater, left: [26], right: [25] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.911642Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [28] = Unary { op: LogicalNot, expr: [27] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.911644Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [29] = Literal(Bool(true)) : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.911645Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [30] = LocalVariable([0]) : Value(Pointer { base: [5], space: Function })
+2026-01-07T21:06:44.911647Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [31] = AccessIndex { base: [24], index: 1 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911648Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.911650Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.911652Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [32] = Binary { op: Greater, left: [31], right: [25] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.911658Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [33] = LocalVariable([0]) : Value(Pointer { base: [5], space: Function })
+2026-01-07T21:06:44.911660Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [34] = Load { pointer: [33] } : Handle([5])
+2026-01-07T21:06:44.911661Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [35] = Unary { op: LogicalNot, expr: [34] } : Handle([5])
+2026-01-07T21:06:44.911663Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [36] = Literal(Bool(true)) : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.911664Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [37] = LocalVariable([1]) : Value(Pointer { base: [5], space: Function })
+2026-01-07T21:06:44.911666Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [38] = AccessIndex { base: [24], index: 2 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911667Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.911669Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.911670Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [39] = Binary { op: Greater, left: [38], right: [25] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.911674Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [40] = LocalVariable([1]) : Value(Pointer { base: [5], space: Function })
+2026-01-07T21:06:44.911676Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [41] = Load { pointer: [40] } : Handle([5])
+2026-01-07T21:06:44.911678Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [42] = GlobalVariable([0]) : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.911685Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [43] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911686Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [44] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911688Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [45] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911689Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [46] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911690Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [47] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911692Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [48] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911694Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32, u32, u32, u32, u32
+2026-01-07T21:06:44.911696Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.911704Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [49] = Compose { ty: [1], components: [[43], [44], [45], [46], [47], [48]] } : Handle([1])
+2026-01-07T21:06:44.911708Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [50] = GlobalVariable([0]) : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.911710Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [51] = AccessIndex { base: [24], index: 0 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911712Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [52] = AccessIndex { base: [24], index: 1 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911713Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [53] = AccessIndex { base: [24], index: 2 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911715Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [54] = AccessIndex { base: [24], index: 0 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911716Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [55] = AccessIndex { base: [24], index: 1 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911718Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [56] = AccessIndex { base: [24], index: 2 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.911720Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32, u32, u32, u32, u32
+2026-01-07T21:06:44.911721Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.911723Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [57] = Compose { ty: [1], components: [[51], [52], [53], [54], [55], [56]] } : Handle([1])
+2026-01-07T21:06:44.911736Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [9] = Literal(I32(0)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:06:44.911737Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [10] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.911873Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\interface.rs:642: var GlobalVariable { name: Some("dst"), space: Storage { access: StorageAccess(LOAD | STORE) }, binding: Some(ResourceBinding { group: 0, binding: 0 }), ty: [1], init: None }
+2026-01-07T21:06:44.911881Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\interface.rs:642: var GlobalVariable { name: Some("src"), space: Storage { access: StorageAccess(LOAD) }, binding: Some(ResourceBinding { group: 1, binding: 0 }), ty: [2], init: None }
+2026-01-07T21:06:44.911883Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\interface.rs:642: var GlobalVariable { name: Some("offset"), space: Immediate, binding: None, ty: [3], init: None }
+2026-01-07T21:06:44.911919Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\function.rs:1654: var LocalVariable { name: None, ty: [5], init: None }
+2026-01-07T21:06:44.911923Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\function.rs:1654: var LocalVariable { name: None, ty: [5], init: None }
+2026-01-07T21:06:44.915504Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [0] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915515Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [1] = Literal(I32(0)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:06:44.915516Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [2] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915519Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [3] = Literal(I32(0)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:06:44.915520Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [4] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915522Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [5] = Literal(I32(1)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:06:44.915524Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [6] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915526Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [7] = Literal(I32(0)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:06:44.915527Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [8] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915529Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [9] = Literal(I32(2)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:06:44.915530Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [10] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915538Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [0] = FunctionArgument(0) : Handle([1])
+2026-01-07T21:06:44.915540Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [1] = FunctionArgument(1) : Handle([1])
+2026-01-07T21:06:44.915542Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [2] = Binary { op: ShiftRight, left: [0], right: [1] } : Handle([1])
+2026-01-07T21:06:44.915544Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [3] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915546Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915548Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915550Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [4] = Binary { op: And, left: [2], right: [3] } : Handle([1])
+2026-01-07T21:06:44.915551Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [5] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915553Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915554Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915556Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [6] = Binary { op: Equal, left: [4], right: [5] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.915561Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [0] = FunctionArgument(0) : Handle([6])
+2026-01-07T21:06:44.915563Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [1] = AccessIndex { base: [0], index: 0 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915565Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [2] = GlobalVariable([0]) : Value(Pointer { base: [3], space: Immediate })
+2026-01-07T21:06:44.915567Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [3] = AccessIndex { base: [2], index: 1 } : Value(Pointer { base: [1], space: Immediate })
+2026-01-07T21:06:44.915569Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [4] = Load { pointer: [3] } : Handle([1])
+2026-01-07T21:06:44.915570Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915572Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915573Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [5] = Binary { op: GreaterEqual, left: [1], right: [4] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.915576Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [6] = GlobalVariable([1]) : Value(Pointer { base: [4], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.915577Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [7] = GlobalVariable([0]) : Value(Pointer { base: [3], space: Immediate })
+2026-01-07T21:06:44.915579Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [8] = AccessIndex { base: [7], index: 0 } : Value(Pointer { base: [1], space: Immediate })
+2026-01-07T21:06:44.915582Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [9] = Load { pointer: [8] } : Handle([1])
+2026-01-07T21:06:44.915583Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [10] = AccessIndex { base: [0], index: 0 } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915585Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915586Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915587Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [11] = Binary { op: Add, left: [9], right: [10] } : Handle([1])
+2026-01-07T21:06:44.915589Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [12] = Access { base: [6], index: [11] } : Value(Pointer { base: [2], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.915591Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [13] = Load { pointer: [12] } : Handle([2])
+2026-01-07T21:06:44.915593Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [14] = Literal(Bool(false)) : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.915602Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [15] = LocalVariable([0]) : Value(Pointer { base: [0], space: Function })
+2026-01-07T21:06:44.915605Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [16] = AccessIndex { base: [13], index: 0 } : Handle([1])
+2026-01-07T21:06:44.915608Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [17] = Literal(AbstractInt(31)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915614Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [18] = Literal(U32(31)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915615Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [19] = CallResult([0]) : Handle([0])
+2026-01-07T21:06:44.915618Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [20] = AccessIndex { base: [13], index: 0 } : Handle([1])
+2026-01-07T21:06:44.915619Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [21] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915621Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [22] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915623Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [23] = Binary { op: ShiftLeft, left: [20], right: [22] } : Handle([1])
+2026-01-07T21:06:44.915624Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [24] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915626Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [25] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915627Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [26] = Binary { op: ShiftRight, left: [23], right: [25] } : Handle([1])
+2026-01-07T21:06:44.915630Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [27] = AccessIndex { base: [13], index: 1 } : Handle([1])
+2026-01-07T21:06:44.915631Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [28] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915633Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [29] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915634Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [30] = Binary { op: ShiftLeft, left: [27], right: [29] } : Handle([1])
+2026-01-07T21:06:44.915636Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [31] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915638Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [32] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915640Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [33] = Binary { op: ShiftRight, left: [30], right: [32] } : Handle([1])
+2026-01-07T21:06:44.915642Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [34] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.915643Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [35] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915645Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915647Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915648Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [36] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915649Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [37] = Binary { op: Add, left: [26], right: [36] } : Handle([1])
+2026-01-07T21:06:44.915651Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [38] = Access { base: [34], index: [37] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.915653Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [39] = Load { pointer: [38] } : Handle([1])
+2026-01-07T21:06:44.915654Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [40] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.915656Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [41] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915658Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915659Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915660Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [42] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915662Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [43] = Binary { op: Add, left: [26], right: [42] } : Handle([1])
+2026-01-07T21:06:44.915663Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [44] = Access { base: [40], index: [43] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.915665Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [45] = Load { pointer: [44] } : Handle([1])
+2026-01-07T21:06:44.915667Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [46] = AccessIndex { base: [13], index: 1 } : Handle([1])
+2026-01-07T21:06:44.915669Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [47] = Literal(AbstractInt(30)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915671Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [48] = Literal(U32(30)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915672Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [49] = CallResult([0]) : Handle([0])
+2026-01-07T21:06:44.915674Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [50] = AccessIndex { base: [13], index: 2 } : Handle([1])
+2026-01-07T21:06:44.915676Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915677Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915678Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [51] = Binary { op: Less, left: [50], right: [39] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.915681Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [52] = Literal(Bool(false)) : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.915682Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [53] = LocalVariable([1]) : Value(Pointer { base: [0], space: Function })
+2026-01-07T21:06:44.915684Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [54] = Unary { op: LogicalNot, expr: [49] } : Handle([0])
+2026-01-07T21:06:44.915686Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [55] = LocalVariable([1]) : Value(Pointer { base: [0], space: Function })
+2026-01-07T21:06:44.915687Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [56] = Load { pointer: [55] } : Handle([0])
+2026-01-07T21:06:44.915689Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [57] = Load { pointer: [15] } : Handle([0])
+2026-01-07T21:06:44.915691Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [58] = Binary { op: InclusiveOr, left: [57], right: [56] } : Handle([0])
+2026-01-07T21:06:44.915693Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [59] = AccessIndex { base: [13], index: 2 } : Handle([1])
+2026-01-07T21:06:44.915694Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915695Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915697Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [60] = Binary { op: Subtract, left: [59], right: [39] } : Handle([1])
+2026-01-07T21:06:44.915698Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915700Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915701Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [61] = Binary { op: Less, left: [60], right: [45] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.915704Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [62] = Load { pointer: [15] } : Handle([0])
+2026-01-07T21:06:44.915705Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [63] = Binary { op: InclusiveOr, left: [62], right: [61] } : Handle([0])
+2026-01-07T21:06:44.915707Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [64] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.915709Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [65] = Literal(AbstractInt(3)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915710Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915712Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915714Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [66] = Literal(U32(3)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915715Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [67] = Binary { op: Add, left: [26], right: [66] } : Handle([1])
+2026-01-07T21:06:44.915717Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [68] = As { expr: [19], kind: Uint, convert: Some(4) } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915718Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915720Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915721Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [69] = Binary { op: Add, left: [67], right: [68] } : Handle([1])
+2026-01-07T21:06:44.915723Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [70] = Access { base: [64], index: [69] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.915724Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [71] = Load { pointer: [70] } : Handle([1])
+2026-01-07T21:06:44.915728Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [72] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.915730Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [73] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915731Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915733Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915734Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [74] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915735Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [75] = Binary { op: Add, left: [26], right: [74] } : Handle([1])
+2026-01-07T21:06:44.915737Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [76] = Access { base: [72], index: [75] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.915739Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [77] = Load { pointer: [76] } : Handle([1])
+2026-01-07T21:06:44.915741Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [78] = AccessIndex { base: [13], index: 1 } : Handle([1])
+2026-01-07T21:06:44.915742Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [79] = Literal(AbstractInt(31)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915744Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [80] = Literal(U32(31)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915746Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [81] = CallResult([0]) : Handle([0])
+2026-01-07T21:06:44.915747Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [82] = AccessIndex { base: [13], index: 3 } : Handle([1])
+2026-01-07T21:06:44.915749Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915750Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915751Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [83] = Binary { op: Less, left: [82], right: [71] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.915754Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [84] = Literal(Bool(false)) : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.915755Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [85] = LocalVariable([2]) : Value(Pointer { base: [0], space: Function })
+2026-01-07T21:06:44.915757Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [86] = Unary { op: LogicalNot, expr: [81] } : Handle([0])
+2026-01-07T21:06:44.915758Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [87] = LocalVariable([2]) : Value(Pointer { base: [0], space: Function })
+2026-01-07T21:06:44.915760Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [88] = Load { pointer: [87] } : Handle([0])
+2026-01-07T21:06:44.915762Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [89] = Load { pointer: [15] } : Handle([0])
+2026-01-07T21:06:44.915763Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [90] = Binary { op: InclusiveOr, left: [89], right: [88] } : Handle([0])
+2026-01-07T21:06:44.915764Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [91] = AccessIndex { base: [13], index: 3 } : Handle([1])
+2026-01-07T21:06:44.915766Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915767Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915769Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [92] = Binary { op: Subtract, left: [91], right: [71] } : Handle([1])
+2026-01-07T21:06:44.915771Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915772Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915774Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [93] = Binary { op: Less, left: [92], right: [77] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.915776Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [94] = Load { pointer: [15] } : Handle([0])
+2026-01-07T21:06:44.915777Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [95] = Binary { op: InclusiveOr, left: [94], right: [93] } : Handle([0])
+2026-01-07T21:06:44.915778Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [96] = Override([0]) : Handle([0])
+2026-01-07T21:06:44.915780Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [97] = Unary { op: LogicalNot, expr: [96] } : Handle([0])
+2026-01-07T21:06:44.915781Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [98] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915783Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915784Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915786Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [99] = Binary { op: NotEqual, left: [71], right: [98] } : Value(Scalar(Scalar { kind: Bool, width: 1 }))
+2026-01-07T21:06:44.915790Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [100] = Load { pointer: [15] } : Handle([0])
+2026-01-07T21:06:44.915791Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [101] = Binary { op: InclusiveOr, left: [100], right: [99] } : Handle([0])
+2026-01-07T21:06:44.915793Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [102] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915794Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [103] = Literal(U32(3)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915795Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [104] = Override([1]) : Handle([0])
+2026-01-07T21:06:44.915801Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915803Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915805Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [105] = Select { condition: [104], accept: [103], reject: [102] } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915807Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [106] = Load { pointer: [15] } : Handle([0])
+2026-01-07T21:06:44.915809Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [107] = Override([1]) : Handle([0])
+2026-01-07T21:06:44.915810Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [108] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915812Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [109] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915814Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915815Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915816Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [110] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915818Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [111] = Binary { op: Add, left: [33], right: [110] } : Handle([1])
+2026-01-07T21:06:44.915819Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [112] = Access { base: [108], index: [111] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915821Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [113] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915823Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [114] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915825Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [115] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915826Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915828Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915829Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [116] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915831Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [117] = Binary { op: Add, left: [33], right: [116] } : Handle([1])
+2026-01-07T21:06:44.915832Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [118] = Access { base: [114], index: [117] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915834Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [119] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915836Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [120] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915837Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [121] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915839Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915840Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915842Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [122] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915843Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [123] = Binary { op: Add, left: [33], right: [122] } : Handle([1])
+2026-01-07T21:06:44.915845Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [124] = Access { base: [120], index: [123] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915847Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [125] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915849Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915850Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915854Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [126] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915855Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [127] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:06:44.915857Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [128] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915860Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915861Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915863Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [129] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915864Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [130] = Binary { op: Add, left: [127], right: [129] } : Handle([1])
+2026-01-07T21:06:44.915866Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [131] = Access { base: [126], index: [130] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915868Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [132] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915870Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915871Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915872Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [133] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915874Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [134] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:06:44.915875Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [135] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915877Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915878Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915880Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [136] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915881Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [137] = Binary { op: Add, left: [134], right: [136] } : Handle([1])
+2026-01-07T21:06:44.915883Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [138] = Access { base: [133], index: [137] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915885Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [139] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915886Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915888Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915889Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [140] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915891Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [141] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:06:44.915892Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [142] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915894Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915895Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915896Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [143] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915898Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [144] = Binary { op: Add, left: [141], right: [143] } : Handle([1])
+2026-01-07T21:06:44.915899Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [145] = Access { base: [140], index: [144] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915902Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [146] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915903Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915905Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915907Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [147] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915908Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [148] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:06:44.915910Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [149] = Literal(AbstractInt(3)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915912Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915913Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915914Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [150] = Literal(U32(3)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915916Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [151] = Binary { op: Add, left: [148], right: [150] } : Handle([1])
+2026-01-07T21:06:44.915917Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [152] = Access { base: [147], index: [151] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915919Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [153] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915921Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915922Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915924Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [154] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915925Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [155] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:06:44.915927Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [156] = Literal(AbstractInt(4)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915928Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915930Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915931Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [157] = Literal(U32(4)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915932Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [158] = Binary { op: Add, left: [155], right: [157] } : Handle([1])
+2026-01-07T21:06:44.915934Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [159] = Access { base: [154], index: [158] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915936Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [160] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915938Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [161] = Override([1]) : Handle([0])
+2026-01-07T21:06:44.915939Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [162] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915941Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [163] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915943Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915944Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915945Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [164] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915947Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [165] = Binary { op: Add, left: [33], right: [164] } : Handle([1])
+2026-01-07T21:06:44.915948Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [166] = Access { base: [162], index: [165] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915950Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [167] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.915952Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [168] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915954Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915955Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915956Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [169] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915958Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [170] = Binary { op: Add, left: [26], right: [169] } : Handle([1])
+2026-01-07T21:06:44.915959Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [171] = As { expr: [19], kind: Uint, convert: Some(4) } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915961Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915962Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915963Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [172] = Binary { op: Add, left: [170], right: [171] } : Handle([1])
+2026-01-07T21:06:44.915965Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [173] = Access { base: [167], index: [172] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.915967Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [174] = Load { pointer: [173] } : Handle([1])
+2026-01-07T21:06:44.915968Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [175] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915970Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [176] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915972Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915973Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915974Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [177] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915976Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [178] = Binary { op: Add, left: [33], right: [177] } : Handle([1])
+2026-01-07T21:06:44.915977Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [179] = Access { base: [175], index: [178] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915979Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [180] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.915981Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [181] = Literal(AbstractInt(3)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.915983Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.915984Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915985Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [182] = Literal(U32(3)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915987Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [183] = Binary { op: Add, left: [26], right: [182] } : Handle([1])
+2026-01-07T21:06:44.915988Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [184] = As { expr: [19], kind: Uint, convert: Some(4) } : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.915990Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.915991Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.915993Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [185] = Binary { op: Add, left: [183], right: [184] } : Handle([1])
+2026-01-07T21:06:44.915994Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [186] = Access { base: [180], index: [185] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.915996Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [187] = Load { pointer: [186] } : Handle([1])
+2026-01-07T21:06:44.915997Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [188] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.915999Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [189] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.916001Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.916002Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916003Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [190] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.916005Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [191] = Binary { op: Add, left: [33], right: [190] } : Handle([1])
+2026-01-07T21:06:44.916006Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [192] = Access { base: [188], index: [191] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.916008Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [193] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.916010Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.916011Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916013Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [194] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.916015Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [195] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:06:44.916016Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [196] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.916018Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.916019Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916020Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [197] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.916022Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [198] = Binary { op: Add, left: [195], right: [197] } : Handle([1])
+2026-01-07T21:06:44.916023Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [199] = Access { base: [194], index: [198] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.916025Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [200] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.916027Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [201] = Literal(AbstractInt(0)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.916029Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.916030Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916031Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [202] = Literal(U32(0)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.916033Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [203] = Binary { op: Add, left: [26], right: [202] } : Handle([1])
+2026-01-07T21:06:44.916034Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [204] = Access { base: [200], index: [203] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.916036Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [205] = Load { pointer: [204] } : Handle([1])
+2026-01-07T21:06:44.916038Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.916039Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916040Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [206] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.916042Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [207] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:06:44.916044Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [208] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.916045Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.916046Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916048Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [209] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.916049Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [210] = Binary { op: Add, left: [207], right: [209] } : Handle([1])
+2026-01-07T21:06:44.916051Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [211] = Access { base: [206], index: [210] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.916053Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [212] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.916055Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [213] = Literal(AbstractInt(1)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.916056Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.916057Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916059Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [214] = Literal(U32(1)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.916060Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [215] = Binary { op: Add, left: [26], right: [214] } : Handle([1])
+2026-01-07T21:06:44.916062Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [216] = Access { base: [212], index: [215] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.916064Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [217] = Load { pointer: [216] } : Handle([1])
+2026-01-07T21:06:44.916066Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.916067Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916068Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [218] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.916070Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [219] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:06:44.916071Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [220] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.916073Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.916074Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916076Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [221] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.916077Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [222] = Binary { op: Add, left: [219], right: [221] } : Handle([1])
+2026-01-07T21:06:44.916079Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [223] = Access { base: [218], index: [222] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.916081Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [224] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.916082Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [225] = Literal(AbstractInt(2)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.916084Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.916085Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916086Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [226] = Literal(U32(2)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.916088Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [227] = Binary { op: Add, left: [26], right: [226] } : Handle([1])
+2026-01-07T21:06:44.916090Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [228] = Access { base: [224], index: [227] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.916091Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [229] = Load { pointer: [228] } : Handle([1])
+2026-01-07T21:06:44.916093Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.916094Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916095Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [230] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.916097Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [231] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:06:44.916099Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [232] = Literal(AbstractInt(3)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.916100Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.916101Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916103Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [233] = Literal(U32(3)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.916104Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [234] = Binary { op: Add, left: [231], right: [233] } : Handle([1])
+2026-01-07T21:06:44.916106Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [235] = Access { base: [230], index: [234] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.916108Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [236] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.916109Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [237] = Literal(AbstractInt(3)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.916111Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.916112Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916114Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [238] = Literal(U32(3)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.916115Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [239] = Binary { op: Add, left: [26], right: [238] } : Handle([1])
+2026-01-07T21:06:44.916117Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [240] = Access { base: [236], index: [239] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.916118Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [241] = Load { pointer: [240] } : Handle([1])
+2026-01-07T21:06:44.916120Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, u32
+2026-01-07T21:06:44.916122Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916123Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [242] = GlobalVariable([3]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.916125Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [243] = Binary { op: Add, left: [33], right: [105] } : Handle([1])
+2026-01-07T21:06:44.916126Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [244] = Literal(AbstractInt(4)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.916128Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.916129Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916130Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [245] = Literal(U32(4)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.916132Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [246] = Binary { op: Add, left: [243], right: [245] } : Handle([1])
+2026-01-07T21:06:44.916133Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [247] = Access { base: [242], index: [246] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD | STORE) } })
+2026-01-07T21:06:44.916135Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [248] = GlobalVariable([2]) : Value(Pointer { base: [5], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.916137Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [249] = Literal(AbstractInt(4)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.916139Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:315: wgsl automatic_conversion_consensus: u32, {AbstractInt}
+2026-01-07T21:06:44.916140Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front::wgsl::lower::conversion: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\wgsl\lower\conversion.rs:338:     consensus: u32
+2026-01-07T21:06:44.916141Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [250] = Literal(U32(4)) : Value(Scalar(Scalar { kind: Uint, width: 4 }))
+2026-01-07T21:06:44.916143Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [251] = Binary { op: Add, left: [26], right: [250] } : Handle([1])
+2026-01-07T21:06:44.916145Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [252] = Access { base: [248], index: [251] } : Value(Pointer { base: [1], space: Storage { access: StorageAccess(LOAD) } })
+2026-01-07T21:06:44.916146Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [253] = Load { pointer: [252] } : Handle([1])
+2026-01-07T21:06:44.916149Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [11] = Literal(I32(0)) : Value(Scalar(Scalar { kind: Sint, width: 4 }))
+2026-01-07T21:06:44.916150Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::front: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\front\mod.rs:117: Resolving [12] = Literal(AbstractInt(64)) : Value(Scalar(Scalar { kind: AbstractInt, width: 8 }))
+2026-01-07T21:06:44.916187Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\interface.rs:642: var GlobalVariable { name: Some("metadata_range"), space: Immediate, binding: None, ty: [3], init: None }
+2026-01-07T21:06:44.916190Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\interface.rs:642: var GlobalVariable { name: Some("metadata"), space: Storage { access: StorageAccess(LOAD) }, binding: Some(ResourceBinding { group: 0, binding: 0 }), ty: [4], init: None }
+2026-01-07T21:06:44.916193Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\interface.rs:642: var GlobalVariable { name: Some("src"), space: Storage { access: StorageAccess(LOAD) }, binding: Some(ResourceBinding { group: 1, binding: 0 }), ty: [5], init: None }
+2026-01-07T21:06:44.916194Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\interface.rs:642: var GlobalVariable { name: Some("dst"), space: Storage { access: StorageAccess(LOAD | STORE) }, binding: Some(ResourceBinding { group: 2, binding: 0 }), ty: [5], init: None }
+2026-01-07T21:06:44.916212Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\function.rs:1654: var LocalVariable { name: Some("failed"), ty: [0], init: Some([14]) }
+2026-01-07T21:06:44.916215Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\function.rs:1654: var LocalVariable { name: None, ty: [0], init: None }
+2026-01-07T21:06:44.916217Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\function.rs:1654: var LocalVariable { name: None, ty: [0], init: None }
+2026-01-07T21:06:44.916339Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\interface.rs:642: var GlobalVariable { name: Some("metadata_range"), space: Immediate, binding: None, ty: [3], init: None }
+2026-01-07T21:06:44.916342Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\interface.rs:642: var GlobalVariable { name: Some("metadata"), space: Storage { access: StorageAccess(LOAD) }, binding: Some(ResourceBinding { group: 0, binding: 0 }), ty: [4], init: None }
+2026-01-07T21:06:44.916345Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\interface.rs:642: var GlobalVariable { name: Some("src"), space: Storage { access: StorageAccess(LOAD) }, binding: Some(ResourceBinding { group: 1, binding: 0 }), ty: [5], init: None }
+2026-01-07T21:06:44.916346Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::interface: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\interface.rs:642: var GlobalVariable { name: Some("dst"), space: Storage { access: StorageAccess(LOAD | STORE) }, binding: Some(ResourceBinding { group: 2, binding: 0 }), ty: [5], init: None }
+2026-01-07T21:06:44.916359Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\function.rs:1654: var LocalVariable { name: Some("failed"), ty: [0], init: Some([14]) }
+2026-01-07T21:06:44.916362Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\function.rs:1654: var LocalVariable { name: None, ty: [0], init: None }
+2026-01-07T21:06:44.916363Z DEBUG main ThreadId(01) voxtech app init:gfx init: naga::valid::function: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\naga-28.0.0\src\valid\function.rs:1654: var LocalVariable { name: None, ty: [0], init: None }
+2026-01-07T21:06:44.927807Z DEBUG main ThreadId(01) voxtech app init:gfx init: wgpu_core::device::resource: C:\Users\tsuna\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wgpu-core-28.0.0\src\device\resource.rs:4903: configuring surface with SurfaceConfiguration { usage: TextureUsages(RENDER_ATTACHMENT), format: Rgba8UnormSrgb, width: 1280, height: 720, present_mode: Fifo, desired_maximum_frame_latency: 2, alpha_mode: Auto, view_formats: [] }
+2026-01-07T21:06:44.991167Z  INFO main ThreadId(01) voxtech app init: voxtech_experimental::frontend::window: src\frontend\window\mod.rs:91: voxtech app init succeed
