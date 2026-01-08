@@ -4,9 +4,9 @@
 pub mod aliases;
 pub mod block_pos;
 pub mod dir;
-// pub mod world;
+pub mod world;
 
 pub use aliases::*;
 pub use block_pos::*;
 pub use dir::*;
-// pub use world::*;
+pub use world::*;
