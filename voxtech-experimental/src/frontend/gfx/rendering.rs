@@ -1,15 +1,9 @@
-use std::sync::{
-  atomic::{AtomicBool, Ordering},
-  Arc,
-};
+use std::sync::atomic::{AtomicBool, Ordering};
 
 use crossbeam::{
-  channel::{
-    bounded, Receiver, RecvError, Sender, TrySendError,
-  },
+  channel::{Receiver, RecvError, Sender, bounded},
   sync::{Parker, Unparker},
 };
-use wgpu::SurfaceError;
 
 static NOW_RENDERING: AtomicBool =
   AtomicBool::new(false);
@@ -73,7 +67,7 @@ impl RenderCommandSend {
     (sender, receiver)
   }
 
-  pub fn rendering(&self) {
+  pub fn command_send(&self, command: RenderCommand) {
     if NOW_RENDERING.load(Ordering::Acquire) {
       tracing::trace!(
         "Rendering process is not complete"
@@ -82,16 +76,25 @@ impl RenderCommandSend {
       self.rendering_now_parker.park();
     }
     NOW_RENDERING.store(true, Ordering::Release);
-    self
-      .tx
-      .send(RenderCommand::Redraw);
+    match self.tx.send(command) {
+      Ok(_) => {}
+      Err(_) => {
+        tracing::warn!("Renderer thread finished.")
+      }
+    }
   }
 }
 impl Drop for RenderCommandSend {
   fn drop(&mut self) {
-    self
+    match self
       .tx
-      .send(RenderCommand::Exit);
+      .send(RenderCommand::Exit)
+    {
+      Ok(_) => {}
+      Err(_) => {
+        tracing::warn!("Renderer thread finished.")
+      }
+    }
   }
 }
 

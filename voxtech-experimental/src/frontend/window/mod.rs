@@ -110,6 +110,11 @@ impl ApplicationHandler for App {
           w.window.request_redraw();
         }
       }
+      WindowEvent::Resized(_) => {
+        if let Some(w) = self.window.as_mut() {
+          w.gfx.resized();
+        }
+      }
       WindowEvent::CloseRequested => {
         tracing::info!("Receive close request.");
         if let Some(w) = self.window.take() {

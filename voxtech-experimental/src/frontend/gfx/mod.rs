@@ -36,7 +36,15 @@ impl GfxHandler {
   }
 
   pub fn rendering(&self) {
-    self.render_sender.rendering()
+    self
+      .render_sender
+      .command_send(rendering::RenderCommand::Redraw)
+  }
+
+  pub fn resized(&self) {
+    self
+      .render_sender
+      .command_send(rendering::RenderCommand::Resize);
   }
 
   pub fn stop(
