@@ -4,10 +4,10 @@
 
 use crate::common::l0_cell::L0Cell;
 
-#[repr(C, align(8))]
+#[repr(C, align(4))]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct L1Chunk {
-  idx_key: u32,
+  idx_key: u16,
   gen_key: u8,
 }
 
@@ -20,5 +20,8 @@ pub struct L1ChunkBody {
 pub struct L1ChunkStorage {
   bump: Vec<bool>,
   gen_key: Vec<u8>,
-  cell: Vec<L1ChunkBody>,
+  chunk: Vec<L1ChunkBody>,
+
+  /// 直近に削除されたチャンクが再確保される可能性もあるためLIFOとする
+  remove_stack: Vec<u32>,
 }

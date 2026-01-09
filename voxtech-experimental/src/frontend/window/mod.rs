@@ -1,13 +1,15 @@
 use std::sync::Arc;
 use winit::{
-  application::ApplicationHandler, event::WindowEvent, window::{Window, WindowAttributes}
+  application::ApplicationHandler,
+  event::WindowEvent,
+  window::{Window, WindowAttributes},
 };
 
 use super::gfx;
 
 pub struct AppWindow {
   window: Arc<Window>,
-  gfx: gfx::GfxInstance,
+  gfx: gfx::GfxHandler,
 }
 
 pub struct App {
@@ -15,9 +17,7 @@ pub struct App {
 }
 impl Default for App {
   fn default() -> Self {
-    Self {
-      window: None
-    }
+    Self { window: None }
   }
 }
 impl ApplicationHandler for App {
@@ -59,20 +59,20 @@ impl ApplicationHandler for App {
                 eprintln!("error: {e}");
               });
               panic!("winit initialize error");
-            } 
+            }
           }
-        },
+        }
       );
 
       let gfx = tracing::info_span!("gfx init").in_scope(
         || {
           tracing::info!("starting gfx initialize");
           match pollster::block_on(
-            gfx::GfxInstance::new(Arc::clone(&window))
+            gfx::GfxHandler::new(Arc::clone(&window))
           ) {
             Ok(gfx) => {
               gfx
-            }, 
+            }
             Err(e) => {
               tracing::error_span!(
                 "show detail: gfx init fail"
@@ -104,11 +104,20 @@ impl ApplicationHandler for App {
     event: winit::event::WindowEvent,
   ) {
     match event {
+      WindowEvent::RedrawRequested => {
+        if let Some(w) = self.window.as_mut() {
+          w.gfx.rendering();
+          w.window.request_redraw();
+        }
+      }
       WindowEvent::CloseRequested => {
         tracing::info!("Receive close request.");
+        if let Some(w) = self.window.take() {
+          w.gfx.stop().unwrap().unwrap();
+        };
         event_loop.exit()
-      },
-      _ => {}, 
+      }
+      _ => {}
     }
   }
 }

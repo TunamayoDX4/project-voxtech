@@ -17,4 +17,7 @@ pub struct L0CellStorage {
   bump: Vec<bool>,
   gen_key: Vec<u8>,
   cell: Vec<L0CellBody>,
+
+  /// 直近に削除されたセルが再確保される可能性もあるためLIFOとする
+  remove_stack: Vec<u32>,
 }
