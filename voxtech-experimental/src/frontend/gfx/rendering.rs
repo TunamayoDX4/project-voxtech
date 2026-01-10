@@ -72,7 +72,7 @@ impl RenderCommandSend {
       tracing::trace!(
         "Rendering process is not complete"
       );
-      tracing::debug!("Wait render process complete");
+      tracing::trace!("Wait render process complete");
       self.rendering_now_parker.park();
     }
     NOW_RENDERING.store(true, Ordering::Release);
@@ -113,17 +113,20 @@ impl RenderCommandRecv {
       RenderingError,
     >,
   ) -> Result<RenderingSuccess, RenderingError> {
-    let res = match self.rx.recv() {
-      Ok(comm) => f(comm),
-      Err(RecvError) => {
-        Ok(RenderingSuccess::StopRequested)
-      }
-    };
-    NOW_RENDERING.store(false, Ordering::Release);
-    self
-      .rendering_now_unparker
-      .unpark();
-    tracing::debug!("Rendering process finished.");
-    res
+    tracing::trace_span!("Asynchronous rendering")
+      .in_scope(|| {
+        let res = match self.rx.recv() {
+          Ok(comm) => f(comm),
+          Err(RecvError) => {
+            Ok(RenderingSuccess::StopRequested)
+          }
+        };
+        NOW_RENDERING.store(false, Ordering::Release);
+        self
+          .rendering_now_unparker
+          .unpark();
+        tracing::trace!("Rendering process finished.");
+        res
+      })
   }
 }

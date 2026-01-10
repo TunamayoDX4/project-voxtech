@@ -3,6 +3,7 @@
 use crate::common::aliases::*;
 use std::sync::Arc;
 
+use parking_lot::Mutex;
 use wgpu::{
   Device, Queue, Surface, SurfaceConfiguration,
   SurfaceTexture, TextureView,
@@ -15,7 +16,7 @@ pub struct WGPUCtx {
   pub surface: Surface<'static>,
   pub device: Device,
   pub queue: Queue,
-  pub config: SurfaceConfiguration,
+  pub config: Mutex<SurfaceConfiguration>,
 }
 impl WGPUCtx {
   /// コンテキストの初期化
@@ -79,6 +80,8 @@ impl WGPUCtx {
     };
     surface.configure(&device, &config);
 
+    let config = Mutex::new(config);
+
     Ok(Self {
       window,
       surface,
@@ -90,17 +93,26 @@ impl WGPUCtx {
 
   /// 再コンフィグ
   pub fn reconfigure(&self) {
+    let config = self.config.lock();
     self
       .surface
-      .configure(&self.device, &self.config);
+      .configure(&self.device, &config);
   }
 
   /// ウィンドウのリサイズ
-  pub fn resize(&mut self) {
+  pub fn resize(&self) {
+    let mut config = self.config.lock();
     let size = self.window.inner_size();
-    self.config.width = size.width;
-    self.config.height = size.height;
-    self.reconfigure();
+    if 0 < size.width && 0 < size.height {
+      config.width = size.width;
+      config.height = size.height;
+    } else {
+      config.width = 1;
+      config.height = 1;
+    }
+    self
+      .surface
+      .configure(&self.device, &config);
   }
 
   /// 描画処理
