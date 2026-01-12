@@ -4,6 +4,7 @@ use crossbeam::{
   channel::{Receiver, RecvError, Sender, bounded},
   sync::{Parker, Unparker},
 };
+use winit::dpi::PhysicalSize;
 
 static NOW_RENDERING: AtomicBool =
   AtomicBool::new(false);
@@ -14,7 +15,7 @@ pub enum RenderCommand {
   Redraw,
 
   /// リサイズ
-  Resize,
+  Resize { new_size: PhysicalSize<u32> },
 
   /// 終了指示
   Exit,

@@ -110,9 +110,9 @@ impl ApplicationHandler for App {
           w.window.request_redraw();
         }
       }
-      WindowEvent::Resized(_) => {
+      WindowEvent::Resized(new_size) => {
         if let Some(w) = self.window.as_mut() {
-          w.gfx.resized();
+          w.gfx.resize(new_size);
         }
       }
       WindowEvent::CloseRequested => {

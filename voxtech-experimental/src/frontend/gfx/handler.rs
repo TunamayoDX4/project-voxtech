@@ -2,7 +2,7 @@ use crate::common::*;
 
 use std::{any::Any, sync::Arc, thread::JoinHandle};
 use wgpu::SurfaceError;
-use winit::window::Window;
+use winit::{dpi::PhysicalSize, window::Window};
 
 use super::{rendering, wgpu_ctx};
 
@@ -38,10 +38,10 @@ impl GfxHandler {
       .command_send(rendering::RenderCommand::Redraw)
   }
 
-  pub fn resized(&self) {
-    self
-      .render_sender
-      .command_send(rendering::RenderCommand::Resize);
+  pub fn resize(&self, new_size: PhysicalSize<u32>) {
+    self.render_sender.command_send(
+      rendering::RenderCommand::Resize { new_size },
+    );
   }
 
   pub fn stop(
@@ -69,7 +69,7 @@ impl GfxModule {
     let wgpu_ctx =
       wgpu_ctx::WGPUCtx::new(window).await?;
     let world_rdr =
-      super::renderer::WorldRenderer::new();
+      super::renderer::WorldRenderer::new(&wgpu_ctx);
     Ok(Self {
       wgpu_ctx,
       world_rdr,
@@ -123,8 +123,10 @@ impl GfxModule {
 
           Ok(rendering::RenderingSuccess::Nop)
         },
-        rendering::RenderCommand::Resize => {
-          self.wgpu_ctx.resize();
+        rendering::RenderCommand::Resize{
+          new_size
+        } => {
+          self.wgpu_ctx.resize(new_size);
           Ok(rendering::RenderingSuccess::Nop)
         },
         rendering::RenderCommand::Exit => {

@@ -1,9 +1,16 @@
 use super::wgpu_ctx::*;
 
-pub struct WorldRenderer {}
+pub mod util;
+
+pub mod block;
+
+pub struct WorldRenderer {
+  prototype: block::PrototypeRenderer,
+}
 impl WorldRenderer {
-  pub fn new() -> Self {
-    Self {}
+  pub fn new(ctx: &super::wgpu_ctx::WGPUCtx) -> Self {
+    let prototype = block::PrototypeRenderer::new(ctx);
+    Self { prototype }
   }
 
   pub fn rendering(&self, target: &RenderTarget) {
@@ -19,35 +26,9 @@ impl WorldRenderer {
               ),
             },
           );
-        enc.begin_render_pass(
-          &wgpu::RenderPassDescriptor {
-            label: Some(
-              "world renderer main render pass",
-            ),
-            color_attachments: &[Some(
-              wgpu::RenderPassColorAttachment {
-                view: &target.view,
-                depth_slice: None,
-                resolve_target: None,
-                ops: wgpu::Operations {
-                  load: wgpu::LoadOp::Clear(
-                    wgpu::Color {
-                      r: 0.1,
-                      g: 0.2,
-                      b: 0.3,
-                      a: 1.0,
-                    },
-                  ),
-                  store: wgpu::StoreOp::Store,
-                },
-              },
-            )],
-            depth_stencil_attachment: None,
-            timestamp_writes: None,
-            occlusion_query_set: None,
-            multiview_mask: None,
-          },
-        );
+        self
+          .prototype
+          .rendering(&mut enc, target);
         target
           .ctx
           .queue
