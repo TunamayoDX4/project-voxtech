@@ -1,7 +1,7 @@
 //! Texture
 //! WGPUのテクスチャの抽象化オブジェクト
 
-pub mod atlas;
+pub mod single_diffuse;
 pub mod texture_array;
 
 use std::io::Read;
@@ -10,59 +10,17 @@ use super::WGPUCtx;
 
 use image::RgbaImage;
 use wgpu::{
-  AddressMode, BindGroup, BindGroupEntry,
-  BindGroupLayout, BindGroupLayoutEntry,
-  BindingResource, BindingType, CompareFunction,
-  Extent3d, FilterMode, MipmapFilterMode, Origin3d,
-  Sampler, SamplerBindingType, ShaderStages,
+  AddressMode, CompareFunction, Extent3d, FilterMode,
+  MipmapFilterMode, Origin3d, Sampler,
   TexelCopyBufferLayout, TexelCopyTextureInfo,
   TextureAspect, TextureDimension, TextureFormat,
-  TextureSampleType, TextureUsages, TextureView,
-  TextureViewDimension,
+  TextureUsages, TextureView,
 };
-
-pub struct TextureLayout {
-  bindgroup_layout: BindGroupLayout,
-}
-impl TextureLayout {
-  pub fn new(context: &WGPUCtx) -> Self {
-    let bindgroup_layout = context
-      .device
-      .create_bind_group_layout(
-        &wgpu::BindGroupLayoutDescriptor {
-          label: Some("Texture bindgroup layout"),
-          entries: &[
-            BindGroupLayoutEntry {
-              binding: 0,
-              visibility: ShaderStages::FRAGMENT,
-              ty: BindingType::Texture {
-                sample_type: TextureSampleType::Float {
-                  filterable: true,
-                },
-                view_dimension:
-                  TextureViewDimension::D2,
-                multisampled: false,
-              },
-              count: None,
-            },
-            BindGroupLayoutEntry {
-              binding: 1,
-              visibility: ShaderStages::FRAGMENT,
-              ty: BindingType::Sampler(
-                SamplerBindingType::Filtering,
-              ),
-              count: None,
-            },
-          ],
-        },
-      );
-    Self { bindgroup_layout }
-  }
-}
 
 /// テクスチャ用のバインド構造体
 pub struct Texture {
   pub size: Extent3d,
+  pub mip_level_count: u32,
   pub texture: wgpu::Texture,
   pub view: TextureView,
   pub sampler: Sampler,
@@ -78,11 +36,12 @@ impl Texture {
       height: dimensions.1,
       depth_or_array_layers: 1,
     };
+    let mip_level_count = 1;
     let texture = context.device.create_texture(
       &wgpu::TextureDescriptor {
         label: Some("Diffuse texture object"),
         size,
-        mip_level_count: 1,
+        mip_level_count,
         sample_count: 1,
         dimension: TextureDimension::D2,
         format: TextureFormat::Rgba8UnormSrgb,
@@ -123,6 +82,7 @@ impl Texture {
     );
     Self {
       size,
+      mip_level_count,
       texture,
       view,
       sampler,
@@ -141,11 +101,12 @@ impl Texture {
       height: config.height,
       depth_or_array_layers: 1,
     };
+    let mip_level_count = 1;
     let texture = context.device.create_texture(
       &wgpu::TextureDescriptor {
         label: Some(label),
         size,
-        mip_level_count: 1,
+        mip_level_count,
         sample_count: 1,
         dimension: TextureDimension::D2,
         format: Self::DEPTH_FORMAT,
@@ -174,6 +135,7 @@ impl Texture {
 
     Self {
       size,
+      mip_level_count,
       texture,
       view,
       sampler,
@@ -181,57 +143,17 @@ impl Texture {
   }
 }
 
-pub struct DiffuseTexture {
+pub struct DepthTexture {
   texture: Texture,
-  bindgroup: BindGroup,
 }
-impl DiffuseTexture {
-  pub fn new_diffuse_from_image(
+impl DepthTexture {
+  pub const DEPTH_FORMAT: TextureFormat =
+    TextureFormat::Depth32Float;
+  pub fn new_depth(
     context: &WGPUCtx,
-    layout: &TextureLayout,
-    image_path: impl AsRef<std::path::Path>,
-  ) -> crate::aliases::StdResult<Self> {
-    let fp = std::fs::File::open(image_path)?;
-    let len = fp.metadata()?.len();
-    let mut fp = std::io::BufReader::new(fp);
-    let mut bin = Vec::with_capacity(len as usize);
-    fp.read_to_end(&mut bin)?;
-    let dyn_image = image::load_from_memory(&bin)?;
-    let tex = Self::new_diffuse(
-      context,
-      layout,
-      &dyn_image.to_rgba8(),
-    );
-    Ok(tex)
-  }
-  pub fn new_diffuse(
-    context: &WGPUCtx,
-    layout: &TextureLayout,
-    diffuse_image: &RgbaImage,
+    label: &str,
   ) -> Self {
-    let texture =
-      Texture::new_diffuse(context, diffuse_image);
-    let bindgroup = context
-      .device
-      .create_bind_group(&wgpu::BindGroupDescriptor {
-        label: Some("Texture bindgroup"),
-        layout: &layout.bindgroup_layout,
-        entries: &[
-          BindGroupEntry {
-            binding: 0,
-            resource: BindingResource::TextureView(
-              &texture.view,
-            ),
-          },
-          BindGroupEntry {
-            binding: 1,
-            resource: BindingResource::Sampler(
-              &texture.sampler,
-            ),
-          },
-        ],
-      });
-
-    Self { bindgroup, texture }
+    let texture = Texture::new_depth(context, label);
+    Self { texture }
   }
 }

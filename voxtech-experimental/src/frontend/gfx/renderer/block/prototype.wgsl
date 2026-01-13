@@ -6,15 +6,26 @@ struct TaskPayload {
   visible: u32, 
 }
 
-// 三角形の座標(固定)
+// 四角形の座標(固定)
 const positions = array<vec4<f32>, 4> (
-  vec4<f32>(-0.5,  0.5, 0.0, 1.0),
-  vec4<f32>(-0.5, -0.5, 0.0, 1.0),
-  vec4<f32>( 0.5, -0.5, 0.0, 1.0),
-  vec4<f32>( 0.5,  0.5, 0.0, 1.0),
+  vec4<f32>(0.0, 0.0, 0.0, 1.0),
+  vec4<f32>(0.03125, 0.0, 0.0, 1.0),
+  vec4<f32>(0.03125, 0.03125, 0.0, 1.0),
+  vec4<f32>(0.0, 0.03125, 0.0, 1.0),
 );
 
-// 三角形の頂点カラー(固定)
+// 四角形のオフセット位置(固定)
+const position_offset = vec4<f32>(
+  0.03125, 0.03125, 0.0, 0.0
+);
+
+// 四角形の頂点インデックス(固定)
+const indices = array<vec3<u32>, 2>(
+  vec3<u32>(0u, 1u, 2u),
+  vec3<u32>(0u, 2u, 3u),
+);
+
+// 四角形の頂点カラー(固定)
 const colors = array<vec4<f32>, 4>(
   vec4<f32>(1.0, 0.0, 0.0, 1.0),
   vec4<f32>(0.0, 1.0, 0.0, 1.0),
@@ -44,8 +55,8 @@ struct PrimitiveIn {
 struct MeshOut {
   @builtin(vertex_count) vertex_count: u32, 
   @builtin(primitive_count) primitive_count: u32,
-  @builtin(vertices) vertices: array<VertexOut, 4>,
-  @builtin(primitives) primitives: array<PrimitiveOut, 2>,
+  @builtin(vertices) vertices: array<VertexOut, 64>,
+  @builtin(primitives) primitives: array<PrimitiveOut, 32>,
 }
 
 // タスクペイロード変数
@@ -54,7 +65,7 @@ var<workgroup> workgroup_data: f32;
 
 @task
 @payload(task_payload)
-@workgroup_size(1)
+@workgroup_size(4, 4, 1)
 fn task_main() -> @builtin(mesh_task_size) vec3<u32> {
   // ワークグループデータの初期化
   workgroup_data = 1.0;
@@ -62,7 +73,7 @@ fn task_main() -> @builtin(mesh_task_size) vec3<u32> {
   task_payload.color_mask = vec4<f32>(1.0, 1.0, 1.0, 1.0);
   task_payload.visible = 1u;
 
-  return vec3<u32>(1u, 1u, 1u); // 1プリミティブ、1頂点バッファ
+  return vec3<u32>(16u, 16u, 1u); // 2プリミティブワークグループ
 }
 
 // メッシュ出力変数
@@ -70,30 +81,40 @@ var<workgroup> mesh_out: MeshOut;
 
 @mesh(mesh_out)
 @payload(task_payload)
-@workgroup_size(1)
+@workgroup_size(4, 4, 1)
 fn mesh_main(
-  @builtin(local_invocation_index) index: u32, 
-  @builtin(global_invocation_id) id: vec3<u32>, 
+  @builtin(local_invocation_index) loc_idx: u32, 
+  @builtin(global_invocation_id) glob_id: vec3<u32>, 
 ) {
-  mesh_out.vertex_count = 4u;
-  mesh_out.primitive_count = 2u;
-  workgroup_data = 2.0;
+  if (loc_idx == 0u) {
+    // ワークグループデータの確認
+    workgroup_data = workgroup_data + 1.0;
+  }
+  if (loc_idx == 15u) {
+    mesh_out.vertex_count = 64u;
+    mesh_out.primitive_count = 32u;
+  }
 
-  mesh_out.vertices[0].pos = positions[0];
-  mesh_out.vertices[0].color = colors[0];
-  mesh_out.vertices[1].pos = positions[1];
-  mesh_out.vertices[1].color = colors[1];
-  mesh_out.vertices[2].pos = positions[2];
-  mesh_out.vertices[2].color = colors[2];
-  mesh_out.vertices[3].pos = positions[3];
-  mesh_out.vertices[3].color = colors[3];
-
-  mesh_out.primitives[0].indices = vec3<u32>(0u, 1u, 2u);
-  mesh_out.primitives[0].cull = task_payload.visible == 0u;
-  mesh_out.primitives[0].color_mask = task_payload.color_mask;
-  mesh_out.primitives[1].indices = vec3<u32>(0u, 2u, 3u);
-  mesh_out.primitives[1].cull = task_payload.visible == 0u;
-  mesh_out.primitives[1].color_mask = task_payload.color_mask;
+  for (var i: u32 = 0u; i < 4u; i = i + 1u) {
+    mesh_out.vertices[i + loc_idx * 4u].pos = 
+      positions[i] + vec4<f32>(
+        f32(loc_idx % 4u) * position_offset.x,
+        f32(loc_idx / 4u) * position_offset.y,
+        0.0,
+        0.0
+      ) + vec4<f32>(
+        f32(glob_id.x / 4u) * 0.125 - 1.0,
+        f32(glob_id.y / 4u) * 0.125 - 1.0,
+        0.0,
+        0.0
+      );
+    mesh_out.vertices[i + loc_idx * 4u].color = colors[i];
+  }
+  for (var j: u32 = 0u; j < 2u; j = j + 1u) {
+    mesh_out.primitives[j + loc_idx * 2u].indices = indices[j] + vec3<u32>(loc_idx * 4u);
+    mesh_out.primitives[j + loc_idx * 2u].cull = task_payload.visible == 0u;
+    mesh_out.primitives[j + loc_idx * 2u].color_mask = task_payload.color_mask;
+  }
 }
 
 @fragment
