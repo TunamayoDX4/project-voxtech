@@ -11,11 +11,13 @@ use winit::{
 
 pub mod aliases;
 pub use aliases::*;
+
 pub mod gfx;
+
+pub mod world_instance;
 
 pub mod control;
 pub mod player;
-pub mod world;
 
 pub mod common;
 
@@ -24,15 +26,13 @@ pub mod types;
 /// アプリケーション構造体
 pub struct App {
   window: Option<Arc<Window>>,
-  wgpu_ctx: Option<gfx::WGPUContext>,
-  camera: Option<gfx::camera::CameraInstance>,
-  world_renderer:
-    Option<gfx::world_renderer::WorldRenderer>,
-  block_renderer: Option<
-    Vec<gfx::world_renderer::block_rdr::BlockRenderInstance,
-  >>,
+  gfx: Option<gfx::GfxBundle>,
+  world: Option<world_instance::WorldInstance>,
   user_input: control::UserControlInput,
   player: player::Player,
+  player_camera: gfx::world::camera3d::Camera3DInstance,
+  player_camera_cfg:
+    gfx::world::camera3d::Camera3DConfig,
 }
 impl ApplicationHandler for App {
   fn resumed(&mut self, event_loop: &ActiveEventLoop) {
@@ -61,35 +61,19 @@ impl ApplicationHandler for App {
     }
     self.window = Some(Arc::clone(&window));
 
-    // カメラの初期化
-    let camera = gfx::camera::CameraInstance {
-      position: [0., 0., -5.].into(),
-      velocity: [0., 0., 0.].into(),
-      rotation:
-        nalgebra::UnitQuaternion::from_axis_angle(
-          &nalgebra::UnitVector3::new_normalize(
-            nalgebra::Vector3::x(),
-          ),
-          0.,
-        ),
-    };
+    self.world =
+      Some(world_instance::WorldInstance::new());
 
-    // WGPUコンテキストの初期化
-    let wgpu_ctx =
-      pollster::block_on(gfx::WGPUContext::new(window))
-        .expect("WGPU Context initialize failure");
-    let world_renderer =
-      gfx::world_renderer::WorldRenderer::new(
-        &wgpu_ctx, &camera,
-      )
-      .expect("World renderer initialize failure");
-    let block_renderer = [
-      gfx::world_renderer::block_rdr::BlockRenderInstance::new(&wgpu_ctx, 1088)
-    ].into();
-    self.wgpu_ctx = Some(wgpu_ctx);
-    self.world_renderer = Some(world_renderer);
-    self.block_renderer = Some(block_renderer);
-    self.camera = Some(camera);
+    let mut gfx =
+      pollster::block_on(gfx::GfxBundle::new(window))
+        .expect(
+          "Graphics Bundle Module initialize failure",
+        );
+    gfx.world_init(
+      &self.player_camera_cfg,
+      &self.player_camera,
+    );
+    self.gfx = Some(gfx);
   }
 
   fn window_event(
@@ -98,52 +82,54 @@ impl ApplicationHandler for App {
     _window_id: WindowId,
     event: WindowEvent,
   ) {
-    let Some(wgpu_ctx) = self.wgpu_ctx.as_mut() else {
+    let Some(gfx) = self.gfx.as_mut() else {
       return;
     };
     match event {
       // 再描画処理
       WindowEvent::RedrawRequested => {
-        if let Some(world_renderer) =
-          self.world_renderer.as_mut()
-        {
-          if let Some(camera) = self.camera.as_mut() {
-            self
-              .player
-              .update(&self.user_input);
-            self.user_input.update();
-            self
-              .player
-              .update_camera(camera);
-            world_renderer
-              .update_camera(&wgpu_ctx, &camera);
+        // プレイヤーのビューの更新
+        self
+          .player
+          .update(&self.user_input);
+        self.user_input.update();
+        self
+          .player
+          .update_camera(&mut self.player_camera);
+
+        // ワールドの描画・更新
+        if let Some(world) = self.world.as_mut() {
+          world.visibility_update(
+            &self.player_camera.position,
+            gfx,
+          );
+          world.rendering(gfx);
+        }
+
+        gfx.world_modify(|ctx, w| {
+          w.update(
+            ctx,
+            &self.player_camera_cfg,
+            &self.player_camera,
+          )
+        });
+
+        // GFXバンドル構造体を呼び出し、描画する。
+        match gfx.rendering() {
+          Ok(_) => {}
+          Err(wgpu::SurfaceError::Lost) => {
+            gfx.reconfigure();
           }
-          let Some(block_rdr) =
-            self.block_renderer.as_ref()
-          else {
-            return;
-          };
-          match wgpu_ctx
-            .rendering(world_renderer, &block_rdr)
-          {
-            Ok(_) => {}
-            Err(wgpu::SurfaceError::Lost) => {
-              wgpu_ctx.reconfigure()
-            }
-            Err(wgpu::SurfaceError::OutOfMemory) => {
-              event_loop.exit()
-            }
-            Err(e) => eprintln!("Error occured: {e}"),
+          Err(wgpu::SurfaceError::OutOfMemory) => {
+            event_loop.exit()
           }
+          Err(e) => eprintln!("Error occured: {e}"),
         }
       }
 
       // ウィンドウのリサイズ処理
       WindowEvent::Resized(_) => {
-        wgpu_ctx.resize();
-        if let Some(wr) = self.world_renderer.as_mut() {
-          wr.resize(&wgpu_ctx);
-        }
+        gfx.resize();
       }
 
       // ウィンドウを閉じる要求が来た時の処理
@@ -155,6 +141,72 @@ impl ApplicationHandler for App {
           self
             .user_input
             .key_input(&event, window);
+        }
+        if let Some(world) = self.world.as_mut() {
+          if !event.state.is_pressed() {
+            return;
+          }
+          match event.physical_key {
+            winit::keyboard::PhysicalKey::Code(kc) => {
+              match kc {
+                winit::keyboard::KeyCode::ArrowLeft => {}
+                winit::keyboard::KeyCode::ArrowRight => {}
+                winit::keyboard::KeyCode::ArrowUp => {}
+                winit::keyboard::KeyCode::ArrowDown => {}
+                winit::keyboard::KeyCode::KeyT => {}
+                winit::keyboard::KeyCode::KeyB => {}
+                _ => {
+                  return;
+                }
+              }
+              let Some(region) =
+                world.world.dim.get_mut(
+                  &crate::common::BlockPos::new(
+                    0, 0, -256,
+                  ),
+                )
+              else {
+                return;
+              };
+              let sector = &mut region.0.sector.write();
+              let sector =
+                &sector.as_mut().unwrap()[48];
+              let mut chunk = sector.chunk.write();
+              let p = 48;
+              let cells = chunk.as_mut().unwrap()[p]
+                .cell
+                .as_mut()
+                .unwrap();
+              let mut info = sector.chunk_info.write();
+              cells[p] = match kc {
+                winit::keyboard::KeyCode::ArrowLeft => {
+                  cells[p].rotate_west()
+                }
+                winit::keyboard::KeyCode::ArrowRight => {
+                  cells[p].rotate_east()
+                }
+                winit::keyboard::KeyCode::ArrowUp => {
+                  cells[p].rotate_top()
+                }
+                winit::keyboard::KeyCode::ArrowDown => {
+                  cells[p].rotate_bottom()
+                }
+                winit::keyboard::KeyCode::KeyT => {
+                  cells[p].rotate_north()
+                }
+                winit::keyboard::KeyCode::KeyB => {
+                  cells[p].rotate_south()
+                }
+                _ => {
+                  return;
+                }
+              };
+              (0..6).for_each(|i| {
+                info[p].dirty_opq_tile[i] = true
+              });
+            }
+            _ => {}
+          }
         }
       }
       _ => {}
@@ -185,12 +237,28 @@ fn main() {
   event_loop.set_control_flow(ControlFlow::Poll);
   let mut app = App {
     window: None,
-    wgpu_ctx: None,
-    world_renderer: None,
-    block_renderer: None,
-    camera: None,
+    gfx: None,
+    world: None,
     user_input: control::UserControlInput::new(),
     player: player::Player::new(),
+    player_camera:
+      gfx::world::camera3d::Camera3DInstance {
+        position: [0., 0., 0.].into(),
+        velocity: [0., 0., 0.].into(),
+        rotation:
+          nalgebra::UnitQuaternion::from_axis_angle(
+            &nalgebra::UnitVector3::new_normalize(
+              nalgebra::Vector3::z(),
+            ),
+            0.,
+          ),
+      },
+    player_camera_cfg:
+      gfx::world::camera3d::Camera3DConfig {
+        fovy: 45. * std::f64::consts::PI / 180.,
+        near: 0.1,
+        far: 10000.,
+      },
   };
   event_loop
     .run_app(&mut app)

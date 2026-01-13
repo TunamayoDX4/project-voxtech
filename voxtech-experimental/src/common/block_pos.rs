@@ -14,7 +14,71 @@ use bytemuck::{Pod, Zeroable};
 #[derive(
   Debug, Clone, Copy, PartialEq, Eq, Hash, Pod, Zeroable,
 )]
-pub struct InnerBlockPos(u8);
+pub struct InnerBlockPos(pub u8);
+impl InnerBlockPos {
+  #[inline]
+  pub fn new(pos: u8) -> Self {
+    Self(pos & 63)
+  }
+  #[inline]
+  pub fn new_xyz(x: u8, y: u8, z: u8) -> Self {
+    Self::from([x, y, z, 0])
+  }
+  #[inline]
+  pub fn proj_xy(&self) -> u8 {
+    self.0 & 15
+  }
+  #[inline]
+  pub fn proj_xz(&self) -> u8 {
+    (self.0 & 3) | ((self.0 >> 2) & 12)
+  }
+  #[inline]
+  pub fn proj_yz(&self) -> u8 {
+    ((self.0 << 2) & 12) | ((self.0 >> 4) & 3)
+  }
+  #[inline]
+  pub fn neigh_west(self) -> (bool, Self) {
+    let neigh = (self.0 & 3).wrapping_sub(1);
+    let outer = neigh == u8::MAX;
+    let ret = Self((self.0 & !3) | neigh & 3);
+    (outer, ret)
+  }
+  #[inline]
+  pub fn neigh_east(self) -> (bool, Self) {
+    let neigh = (self.0 | !3).wrapping_add(1);
+    let outer = neigh == 0;
+    let ret = Self((self.0 & !3) | neigh & 3);
+    (outer, ret)
+  }
+  #[inline]
+  pub fn neigh_south(self) -> (bool, Self) {
+    let neigh = ((self.0 >> 2) | 3).wrapping_sub(1);
+    let outer = neigh == u8::MAX;
+    let ret = Self((self.0 & !12) | (neigh & 3) << 2);
+    (outer, ret)
+  }
+  #[inline]
+  pub fn neigh_north(self) -> (bool, Self) {
+    let neigh = ((self.0 >> 2) | !3).wrapping_add(1);
+    let outer = neigh == 0;
+    let ret = Self((self.0 & !12) | (neigh & 3) << 2);
+    (outer, ret)
+  }
+  #[inline]
+  pub fn neigh_bottom(self) -> (bool, Self) {
+    let neigh = ((self.0 >> 4) | 3).wrapping_sub(1);
+    let outer = neigh == u8::MAX;
+    let ret = Self((self.0 & !48) | (neigh & 3) << 4);
+    (outer, ret)
+  }
+  #[inline]
+  pub fn neigh_top(self) -> (bool, Self) {
+    let neigh = ((self.0 >> 4) | !3).wrapping_add(1);
+    let outer = neigh == 0;
+    let ret = Self((self.0 & !48) | (neigh & 3) << 4);
+    (outer, ret)
+  }
+}
 impl From<[u8; 4]> for InnerBlockPos {
   fn from(value: [u8; 4]) -> Self {
     Self(
@@ -53,6 +117,28 @@ impl From<BlockPos> for [i64; 4] {
     value.0
   }
 }
+impl From<InnerBlockPos> for BlockPos {
+  #[inline]
+  fn from(value: InnerBlockPos) -> Self {
+    Self([
+      ((value.0 >> 0) & 3) as _,
+      ((value.0 >> 2) & 3) as _,
+      ((value.0 >> 4) & 3) as _,
+      ((value.0 >> 6) & 3) as _,
+    ])
+  }
+}
+impl From<BlockPos> for InnerBlockPos {
+  #[inline]
+  fn from(value: BlockPos) -> Self {
+    Self(
+      ((value.0[0] & 3) << 0) as u8
+        | ((value.0[1] & 3) << 2) as u8
+        | ((value.0[2] & 3) << 4) as u8
+        | ((value.0[3] & 3) << 6) as u8,
+    )
+  }
+}
 impl Sub<BlockPos> for BlockPos {
   type Output = BlockDist;
 
@@ -83,6 +169,25 @@ impl AddAssign<BlockDist> for BlockPos {
   #[inline]
   fn add_assign(&mut self, rhs: BlockDist) {
     *self = *self + rhs;
+  }
+}
+impl Sub<BlockDist> for BlockPos {
+  type Output = BlockPos;
+
+  #[inline]
+  fn sub(self, rhs: BlockDist) -> Self::Output {
+    Self([
+      self.0[0] - rhs.0[0],
+      self.0[1] - rhs.0[1],
+      self.0[2] - rhs.0[2],
+      self.0[3] - rhs.0[3],
+    ])
+  }
+}
+impl SubAssign<BlockDist> for BlockPos {
+  #[inline]
+  fn sub_assign(&mut self, rhs: BlockDist) {
+    *self = *self - rhs;
   }
 }
 
@@ -324,7 +429,8 @@ impl BlockPos {
   /// 上位2*levelビットを切り下げる
   #[inline]
   pub fn cut_down(&self, level: u8) -> Self {
-    *self & !(i64::MAX << 2 * level)
+    let right = !(i64::MAX << 2 * level);
+    *self & right
   }
 
   /// 下位2ビットを切り上げる
@@ -351,7 +457,14 @@ impl BlockPos {
   /// 2*levelビットで結合する
   #[inline]
   pub fn merge(&self, right: &Self, level: u8) -> Self {
-    self.cut_down(level) | right.cut_up(level)
+    let left = self.cut_up(level);
+    let right = right.cut_down(level);
+    Self([
+      left.0[0] + right.0[0],
+      left.0[1] + right.0[1],
+      left.0[2] + right.0[2],
+      left.0[3] + right.0[3],
+    ])
   }
 
   /// 2ビットで切り分ける
@@ -366,7 +479,14 @@ impl BlockPos {
   /// 2ビットで結合する
   #[inline]
   pub fn merge_1(&self, right: &Self) -> Self {
-    self.cut_down_1() | right.cut_up_1()
+    let left = self.cut_up_1();
+    let right = right.cut_down_1();
+    Self([
+      left.0[0] + right.0[0],
+      left.0[1] + right.0[1],
+      left.0[2] + right.0[2],
+      left.0[3] + right.0[3],
+    ])
   }
 }
 
@@ -383,6 +503,28 @@ impl From<[i64; 4]> for BlockDist {
 impl From<BlockDist> for [i64; 4] {
   fn from(value: BlockDist) -> Self {
     value.0
+  }
+}
+impl From<InnerBlockPos> for BlockDist {
+  #[inline]
+  fn from(value: InnerBlockPos) -> Self {
+    Self([
+      ((value.0 >> 0) & 3) as _,
+      ((value.0 >> 2) & 3) as _,
+      ((value.0 >> 4) & 3) as _,
+      ((value.0 >> 6) & 3) as _,
+    ])
+  }
+}
+impl From<BlockDist> for InnerBlockPos {
+  #[inline]
+  fn from(value: BlockDist) -> Self {
+    Self(
+      ((value.0[0] & 3) << 0) as u8
+        | ((value.0[1] & 3) << 2) as u8
+        | ((value.0[2] & 3) << 4) as u8
+        | ((value.0[3] & 3) << 6) as u8,
+    )
   }
 }
 impl BlockDist {
@@ -462,7 +604,8 @@ impl BlockDist {
   /// 上位2*levelビットを切り下げる
   #[inline]
   pub fn cut_down(&self, level: u8) -> Self {
-    *self & !(i64::MAX << 2 * level)
+    let right = !(i64::MAX << 2 * level);
+    *self & right
   }
 
   /// 下位2ビットを切り上げる
@@ -489,7 +632,9 @@ impl BlockDist {
   /// 2*levelビットで結合する
   #[inline]
   pub fn merge(&self, right: &Self, level: u8) -> Self {
-    self.cut_down(level) | right.cut_up(level)
+    let left = self.cut_up(level);
+    let right = right.cut_down(level);
+    left | right
   }
 
   /// 2ビットで切り分ける
@@ -504,7 +649,14 @@ impl BlockDist {
   /// 2ビットで結合する
   #[inline]
   pub fn merge_1(&self, right: &Self) -> Self {
-    self.cut_down_1() | right.cut_up_1()
+    let left = self.cut_up_1();
+    let right = right.cut_down_1();
+    Self([
+      left.0[0] + right.0[0],
+      left.0[1] + right.0[1],
+      left.0[2] + right.0[2],
+      left.0[3] + right.0[3],
+    ])
   }
 }
 impl Not for BlockDist {

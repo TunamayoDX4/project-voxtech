@@ -1,10 +1,11 @@
+use super::WGPUCtx;
 use bytemuck::{Pod, Zeroable};
-use wgpu::{util::DeviceExt, wgc::instance};
+use wgpu::util::DeviceExt;
 
 /// カメラのインスタンス
 #[repr(C)]
 #[derive(Debug, Clone, Copy)]
-pub struct CameraInstance {
+pub struct Camera3DInstance {
   pub position: nalgebra::Point3<f64>,
   pub velocity: nalgebra::Vector3<f64>,
   pub rotation: nalgebra::UnitQuaternion<f64>,
@@ -13,21 +14,21 @@ pub struct CameraInstance {
 /// カメラ用のコンフィグ
 #[repr(C)]
 #[derive(Debug, Clone, Copy)]
-pub struct CameraConfig {
+pub struct Camera3DConfig {
   pub fovy: f64,
   pub near: f64,
   pub far: f64,
 }
-impl CameraConfig {
+impl Camera3DConfig {
   pub fn uniform(
     &self,
-    instance: &CameraInstance,
+    instance: &Camera3DInstance,
     window: &winit::window::Window,
-  ) -> CameraUniform {
+  ) -> Camera3DUniform {
     // ビュー行列の生成
     let inner_size = window.inner_size();
-    let aspect =
-      inner_size.width as f64 / inner_size.height as f64;
+    let aspect = inner_size.width as f64
+      / inner_size.height as f64;
     let target = instance.position
       + instance.rotation * nalgebra::Vector3::y();
     let up = instance.rotation * nalgebra::Vector3::z();
@@ -46,39 +47,40 @@ impl CameraConfig {
     // 変換行列の生成
     let vp = proj * view;
 
-    CameraUniform(vp.cast::<f32>().into())
+    Camera3DUniform(vp.cast::<f32>().into())
   }
 }
 
 /// カメラ用のユニフォームバッファ
 #[repr(C)]
-#[derive(Debug, Clone, Copy, PartialEq, Pod, Zeroable)]
-pub struct CameraUniform([[f32; 4]; 4]);
+#[derive(
+  Debug, Clone, Copy, PartialEq, Pod, Zeroable,
+)]
+pub struct Camera3DUniform([[f32; 4]; 4]);
 
 /// カメラ用のユニフォームのインスタンス
-pub struct CameraUniformInstance {
+pub struct Camera3DUniformInstance {
   pub buffer: wgpu::Buffer,
   pub bindgroup_layout: wgpu::BindGroupLayout,
   pub bindgroup: wgpu::BindGroup,
-  uniform: CameraUniform,
+  uniform: Camera3DUniform,
 }
-impl CameraUniformInstance {
+impl Camera3DUniformInstance {
   pub fn new(
-    context: &super::WGPUContext,
-    instance: &CameraInstance,
+    context: &WGPUCtx,
+    config: &Camera3DConfig,
+    instance: &Camera3DInstance,
   ) -> Self {
     // カメラ行列自体の生成
-    let uniform = context
-      .camera
-      .read()
-      .uniform(instance, &context.window);
+    let uniform =
+      config.uniform(instance, &context.window);
 
     // カメラ行列用バッファの初期化
     let buffer = context
       .device
       .create_buffer_init(
         &wgpu::util::BufferInitDescriptor {
-          label: Some("Camera uniform buffer"),
+          label: Some("Camera3D uniform buffer"),
           contents: bytemuck::cast_slice(&uniform.0),
           usage: wgpu::BufferUsages::UNIFORM
             | wgpu::BufferUsages::COPY_DST,
@@ -90,7 +92,7 @@ impl CameraUniformInstance {
       .device
       .create_bind_group_layout(
         &wgpu::BindGroupLayoutDescriptor {
-          label: Some("Camera bindgroup layout"),
+          label: Some("Camera3D bindgroup layout"),
           entries: &[wgpu::BindGroupLayoutEntry {
             binding: 0,
             visibility: wgpu::ShaderStages::VERTEX,
@@ -108,7 +110,7 @@ impl CameraUniformInstance {
     let bindgroup = context
       .device
       .create_bind_group(&wgpu::BindGroupDescriptor {
-        label: Some("Camera bindgroup"),
+        label: Some("Camera3D bindgroup"),
         layout: &bindgroup_layout,
         entries: &[wgpu::BindGroupEntry {
           binding: 0,
@@ -126,17 +128,23 @@ impl CameraUniformInstance {
 
   pub fn update(
     &mut self,
-    context: &super::WGPUContext,
-    instance: &CameraInstance,
+    context: &super::WGPUCtx,
+    config: &Camera3DConfig,
+    instance: &Camera3DInstance,
   ) {
-    self.uniform = context
-      .camera
-      .read()
-      .uniform(instance, &context.window);
+    self.uniform =
+      config.uniform(instance, &context.window);
     context.queue.write_buffer(
       &self.buffer,
       0,
       bytemuck::cast_slice(&[self.uniform]),
     );
+  }
+
+  pub fn rendering(
+    &self,
+    rpass: &mut wgpu::RenderPass,
+  ) {
+    rpass.set_bind_group(0, &self.bindgroup, &[]);
   }
 }

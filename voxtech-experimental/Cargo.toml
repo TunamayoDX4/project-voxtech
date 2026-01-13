@@ -4,13 +4,17 @@ version = "0.1.0"
 edition = "2024"
 
 [profile.release]
-opt-level = "z"
+opt-level = 3
+panic = "abort"
+codegen-units = 1
 lto = "fat"
 strip = "debuginfo"
 
 [profile.dev]
 opt-level = 1
 lto = false
+panic = "unwind"
+debug = true
 
 [dependencies.serde]
 version = "1"
@@ -34,7 +38,7 @@ features = ["png", "jpeg", "bmp", "tga"]
 [dependencies]
 parking_lot = "0.12"
 
-wgpu = "27"
+wgpu = "28"
 winit = "0.30"
 pollster = "0.4"
 

@@ -40,11 +40,57 @@ impl Dir {
       _ => Self::UNDEF,
     }
   }
+
+  #[inline]
+  pub fn iter() -> impl Iterator<Item = Dir> {
+    (0..6u8).map(|i| unsafe { std::mem::transmute(i) })
+  }
+
+  #[inline]
+  pub fn is_positive(&self) -> u8 {
+    *self as u8 & 1
+  }
+
+  #[inline]
+  pub fn is_negative(&self) -> u8 {
+    1 - self.is_positive()
+  }
+
+  #[inline]
+  pub fn invert(&self) -> Self {
+    unsafe {
+      std::mem::transmute(
+        (*self as u8 & !1) | (!(*self as u8) & 1),
+      )
+    }
+  }
+}
+impl From<u8> for Dir {
+  #[inline]
+  fn from(value: u8) -> Self {
+    Self::new(value)
+  }
 }
 impl From<Axis> for Dir {
   #[inline]
   fn from(value: Axis) -> Self {
     Self::new((value as u8) << 1)
+  }
+}
+impl std::fmt::Display for Dir {
+  fn fmt(
+    &self,
+    f: &mut std::fmt::Formatter<'_>,
+  ) -> std::fmt::Result {
+    f.write_str(match self {
+      Dir::WST => "West",
+      Dir::EST => "East",
+      Dir::STH => "South",
+      Dir::NTH => "North",
+      Dir::BTM => "Bottom",
+      Dir::TOP => "Top",
+      Dir::UNDEF => "Undefined",
+    })
   }
 }
 
@@ -78,13 +124,48 @@ impl Axis {
   }
 
   #[inline]
+  pub fn iter() -> impl Iterator<Item = Dir> {
+    (0..3u8).map(|i| unsafe { std::mem::transmute(i) })
+  }
+
+  #[inline]
   pub unsafe fn from_dir_unchecked(dir: Dir) -> Self {
-    unsafe { std::mem::transmute((dir as u8) >> 2) }
+    unsafe { std::mem::transmute((dir as u8) >> 1) }
+  }
+
+  /// 64分木における面を作る上でのステップ／インデックスの分布
+  #[inline]
+  pub fn idx_step(&self) -> (u8, u8) {
+    match self {
+      Self::WE => (1, 4),
+      Self::SN => (4, 1),
+      Self::BT => (1, 1),
+      _ => (0, 0),
+    }
+  }
+}
+impl From<u8> for Axis {
+  #[inline]
+  fn from(value: u8) -> Self {
+    Self::new(value)
   }
 }
 impl From<Dir> for Axis {
   #[inline]
   fn from(value: Dir) -> Self {
     Self::new((value as u8) >> 1)
+  }
+}
+impl std::fmt::Display for Axis {
+  fn fmt(
+    &self,
+    f: &mut std::fmt::Formatter<'_>,
+  ) -> std::fmt::Result {
+    f.write_str(match self {
+      Axis::WE => "West->East",
+      Axis::SN => "South->North",
+      Axis::BT => "Bottom->Top",
+      Axis::UNDEF => "Undefined",
+    })
   }
 }

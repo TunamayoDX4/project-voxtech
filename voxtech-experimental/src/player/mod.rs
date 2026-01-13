@@ -20,22 +20,22 @@ impl Player {
 
   pub fn update(&mut self, input: &UserControlInput) {
     if input.move_key.l {
-      self.velocity.x -= 5. / 60.
+      self.velocity.x -= 15. / 60.
     }
     if input.move_key.r {
-      self.velocity.x += 5. / 60.
+      self.velocity.x += 15. / 60.
     }
     if input.move_key.dn {
-      self.velocity.z -= 5. / 60.
+      self.velocity.z -= 15. / 60.
     }
     if input.move_key.up {
-      self.velocity.z += 5. / 60.
+      self.velocity.z += 15. / 60.
     }
     if input.move_key.bw {
-      self.velocity.y -= 5. / 60.
+      self.velocity.y -= 60. / 60.
     }
     if input.move_key.fw {
-      self.velocity.y += 5. / 60.
+      self.velocity.y += 60. / 60.
     }
     self.yaw = (self.yaw
       - (0.12
@@ -56,7 +56,7 @@ impl Player {
 
   pub fn update_camera(
     &mut self,
-    camera: &mut super::gfx::camera::CameraInstance,
+    camera: &mut super::gfx::world::camera3d::Camera3DInstance,
   ) {
     let rotation =
       nalgebra::UnitQuaternion::from_axis_angle(

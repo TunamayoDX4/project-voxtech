@@ -3,14 +3,14 @@
 
 use std::io::Read;
 
-use super::WGPUContext;
+use super::wgpu_ctx::WGPUCtx;
 use image::RgbaImage;
 use wgpu::{
   AddressMode, BindGroup, BindGroupEntry,
   BindGroupLayout, BindGroupLayoutEntry,
   BindingResource, BindingType, CompareFunction,
-  Extent3d, FilterMode, Origin3d, Sampler,
-  SamplerBindingType, ShaderStages,
+  Extent3d, FilterMode, MipmapFilterMode, Origin3d,
+  Sampler, SamplerBindingType, ShaderStages,
   TexelCopyBufferLayout, TexelCopyTextureInfo,
   TextureAspect, TextureDimension, TextureFormat,
   TextureSampleType, TextureUsages, TextureView,
@@ -21,7 +21,7 @@ pub struct TextureLayout {
   bindgroup_layout: BindGroupLayout,
 }
 impl TextureLayout {
-  pub fn new(context: &WGPUContext) -> Self {
+  pub fn new(context: &WGPUCtx) -> Self {
     let bindgroup_layout = context
       .device
       .create_bind_group_layout(
@@ -65,7 +65,7 @@ pub struct Texture {
 }
 impl Texture {
   pub fn new_diffuse(
-    context: &WGPUContext,
+    context: &WGPUCtx,
     diffuse_image: &RgbaImage,
   ) -> Self {
     let dimensions = diffuse_image.dimensions();
@@ -113,7 +113,7 @@ impl Texture {
         address_mode_w: AddressMode::ClampToEdge,
         min_filter: FilterMode::Nearest,
         mag_filter: FilterMode::Nearest,
-        mipmap_filter: FilterMode::Nearest,
+        mipmap_filter: MipmapFilterMode::Nearest,
         ..Default::default()
       },
     );
@@ -128,7 +128,7 @@ impl Texture {
   pub const DEPTH_FORMAT: TextureFormat =
     TextureFormat::Depth32Float;
   pub fn new_depth(
-    context: &WGPUContext,
+    context: &WGPUCtx,
     label: &str,
   ) -> Self {
     let size = Extent3d {
@@ -159,7 +159,7 @@ impl Texture {
         address_mode_w: AddressMode::ClampToEdge,
         mag_filter: FilterMode::Linear,
         min_filter: FilterMode::Linear,
-        mipmap_filter: FilterMode::Nearest,
+        mipmap_filter: MipmapFilterMode::Nearest,
         lod_min_clamp: 0.0,
         lod_max_clamp: 100.0,
         compare: Some(CompareFunction::LessEqual),
@@ -182,7 +182,7 @@ pub struct DiffuseTexture {
 }
 impl DiffuseTexture {
   pub fn new_diffuse_from_image(
-    context: &WGPUContext,
+    context: &WGPUCtx,
     layout: &TextureLayout,
     image_path: impl AsRef<std::path::Path>,
   ) -> crate::aliases::StdResult<Self> {
@@ -200,7 +200,7 @@ impl DiffuseTexture {
     Ok(tex)
   }
   pub fn new_diffuse(
-    context: &WGPUContext,
+    context: &WGPUCtx,
     layout: &TextureLayout,
     diffuse_image: &RgbaImage,
   ) -> Self {
