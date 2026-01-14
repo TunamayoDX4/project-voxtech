@@ -1,19 +1,47 @@
 use wgpu::{PipelineLayout, RenderPipeline};
 
-use crate::frontend::gfx::wgpu_ctx::WGPUCtx;
+use super::{
+  super::wgpu_ctx::WGPUCtx, util::camera::*,
+};
 
 pub struct PrototypeRenderer {
   pipeline_layout: PipelineLayout,
   pipeline: RenderPipeline,
+  camera_config: Camera3DConfig,
+  camera_instance: Camera3DInstance,
+  camera: Camera3DUniformInstance,
 }
 impl PrototypeRenderer {
   pub fn new(ctx: &WGPUCtx) -> Self {
+    let camera_config = Camera3DConfig {
+      fovy: 45. * (std::f64::consts::PI / 180.),
+      near: 0.1,
+      far: 5000.,
+    };
+    let camera_instance = Camera3DInstance {
+      position: [0., -10., 0.].into(),
+      velocity: [0., 0., 0.].into(),
+      rotation:
+        nalgebra::UnitQuaternion::from_axis_angle(
+          &nalgebra::UnitVector3::new_normalize(
+            nalgebra::Vector3::y(),
+          ),
+          0.0,
+        ),
+    };
+    let camera = Camera3DUniformInstance::new(
+      ctx,
+      &camera_config,
+      &camera_instance,
+    );
     let pipeline_layout = ctx
       .device
       .create_pipeline_layout(
         &wgpu::PipelineLayoutDescriptor {
           label: Some("Prototype Renderer layout"),
-          bind_group_layouts: &[],
+          bind_group_layouts: &[
+            &camera.bindgroup_layout
+          ],
           immediate_size: 0,
         },
       );
@@ -62,6 +90,9 @@ impl PrototypeRenderer {
     Self {
       pipeline_layout,
       pipeline,
+      camera,
+      camera_config,
+      camera_instance,
     }
   }
 
@@ -94,6 +125,11 @@ impl PrototypeRenderer {
         occlusion_query_set: None,
         multiview_mask: None,
       },
+    );
+    rpass.set_bind_group(
+      0,
+      &self.camera.bindgroup,
+      &[],
     );
     rpass.set_pipeline(&self.pipeline);
     rpass.draw_mesh_tasks(1, 1, 1);

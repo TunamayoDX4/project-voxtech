@@ -1,5 +1,11 @@
 enable wgpu_mesh_shader;
 
+// カメラ
+struct CameraUniform {
+  view_proj: mat4x4<f32>,
+}
+@group(0) @binding(0) var<uniform> camera: CameraUniform;
+
 // タスクペイロード構造体
 struct TaskPayload {
   color_mask: vec4<f32>,
@@ -9,14 +15,14 @@ struct TaskPayload {
 // 四角形の座標(固定)
 const positions = array<vec4<f32>, 4> (
   vec4<f32>(0.0, 0.0, 0.0, 1.0),
-  vec4<f32>(0.03125, 0.0, 0.0, 1.0),
-  vec4<f32>(0.03125, 0.03125, 0.0, 1.0),
-  vec4<f32>(0.0, 0.03125, 0.0, 1.0),
+  vec4<f32>(1.0, 0.0, 0.0, 1.0),
+  vec4<f32>(1.0, 0.0, 1.0, 1.0),
+  vec4<f32>(0.0, 0.0, 1.0, 1.0),
 );
 
 // 四角形のオフセット位置(固定)
 const position_offset = vec4<f32>(
-  0.03125, 0.03125, 0.0, 0.0
+  1.0, 0.0, 1.0, 0.0
 );
 
 // 四角形の頂点インデックス(固定)
@@ -65,7 +71,7 @@ var<workgroup> workgroup_data: f32;
 
 @task
 @payload(task_payload)
-@workgroup_size(4, 4, 1)
+@workgroup_size(1, 1, 1)
 fn task_main() -> @builtin(mesh_task_size) vec3<u32> {
   // ワークグループデータの初期化
   workgroup_data = 1.0;
@@ -73,7 +79,7 @@ fn task_main() -> @builtin(mesh_task_size) vec3<u32> {
   task_payload.color_mask = vec4<f32>(1.0, 1.0, 1.0, 1.0);
   task_payload.visible = 1u;
 
-  return vec3<u32>(16u, 16u, 1u); // 2プリミティブワークグループ
+  return vec3<u32>(2u, 2u, 1u); // 2プリミティブワークグループ
 }
 
 // メッシュ出力変数
@@ -96,18 +102,20 @@ fn mesh_main(
   }
 
   for (var i: u32 = 0u; i < 4u; i = i + 1u) {
-    mesh_out.vertices[i + loc_idx * 4u].pos = 
+    let vert = 
       positions[i] + vec4<f32>(
         f32(loc_idx % 4u) * position_offset.x,
-        f32(loc_idx / 4u) * position_offset.y,
         0.0,
+        f32(loc_idx / 4u) * position_offset.z,
         0.0
       ) + vec4<f32>(
-        f32(glob_id.x / 4u) * 0.125 - 1.0,
-        f32(glob_id.y / 4u) * 0.125 - 1.0,
+        f32(glob_id.x / 4u) * 4.0 - 4.0,
         0.0,
+        f32(glob_id.y / 4u) * 4.0 - 4.0,
         0.0
       );
+    mesh_out.vertices[i + loc_idx * 4u].pos = 
+      camera.view_proj * vert;
     mesh_out.vertices[i + loc_idx * 4u].color = colors[i];
   }
   for (var j: u32 = 0u; j < 2u; j = j + 1u) {

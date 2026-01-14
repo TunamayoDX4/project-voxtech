@@ -93,7 +93,7 @@ impl WGPUCtx {
 
     let config = Mutex::new(config);
     println!(
-      "c: {}, dim_1d: {}, dim_2d: {}, dim_3d: {}",
+      "c: {}, dim_1d: {}, dim_2d: {}, dim_3d: {}, workgroup: {}",
       adapter
         .limits()
         .max_texture_array_layers,
@@ -106,6 +106,9 @@ impl WGPUCtx {
       adapter
         .limits()
         .max_texture_dimension_3d,
+      adapter
+        .limits()
+        .max_mesh_invocations_per_workgroup
     );
 
     Ok(Self {
