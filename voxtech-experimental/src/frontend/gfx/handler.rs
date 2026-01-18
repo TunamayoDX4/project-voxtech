@@ -1,6 +1,11 @@
 use crate::common::*;
 
-use std::{any::Any, sync::Arc, thread::JoinHandle};
+use parking_lot::Mutex;
+use std::{
+  any::Any,
+  sync::{Arc, atomic::AtomicU64},
+  thread::JoinHandle,
+};
 use wgpu::SurfaceError;
 use winit::{dpi::PhysicalSize, window::Window};
 
@@ -61,6 +66,8 @@ impl GfxHandler {
 struct GfxModule {
   wgpu_ctx: wgpu_ctx::WGPUCtx,
   world_rdr: super::renderer::WorldRenderer,
+  render_cycle_time: Mutex<std::time::Instant>,
+  cycle_per_sec: Mutex<f64>,
 }
 impl GfxModule {
   pub async fn new(
@@ -70,9 +77,15 @@ impl GfxModule {
       wgpu_ctx::WGPUCtx::new(window).await?;
     let world_rdr =
       super::renderer::WorldRenderer::new(&wgpu_ctx);
+    let render_cycle_time = std::time::Instant::now();
+    let render_cycle_time =
+      Mutex::new(render_cycle_time);
+    let cycle_per_sec = Mutex::new(0.0);
     Ok(Self {
       wgpu_ctx,
       world_rdr,
+      render_cycle_time,
+      cycle_per_sec,
     })
   }
 
@@ -82,6 +95,12 @@ impl GfxModule {
       .world_rdr
       .rendering(&target);
     target.present();
+    let now = std::time::Instant::now();
+    let mut rct = self.render_cycle_time.lock();
+    let dur = now - *rct;
+    let cps = 1_000_000_000f64 / dur.as_nanos() as f64;
+    *self.cycle_per_sec.lock() = cps;
+    *rct = now;
   }
 
   /// Executing asynchronous renderer module
@@ -137,11 +156,11 @@ impl GfxModule {
         Ok(rendering::RenderingSuccess::StopRequested)
       },
     })? {
-        rendering::RenderingSuccess::Nop => {},
-        ok @ rendering::RenderingSuccess::StopRequested => return Ok(
-          ok
-        ),
-      }
+      rendering::RenderingSuccess::Nop => {},
+      ok @ rendering::RenderingSuccess::StopRequested => return Ok(
+        ok
+      ),
+    }
     }
   }
 }

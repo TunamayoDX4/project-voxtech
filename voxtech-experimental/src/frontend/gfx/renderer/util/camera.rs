@@ -99,7 +99,8 @@ impl Camera3DUniformInstance {
           label: Some("Camera3D bindgroup layout"),
           entries: &[wgpu::BindGroupLayoutEntry {
             binding: 0,
-            visibility: wgpu::ShaderStages::MESH,
+            visibility: wgpu::ShaderStages::TASK
+              | wgpu::ShaderStages::MESH,
             ty: wgpu::BindingType::Buffer {
               ty: wgpu::BufferBindingType::Uniform,
               has_dynamic_offset: false,
