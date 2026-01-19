@@ -82,7 +82,7 @@ impl InnerBlockPos {
 impl From<[u8; 4]> for InnerBlockPos {
   fn from(value: [u8; 4]) -> Self {
     Self(
-      value[0] & 3 << 0
+      value[0] & 3
         | value[1] & 3 << 2
         | value[2] & 3 << 4
         | value[3] & 3 << 6,
@@ -92,7 +92,7 @@ impl From<[u8; 4]> for InnerBlockPos {
 impl From<InnerBlockPos> for [u8; 4] {
   fn from(value: InnerBlockPos) -> Self {
     [
-      value.0 >> 0 & 3,
+      value.0 & 3,
       value.0 >> 2 & 3,
       value.0 >> 4 & 3,
       value.0 >> 6 & 3,
@@ -121,7 +121,7 @@ impl From<InnerBlockPos> for BlockPos {
   #[inline]
   fn from(value: InnerBlockPos) -> Self {
     Self([
-      ((value.0 >> 0) & 3) as _,
+      (value.0 & 3) as _,
       ((value.0 >> 2) & 3) as _,
       ((value.0 >> 4) & 3) as _,
       ((value.0 >> 6) & 3) as _,
@@ -132,7 +132,7 @@ impl From<BlockPos> for InnerBlockPos {
   #[inline]
   fn from(value: BlockPos) -> Self {
     Self(
-      ((value.0[0] & 3) << 0) as u8
+      (value.0[0] & 3) as u8
         | ((value.0[1] & 3) << 2) as u8
         | ((value.0[2] & 3) << 4) as u8
         | ((value.0[3] & 3) << 6) as u8,
@@ -423,13 +423,13 @@ impl BlockPos {
   /// 下位2*levelビットを切り上げる
   #[inline]
   pub fn cut_up(&self, level: u8) -> Self {
-    *self & (i64::MAX << 2 * level)
+    *self & i64::MAX << (2 * level)
   }
 
   /// 上位2*levelビットを切り下げる
   #[inline]
   pub fn cut_down(&self, level: u8) -> Self {
-    let right = !(i64::MAX << 2 * level);
+    let right = !i64::MAX << (2 * level);
     *self & right
   }
 
@@ -509,7 +509,7 @@ impl From<InnerBlockPos> for BlockDist {
   #[inline]
   fn from(value: InnerBlockPos) -> Self {
     Self([
-      ((value.0 >> 0) & 3) as _,
+      (value.0 & 3) as _,
       ((value.0 >> 2) & 3) as _,
       ((value.0 >> 4) & 3) as _,
       ((value.0 >> 6) & 3) as _,
@@ -520,7 +520,7 @@ impl From<BlockDist> for InnerBlockPos {
   #[inline]
   fn from(value: BlockDist) -> Self {
     Self(
-      ((value.0[0] & 3) << 0) as u8
+      (value.0[0] & 3) as u8
         | ((value.0[1] & 3) << 2) as u8
         | ((value.0[2] & 3) << 4) as u8
         | ((value.0[3] & 3) << 6) as u8,
@@ -598,13 +598,13 @@ impl BlockDist {
   /// 下位2*levelビットを切り上げる
   #[inline]
   pub fn cut_up(&self, level: u8) -> Self {
-    *self & (i64::MAX << 2 * level)
+    *self & i64::MAX << (2 * level)
   }
 
   /// 上位2*levelビットを切り下げる
   #[inline]
   pub fn cut_down(&self, level: u8) -> Self {
-    let right = !(i64::MAX << 2 * level);
+    let right = !i64::MAX << (2 * level);
     *self & right
   }
 

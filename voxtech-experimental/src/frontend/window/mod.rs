@@ -5,20 +5,20 @@ use winit::{
   window::{Window, WindowAttributes},
 };
 
+pub mod player;
+
 use super::gfx;
 
 pub struct AppWindow {
   window: Arc<Window>,
   gfx: gfx::GfxHandler,
+  rdr_handler: gfx::renderer::WorldRendererHandler,
+  player: player::PlayerState,
 }
 
+#[derive(Default)]
 pub struct App {
   window: Option<AppWindow>,
-}
-impl Default for App {
-  fn default() -> Self {
-    Self { window: None }
-  }
 }
 impl ApplicationHandler for App {
   fn resumed(
@@ -64,7 +64,7 @@ impl ApplicationHandler for App {
         }
       );
 
-      let gfx = tracing::info_span!("gfx init").in_scope(
+      let (gfx, rdr_handler) = tracing::info_span!("gfx init").in_scope(
         || {
           tracing::info!("starting gfx initialize");
           match pollster::block_on(
@@ -92,8 +92,19 @@ impl ApplicationHandler for App {
       AppWindow {
         window,
         gfx,
+        rdr_handler,
+        player: player::PlayerState::default(),
       }
     });
+    app_window
+      .window
+      .set_cursor_grab(
+        winit::window::CursorGrabMode::Confined,
+      )
+      .expect("mouse cursor mode setting failure");
+    app_window
+      .window
+      .set_cursor_visible(false);
     self.window = Some(app_window);
   }
 
@@ -108,6 +119,18 @@ impl ApplicationHandler for App {
         if let Some(w) = self.window.as_mut() {
           w.gfx.rendering();
           w.window.request_redraw();
+          w.player.update();
+          if let Err(e) = w.rdr_handler.channel.send((
+            [
+              w.player.phys.yaw,
+              w.player.phys.pitch,
+            ],
+            w.player.phys.pos,
+          )) {
+            tracing::warn!(
+              "Physics update sending error: {e}"
+            );
+          }
         }
       }
       WindowEvent::Resized(new_size) => {
@@ -122,6 +145,47 @@ impl ApplicationHandler for App {
         };
         event_loop.exit()
       }
+      WindowEvent::KeyboardInput {
+        device_id: _,
+        event,
+        is_synthetic: _,
+      } => {
+        if let winit::keyboard::PhysicalKey::Code(
+          winit::keyboard::KeyCode::Escape,
+        ) = event.physical_key
+        {
+          self
+            .window
+            .take()
+            .unwrap()
+            .gfx
+            .stop()
+            .unwrap()
+            .unwrap();
+          event_loop.exit();
+        } else if let Some(w) = self.window.as_mut() {
+          w.player.input(event);
+        }
+      }
+      _ => {}
+    }
+  }
+
+  fn device_event(
+    &mut self,
+    event_loop: &winit::event_loop::ActiveEventLoop,
+    device_id: winit::event::DeviceId,
+    event: winit::event::DeviceEvent,
+  ) {
+    match event {
+      winit::event::DeviceEvent::MouseMotion {
+        delta,
+      } => {
+        if let Some(w) = self.window.as_mut() {
+          w.player.phys.mouse_input(delta);
+        }
+      }
+      winit::event::DeviceEvent::Key(_) => {}
       _ => {}
     }
   }

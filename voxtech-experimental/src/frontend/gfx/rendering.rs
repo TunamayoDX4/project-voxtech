@@ -31,7 +31,7 @@ impl std::fmt::Display for RenderingError {
     &self,
     f: &mut std::fmt::Formatter<'_>,
   ) -> std::fmt::Result {
-    <Self as std::fmt::Debug>::fmt(&self, f)
+    <Self as std::fmt::Debug>::fmt(self, f)
   }
 }
 impl std::error::Error for RenderingError {}

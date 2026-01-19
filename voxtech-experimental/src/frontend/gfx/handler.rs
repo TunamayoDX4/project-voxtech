@@ -23,18 +23,25 @@ pub struct GfxHandler {
 impl GfxHandler {
   pub async fn new(
     window: Arc<Window>,
-  ) -> StdResult<Self> {
-    let module = GfxModule::new(window).await?;
+  ) -> StdResult<(
+    Self,
+    super::renderer::WorldRendererHandler,
+  )> {
+    let (module, handler) =
+      GfxModule::new(window).await?;
     let (sender, receiver) =
       rendering::RenderCommandSend::new();
 
     let jh = std::thread::spawn(move || {
       module.module_run(receiver)
     });
-    Ok(Self {
-      jh,
-      render_sender: sender,
-    })
+    Ok((
+      Self {
+        jh,
+        render_sender: sender,
+      },
+      handler,
+    ))
   }
 
   pub fn rendering(&self) {
@@ -72,40 +79,32 @@ struct GfxModule {
 impl GfxModule {
   pub async fn new(
     window: Arc<Window>,
-  ) -> StdResult<Self> {
+  ) -> StdResult<(
+    Self,
+    super::renderer::WorldRendererHandler,
+  )> {
     let wgpu_ctx =
       wgpu_ctx::WGPUCtx::new(window).await?;
-    let world_rdr =
+    let (world_rdr, world_rdr_handler) =
       super::renderer::WorldRenderer::new(&wgpu_ctx);
     let render_cycle_time = std::time::Instant::now();
     let render_cycle_time =
       Mutex::new(render_cycle_time);
     let cycle_per_sec = Mutex::new(0.0);
-    Ok(Self {
-      wgpu_ctx,
-      world_rdr,
-      render_cycle_time,
-      cycle_per_sec,
-    })
-  }
-
-  /// 描画処理本体
-  fn rendering(&self, target: wgpu_ctx::RenderTarget) {
-    self
-      .world_rdr
-      .rendering(&target);
-    target.present();
-    let now = std::time::Instant::now();
-    let mut rct = self.render_cycle_time.lock();
-    let dur = now - *rct;
-    let cps = 1_000_000_000f64 / dur.as_nanos() as f64;
-    *self.cycle_per_sec.lock() = cps;
-    *rct = now;
+    Ok((
+      Self {
+        wgpu_ctx,
+        world_rdr,
+        render_cycle_time,
+        cycle_per_sec,
+      },
+      world_rdr_handler,
+    ))
   }
 
   /// Executing asynchronous renderer module
   fn module_run(
-    self,
+    mut self,
     render_perker: rendering::RenderCommandRecv,
   ) -> Result<
     rendering::RenderingSuccess,
@@ -138,7 +137,20 @@ impl GfxModule {
               return Ok(rendering::RenderingSuccess::Nop)
             }
           };
-          self.rendering(target);
+
+          // 描画処理本体
+          {
+            self
+              .world_rdr
+              .rendering(&target);
+            target.present();
+            let now = std::time::Instant::now();
+            let mut rct = self.render_cycle_time.lock();
+            let dur = now - *rct;
+            let cps = 1_000_000_000f64 / dur.as_nanos() as f64;
+            *self.cycle_per_sec.lock() = cps;
+            *rct = now;
+          }
 
           Ok(rendering::RenderingSuccess::Nop)
         },

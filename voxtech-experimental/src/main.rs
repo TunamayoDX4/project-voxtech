@@ -6,7 +6,9 @@
 
 mod common;
 use common::*;
+mod backend;
 mod frontend;
+
 mod log_tracing;
 
 fn main() -> StdResult<()> {

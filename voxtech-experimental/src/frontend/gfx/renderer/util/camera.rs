@@ -133,16 +133,16 @@ impl Camera3DUniformInstance {
 
   pub fn update(
     &mut self,
-    context: &super::WGPUCtx,
     config: &Camera3DConfig,
     instance: &Camera3DInstance,
+    context: &WGPUCtx,
   ) {
-    let config_lock = context.config.lock();
+    let ctx_config = context.config.lock();
     self.uniform = config.uniform(
       instance,
       (
-        config_lock.width,
-        config_lock.height,
+        ctx_config.width,
+        ctx_config.height,
       ),
     );
     context.queue.write_buffer(

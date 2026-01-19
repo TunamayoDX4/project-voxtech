@@ -4,25 +4,25 @@
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Dir {
   /// West
-  WST = 0,
+  Wst = 0,
 
   /// East
-  EST = 1,
+  Est = 1,
 
   /// South
-  STH = 2,
+  Sth = 2,
 
   /// North
-  NTH = 3,
+  Nth = 3,
 
   /// Bottom
-  BTM = 4,
+  Btm = 4,
 
   /// Top
-  TOP = 5,
+  Top = 5,
 
   /// Undefined
-  UNDEF = u8::MAX,
+  Undef = u8::MAX,
 }
 impl Dir {
   /// 方向の数
@@ -31,13 +31,13 @@ impl Dir {
   #[inline]
   pub fn new(value: u8) -> Self {
     match value {
-      0 => Self::WST,
-      1 => Self::EST,
-      2 => Self::STH,
-      3 => Self::NTH,
-      4 => Self::BTM,
-      5 => Self::TOP,
-      _ => Self::UNDEF,
+      0 => Self::Wst,
+      1 => Self::Est,
+      2 => Self::Sth,
+      3 => Self::Nth,
+      4 => Self::Btm,
+      5 => Self::Top,
+      _ => Self::Undef,
     }
   }
 
@@ -83,13 +83,13 @@ impl std::fmt::Display for Dir {
     f: &mut std::fmt::Formatter<'_>,
   ) -> std::fmt::Result {
     f.write_str(match self {
-      Dir::WST => "West",
-      Dir::EST => "East",
-      Dir::STH => "South",
-      Dir::NTH => "North",
-      Dir::BTM => "Bottom",
-      Dir::TOP => "Top",
-      Dir::UNDEF => "Undefined",
+      Dir::Wst => "West",
+      Dir::Est => "East",
+      Dir::Sth => "South",
+      Dir::Nth => "North",
+      Dir::Btm => "Bottom",
+      Dir::Top => "Top",
+      Dir::Undef => "Undefined",
     })
   }
 }
@@ -107,7 +107,7 @@ pub enum Axis {
   BT = 2,
 
   /// Undefined
-  UNDEF = 127,
+  Undef = 127,
 }
 impl Axis {
   /// 方向の数
@@ -119,7 +119,7 @@ impl Axis {
       0 => Self::BT,
       1 => Self::SN,
       2 => Self::BT,
-      _ => Self::UNDEF,
+      _ => Self::Undef,
     }
   }
 
@@ -165,7 +165,7 @@ impl std::fmt::Display for Axis {
       Axis::WE => "West->East",
       Axis::SN => "South->North",
       Axis::BT => "Bottom->Top",
-      Axis::UNDEF => "Undefined",
+      Axis::Undef => "Undefined",
     })
   }
 }

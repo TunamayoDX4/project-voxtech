@@ -1,0 +1,6 @@
+{
+  "walk_speed_mps": 8.0,
+  "jump_height_m": 1.2,
+  "mouse_sensi_pixels": 1000.0,
+  "gravity_mps2": 9.8
+}

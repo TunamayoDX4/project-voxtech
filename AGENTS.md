@@ -7,7 +7,7 @@ Follow these rules by default unless the user explicitly overrides them.
 
 ## 0. Project context
 
-VoxTech (VT) is a performance-sensitive voxel/sandbox project.
+VoxTech is a performance-sensitive voxel/sandbox project.
 Correctness and performance matter, but changes should be as small and local as possible.
 
 ---
@@ -24,8 +24,12 @@ Correctness and performance matter, but changes should be as small and local as 
 - Do **not** introduce new crates unless the user explicitly approves.
 - Prefer **small, local changes** over large refactors.
 - Always run / keep code compatible with:
-  - `cargo fmt`
-  - `cargo clippy --all-targets --all-features` (no new warnings)
+  - `cargo fmt` (after any code changes)
+  - `cargo clippy --all-targets --all-features -- -D warnings` (after any code changes)
+- For significant changes (touching multiple modules/crates, public APIs, build system, or non-trivial refactors),
+ also run:
+  - `cargo check --workspace --all-targets --all-features`
+
 
 ---
 
@@ -50,6 +54,10 @@ Correctness and performance matter, but changes should be as small and local as 
 ---
 
 ## 4. Output format (how to respond)
+
+All chat responses should be in **Japanese** by default.
+Keep Japanese casual and clear (the user is not a native English speaker).
+Code/comments may remain English as specified in this document.
 
 When asked to implement or modify code:
 

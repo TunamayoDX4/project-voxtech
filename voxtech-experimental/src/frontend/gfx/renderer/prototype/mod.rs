@@ -1,3 +1,6 @@
+use std::sync::Arc;
+
+use parking_lot::Mutex;
 use wgpu::{PipelineLayout, RenderPipeline};
 
 use super::{
@@ -8,11 +11,21 @@ pub struct PrototypeRenderer {
   pipeline_layout: PipelineLayout,
   pipeline: RenderPipeline,
   camera_config: Camera3DConfig,
-  camera_instance: Camera3DInstance,
-  camera: Camera3DUniformInstance,
+  camera_instance: Arc<Mutex<Camera3DInstance>>,
+  camera: Arc<Mutex<Camera3DUniformInstance>>,
+  camera_update_recv: crossbeam::channel::Receiver<(
+    [f64; 2],
+    nalgebra::Point3<f64>,
+  )>,
 }
 impl PrototypeRenderer {
-  pub fn new(ctx: &WGPUCtx) -> Self {
+  pub fn new(
+    ctx: &WGPUCtx,
+    camera_update_recv: crossbeam::channel::Receiver<(
+      [f64; 2],
+      nalgebra::Point3<f64>,
+    )>,
+  ) -> Self {
     let camera_config = Camera3DConfig {
       fovy: 45. * (std::f64::consts::PI / 180.),
       near: 0.1,
@@ -90,14 +103,46 @@ impl PrototypeRenderer {
     Self {
       pipeline_layout,
       pipeline,
-      camera,
+      camera: Arc::new(Mutex::new(camera)),
       camera_config,
-      camera_instance,
+      camera_instance: Arc::new(Mutex::new(
+        camera_instance,
+      )),
+      camera_update_recv,
     }
   }
 
+  pub fn update(&self, context: &WGPUCtx) {
+    let mut camera_instance_lock =
+      self.camera_instance.lock();
+    let mut camera_lock = self.camera.lock();
+    while let Ok((rot, pos)) = self
+      .camera_update_recv
+      .try_recv()
+    {
+      camera_instance_lock.rotation =
+        nalgebra::UnitQuaternion::from_axis_angle(
+          &nalgebra::UnitVector3::new_normalize(
+            nalgebra::Vector3::z(),
+          ),
+          rot[0],
+        ) * nalgebra::UnitQuaternion::from_axis_angle(
+          &nalgebra::UnitVector3::new_normalize(
+            nalgebra::Vector3::x(),
+          ),
+          rot[1],
+        );
+      camera_instance_lock.position = pos;
+    }
+    camera_lock.update(
+      &self.camera_config,
+      &camera_instance_lock,
+      context,
+    );
+  }
+
   pub fn rendering(
-    &self,
+    &mut self,
     enc: &mut wgpu::CommandEncoder,
     target: &super::super::wgpu_ctx::RenderTarget,
   ) {
@@ -126,12 +171,11 @@ impl PrototypeRenderer {
         multiview_mask: None,
       },
     );
-    rpass.set_bind_group(
-      0,
-      &self.camera.bindgroup,
-      &[],
-    );
+    self
+      .camera
+      .lock()
+      .rendering(&mut rpass);
     rpass.set_pipeline(&self.pipeline);
-    rpass.draw_mesh_tasks(1, 1, 1);
+    rpass.draw_mesh_tasks(4, 4, 1);
   }
 }
