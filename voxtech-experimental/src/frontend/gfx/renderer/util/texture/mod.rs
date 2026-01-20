@@ -57,7 +57,7 @@ impl Texture {
         origin: Origin3d::ZERO,
         aspect: TextureAspect::All,
       },
-      &diffuse_image,
+      diffuse_image,
       TexelCopyBufferLayout {
         offset: 0,
         bytes_per_row: Some(4 * dimensions.0),
@@ -144,7 +144,7 @@ impl Texture {
 }
 
 pub struct DepthTexture {
-  texture: Texture,
+  pub texture: Texture,
 }
 impl DepthTexture {
   pub const DEPTH_FORMAT: TextureFormat =
