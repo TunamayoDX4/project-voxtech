@@ -96,7 +96,6 @@ impl ApplicationHandler for App {
         player: player::PlayerState::default(),
       }
     });
-    /*
     app_window
       .window
       .set_cursor_grab(
@@ -106,7 +105,6 @@ impl ApplicationHandler for App {
     app_window
       .window
       .set_cursor_visible(false);
-    */
     self.window = Some(app_window);
   }
 
