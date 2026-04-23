@@ -140,10 +140,18 @@ impl GfxModule {
 
           // 描画処理本体
           {
+            // 描画前の更新処理
+            self.world_rdr.update(target.ctx);
+
+            // 描画処理そのもの
             self
               .world_rdr
               .rendering(&target);
+
+            // 画面の更新
             target.present();
+
+            // FPS計算
             let now = std::time::Instant::now();
             let mut rct = self.render_cycle_time.lock();
             let dur = now - *rct;
@@ -157,7 +165,11 @@ impl GfxModule {
         rendering::RenderCommand::Resize{
           new_size
         } => {
+          // WGPUコンテキストのリサイズ
           self.wgpu_ctx.resize(new_size);
+
+          // レンダラのリサイズ
+          self.world_rdr.resize(&self.wgpu_ctx);
           Ok(rendering::RenderingSuccess::Nop)
         },
         rendering::RenderCommand::Exit => {

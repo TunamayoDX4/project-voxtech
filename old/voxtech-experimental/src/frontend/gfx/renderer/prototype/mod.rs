@@ -4,7 +4,8 @@ use parking_lot::Mutex;
 use wgpu::{PipelineLayout, RenderPipeline};
 
 use super::{
-  super::wgpu_ctx::WGPUCtx, util::camera::*,
+  super::wgpu_ctx::WGPUCtx,
+  util::{camera::*, texture::*},
 };
 
 pub struct PrototypeRenderer {
@@ -25,7 +26,10 @@ impl PrototypeRenderer {
       [f64; 2],
       nalgebra::Point3<f64>,
     )>,
+    depth: &DepthTexture,
   ) -> Self {
+    let depth =
+      DepthTexture::new_depth(ctx, "depth texture");
     let camera_config = Camera3DConfig {
       fovy: 45. * (std::f64::consts::PI / 180.),
       near: 0.1,
@@ -33,7 +37,6 @@ impl PrototypeRenderer {
     };
     let camera_instance = Camera3DInstance {
       position: [0., -10., 0.].into(),
-      velocity: [0., 0., 0.].into(),
       rotation:
         nalgebra::UnitQuaternion::from_axis_angle(
           &nalgebra::UnitVector3::new_normalize(
@@ -93,7 +96,13 @@ impl PrototypeRenderer {
           polygon_mode: wgpu::PolygonMode::Fill,
           conservative: false,
         },
-        depth_stencil: None,
+        depth_stencil: Some(wgpu::DepthStencilState {
+          format: DepthTexture::DEPTH_FORMAT,
+          depth_write_enabled: true,
+          depth_compare: wgpu::CompareFunction::Less,
+          stencil: wgpu::StencilState::default(),
+          bias: wgpu::DepthBiasState::default(),
+        }),
         multisample: Default::default(),
         multiview: None,
         cache: None,
@@ -135,9 +144,9 @@ impl PrototypeRenderer {
       camera_instance_lock.position = pos;
     }
     camera_lock.update(
+      context,
       &self.camera_config,
       &camera_instance_lock,
-      context,
     );
   }
 
@@ -145,6 +154,7 @@ impl PrototypeRenderer {
     &mut self,
     enc: &mut wgpu::CommandEncoder,
     target: &super::super::wgpu_ctx::RenderTarget,
+    depth: &DepthTexture,
   ) {
     let mut rpass = enc.begin_render_pass(
       &wgpu::RenderPassDescriptor {
@@ -165,7 +175,16 @@ impl PrototypeRenderer {
             },
           },
         )],
-        depth_stencil_attachment: None,
+        depth_stencil_attachment: Some(
+          wgpu::RenderPassDepthStencilAttachment {
+            view: &depth.texture.view,
+            depth_ops: Some(wgpu::Operations {
+              load: wgpu::LoadOp::Clear(1.0),
+              store: wgpu::StoreOp::Store,
+            }),
+            stencil_ops: None,
+          },
+        ),
         timestamp_writes: None,
         occlusion_query_set: None,
         multiview_mask: None,
@@ -176,6 +195,6 @@ impl PrototypeRenderer {
       .lock()
       .rendering(&mut rpass);
     rpass.set_pipeline(&self.pipeline);
-    rpass.draw_mesh_tasks(4, 4, 1);
+    rpass.draw_mesh_tasks(1, 1, 1);
   }
 }

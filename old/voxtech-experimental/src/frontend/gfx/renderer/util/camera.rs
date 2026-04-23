@@ -7,7 +7,6 @@ use wgpu::util::DeviceExt;
 #[derive(Debug, Clone, Copy)]
 pub struct Camera3DInstance {
   pub position: nalgebra::Point3<f64>,
-  pub velocity: nalgebra::Vector3<f64>,
   pub rotation: nalgebra::UnitQuaternion<f64>,
 }
 
@@ -133,9 +132,9 @@ impl Camera3DUniformInstance {
 
   pub fn update(
     &mut self,
+    context: &WGPUCtx,
     config: &Camera3DConfig,
     instance: &Camera3DInstance,
-    context: &WGPUCtx,
   ) {
     let ctx_config = context.config.lock();
     self.uniform = config.uniform(
