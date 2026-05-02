@@ -1,6 +1,11 @@
+use super::WGPUCtx;
 use bytemuck::{Pod, Zeroable};
-use nalgebra::{Point3, UnitQuaternion, matrix};
-use wgpu::{BindGroup, BindGroupLayout, Buffer};
+use nalgebra::{
+  matrix, Point3, UnitQuaternion,
+};
+use wgpu::{
+  BindGroup, BindGroupLayout, Buffer,
+};
 use winit::dpi::PhysicalSize;
 
 pub struct CameraBundle {
@@ -11,7 +16,7 @@ pub struct CameraBundle {
 }
 impl CameraBundle {
   pub fn new(
-    gfx: &super::super::WGPUCtx,
+    gfx: &WGPUCtx,
     param: Camera,
     bindgroup_binding_id: u32,
   ) -> Self {
@@ -42,16 +47,20 @@ impl CameraBundle {
           }],
         },
       );
-    let bindgroup = gfx.device.create_bind_group(
-      &wgpu::BindGroupDescriptor {
-        label: Some("camera bundle bindgroup"),
-        layout: &bindgroup_layout,
-        entries: &[wgpu::BindGroupEntry {
-          binding: bindgroup_binding_id,
-          resource: buffer.as_entire_binding(),
-        }],
-      },
-    );
+    let bindgroup =
+      gfx.device.create_bind_group(
+        &wgpu::BindGroupDescriptor {
+          label: Some(
+            "camera bundle bindgroup",
+          ),
+          layout: &bindgroup_layout,
+          entries: &[wgpu::BindGroupEntry {
+            binding: bindgroup_binding_id,
+            resource: buffer
+              .as_entire_binding(),
+          }],
+        },
+      );
 
     Self {
       param,
@@ -63,7 +72,7 @@ impl CameraBundle {
 
   pub fn update(
     &mut self,
-    gfx: &super::super::WGPUCtx,
+    gfx: &WGPUCtx,
     position: &Point3<f32>,
     rotation: &UnitQuaternion<f32>,
   ) {
@@ -99,8 +108,8 @@ impl Camera {
     rotation: &UnitQuaternion<f32>,
     window_scale: PhysicalSize<u32>,
   ) -> CameraUniform {
-    let target =
-      position + rotation * nalgebra::Vector3::x();
+    let target = position
+      + rotation * nalgebra::Vector3::x();
     let up = rotation * nalgebra::Vector3::z();
     let view = nalgebra::Isometry3::look_at_lh(
       position, &target, &up,

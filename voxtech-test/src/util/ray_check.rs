@@ -47,7 +47,8 @@ pub fn ray_casting_triangle(
   )?;
 
   if RANGE.contains(&result.t)
-    && RANGE.contains(&(result.uv.x + result.uv.y))
+    && RANGE
+      .contains(&(result.uv.x + result.uv.y))
   {
     Some(result)
   } else {
@@ -106,8 +107,12 @@ mod test {
     assert!(res.is_some());
     let res = res.unwrap();
     assert!((res.t - 0.5).abs() < f64::EPSILON);
-    assert!((res.uv[0] - 0.5).abs() < f64::EPSILON);
-    assert!((res.uv[1] - 0.5).abs() < f64::EPSILON);
+    assert!(
+      (res.uv[0] - 0.5).abs() < f64::EPSILON
+    );
+    assert!(
+      (res.uv[1] - 0.5).abs() < f64::EPSILON
+    );
   }
 
   #[test]
@@ -128,8 +133,12 @@ mod test {
     assert!(res.is_some());
     let res = res.unwrap();
     assert!((res.t - 0.5).abs() < f64::EPSILON);
-    assert!((res.uv[0] - 0.5).abs() < f64::EPSILON);
-    assert!((res.uv[1] - 0.5).abs() < f64::EPSILON);
+    assert!(
+      (res.uv[0] - 0.5).abs() < f64::EPSILON
+    );
+    assert!(
+      (res.uv[1] - 0.5).abs() < f64::EPSILON
+    );
   }
 
   #[test]
@@ -150,8 +159,12 @@ mod test {
     assert!(res.is_some());
     let res = res.unwrap();
     assert!((res.t - 0.5).abs() < f64::EPSILON);
-    assert!((res.uv[0] - 0.5).abs() < f64::EPSILON);
-    assert!((res.uv[1] - 0.5).abs() < f64::EPSILON);
+    assert!(
+      (res.uv[0] - 0.5).abs() < f64::EPSILON
+    );
+    assert!(
+      (res.uv[1] - 0.5).abs() < f64::EPSILON
+    );
   }
 
   #[test]
@@ -172,8 +185,12 @@ mod test {
     assert!(res.is_some());
     let res = res.unwrap();
     assert!((res.t - 0.5).abs() < f64::EPSILON);
-    assert!((res.uv[0] - 0.45).abs() < f64::EPSILON);
-    assert!((res.uv[1] - 0.45).abs() < f64::EPSILON);
+    assert!(
+      (res.uv[0] - 0.45).abs() < f64::EPSILON
+    );
+    assert!(
+      (res.uv[1] - 0.45).abs() < f64::EPSILON
+    );
   }
 
   #[test]

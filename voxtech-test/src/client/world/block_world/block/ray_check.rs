@@ -1,7 +1,10 @@
-use nalgebra::{matrix, Point2, Point3, Vector3};
+use nalgebra::{
+  matrix, Point2, Point3, Vector3,
+};
 
-use crate::util::{
-  ray_casting_rhombus, RayCastResult as RayCastModuleRCResult,
+use crate::util::ray_check::{
+  ray_casting_rhombus,
+  RayCastResult as RayCastModuleRCResult,
 };
 
 pub const SKIN: f64 = 1.0e-9;
@@ -13,15 +16,15 @@ pub struct RayCheckResultType {
   size: [Vector3<f64>; 2],
 }
 
-pub struct AbstractBlock;
-impl AbstractBlock {
+impl super::AbstractBlock {
   #[inline]
   pub fn ray_block_normalize(
     block_pos: &Point3<f64>,
     ray_points: &[Point3<f64>; 2],
     scale: &Vector3<f64>,
   ) -> [Point3<f64>; 2] {
-    let offset = (-block_pos - Point3::origin())
+    let offset = (-block_pos
+      - Point3::origin())
       - Vector3::from([0.5, 0.5, 0.5]);
     let scale = scale.map(|v| 1. / (1. + v));
     let scale_mat = matrix![
@@ -42,9 +45,11 @@ impl AbstractBlock {
     ray_points: &[Point3<f64>; 2],
     scale: &Vector3<f64>,
   ) -> Option<(RayCastResult, Dir)> {
-    Self::ray_check_opposing(&Self::ray_block_normalize(
-      block_pos, ray_points, scale,
-    ))
+    Self::ray_check_opposing(
+      &Self::ray_block_normalize(
+        block_pos, ray_points, scale,
+      ),
+    )
     .map(|(rcr, dir)| {
       (RayCastResult::new(rcr, ray_points), dir)
     })
@@ -104,10 +109,13 @@ impl RayCastResult {
     ray_points: &[Point3<f64>],
   ) -> Self {
     let rc_t = rcr.rcr.t - SKIN;
-    let ray_vec = (ray_points[1] - ray_points[0]) * rc_t;
-    let uv = rcr.rcr.uv.map(|uv| (uv - 0.5) * 2.0);
-    let uv_gap =
-      std::array::from_fn(|i| rcr.size[i] * (1. - uv[i]));
+    let ray_vec =
+      (ray_points[1] - ray_points[0]) * rc_t;
+    let uv =
+      rcr.rcr.uv.map(|uv| (uv - 0.5) * 2.0);
+    let uv_gap = std::array::from_fn(|i| {
+      rcr.size[i] * (1. - uv[i])
+    });
     Self {
       t: rc_t,
       uv: rcr.rcr.uv,
@@ -129,11 +137,17 @@ impl BlockTile {
     scale: &Vector3<f64>,
   ) -> Option<RayCastResult> {
     self
-      .ray_check(&AbstractBlock::ray_block_normalize(
-        block_pos, ray_points, scale,
-      ))
+      .ray_check(
+        &super::AbstractBlock::ray_block_normalize(
+          block_pos, ray_points, scale,
+        ),
+      )
       .map(|(rcr, normal, size)| {
-        let rcr = RayCheckResultType { rcr, normal, size };
+        let rcr = RayCheckResultType {
+          rcr,
+          normal,
+          size,
+        };
         RayCastResult::new(rcr, ray_points)
       })
   }
@@ -151,13 +165,17 @@ impl BlockTile {
       .cross(&(self.0[2] - self.0[0]))
       .normalize();
 
-    ray_casting_rhombus(ray_points, &self.0).map(|rc| {
-      (
-        rc,
-        normal,
-        [self.0[1] - self.0[0], self.0[2] - self.0[0]],
-      )
-    })
+    ray_casting_rhombus(ray_points, &self.0)
+      .map(|rc| {
+        (
+          rc,
+          normal,
+          [
+            self.0[1] - self.0[0],
+            self.0[2] - self.0[0],
+          ],
+        )
+      })
   }
 }
 
@@ -202,8 +220,11 @@ impl Dir {
   }
 
   #[inline]
-  pub fn iter() -> impl DoubleEndedIterator<Item = Dir> {
-    (0..6u8).map(|i| unsafe { std::mem::transmute(i) })
+  pub fn iter(
+  ) -> impl DoubleEndedIterator<Item = Dir> {
+    (0..6u8).map(|i| unsafe {
+      std::mem::transmute(i)
+    })
   }
 }
 
@@ -251,113 +272,112 @@ pub mod test {
   use super::*;
   use nalgebra::Point3;
 
-  pub const TEST_RAY_TO_BOTTOM: [Point3<f64>; 2] =
-    [Point3::new(0.5, 0.5, 5.0), Point3::new(0.5, 0.5, -5.0)];
-  pub const TEST_RAY_TO_TOP: [Point3<f64>; 2] =
-    [Point3::new(0.5, 0.5, -5.0), Point3::new(0.5, 0.5, 5.0)];
+  pub const TEST_RAY_TO_BOTTOM: [Point3<f64>;
+    2] = [
+    Point3::new(0.5, 0.5, 5.0),
+    Point3::new(0.5, 0.5, -5.0),
+  ];
+  pub const TEST_RAY_TO_TOP: [Point3<f64>; 2] = [
+    Point3::new(0.5, 0.5, -5.0),
+    Point3::new(0.5, 0.5, 5.0),
+  ];
   pub const EPSILON: f64 = 0.000001;
 
   #[test]
   fn top_tile_from_top_raycast_test() {
-    let check_result = TOP.ray_check_normalize_wrap(
-      &[0., 0., 0.].into(),
-      &TEST_RAY_TO_BOTTOM,
-      &[0., 0., 0.].into(),
-    );
+    let check_result = TOP
+      .ray_check_normalize_wrap(
+        &[0., 0., 0.].into(),
+        &TEST_RAY_TO_BOTTOM,
+        &[0., 0., 0.].into(),
+      );
     println!("{:?}", check_result);
     assert!(check_result.is_some());
     let check_result = check_result.unwrap();
-    assert!((check_result.t - 4.0 / 10.0).abs() < EPSILON);
+    assert!(
+      (check_result.t - 4.0 / 10.0).abs()
+        < EPSILON
+    );
   }
 
   #[test]
   fn bottom_tile_from_top_raycast_test() {
-    let check_result = BOTTOM.ray_check_normalize_wrap(
-      &[0., 0., 0.].into(),
-      &TEST_RAY_TO_BOTTOM,
-      &[0., 0., 0.].into(),
-    );
+    let check_result = BOTTOM
+      .ray_check_normalize_wrap(
+        &[0., 0., 0.].into(),
+        &TEST_RAY_TO_BOTTOM,
+        &[0., 0., 0.].into(),
+      );
     println!("{:?}", check_result);
     assert!(check_result.is_some());
     let check_result = check_result.unwrap();
-    assert!((check_result.t - 5.0 / 10.0).abs() < EPSILON);
+    assert!(
+      (check_result.t - 5.0 / 10.0).abs()
+        < EPSILON
+    );
   }
 
   #[test]
   fn bottom_tile_from_bottom_raycast_test() {
-    let check_result = BOTTOM.ray_check_normalize_wrap(
-      &[0., 0., 0.].into(),
-      &TEST_RAY_TO_TOP,
-      &[0., 0., 0.].into(),
-    );
+    let check_result = BOTTOM
+      .ray_check_normalize_wrap(
+        &[0., 0., 0.].into(),
+        &TEST_RAY_TO_TOP,
+        &[0., 0., 0.].into(),
+      );
     println!(
       "\x1b[034mBOTTOM_TILE_FROM_BOTTOM:\x1b[037m {:?}",
       check_result
     );
     assert!(check_result.is_some());
     let check_result = check_result.unwrap();
-    assert!((check_result.t - 5.0 / 10.0).abs() < EPSILON);
+    assert!(
+      (check_result.t - 5.0 / 10.0).abs()
+        < EPSILON
+    );
   }
 
   #[test]
   fn top_tile_from_top_sized_05_raycast_test() {
-    let check_result = TOP.ray_check_normalize_wrap(
-      &[0., 0., 0.].into(),
-      &TEST_RAY_TO_BOTTOM,
-      &[0.5, 0.5, 0.5].into(),
-    );
-    println!("TOP_TILE_FROM_TOP_SIZED_05\t{:?}", check_result);
-    assert!(check_result.is_some());
-    let check_result = check_result.unwrap();
-    assert!((check_result.t - 3.75 / 10.0).abs() < EPSILON);
-  }
-
-  #[test]
-  fn top_tile_from_top_sized_1_raycast_test() {
-    let check_result = TOP.ray_check_normalize_wrap(
-      &[0., 0., 0.].into(),
-      &TEST_RAY_TO_BOTTOM,
-      &[1., 1., 1.].into(),
-    );
-    println!("{:?}", check_result);
-    assert!(check_result.is_some());
-    let check_result = check_result.unwrap();
-    assert!((check_result.t - 3.5 / 10.0).abs() < EPSILON);
-  }
-
-  #[test]
-  fn top_tile_from_top_sized_2_raycast_test() {
-    let check_result = TOP.ray_check_normalize_wrap(
-      &[0., 0., 0.].into(),
-      &TEST_RAY_TO_BOTTOM,
-      &[4., 4., 4.].into(),
-    );
-    println!("{:?}", check_result);
-    assert!(check_result.is_some());
-    let check_result = check_result.unwrap();
-    assert!((check_result.t - 2.0 / 10.0).abs() < EPSILON);
-  }
-
-  #[test]
-  fn bottom_tile_from_bottom_sized_2_raycast_test() {
-    let check_result = BOTTOM.ray_check_normalize_wrap(
-      &[0., 0., 0.].into(),
-      &TEST_RAY_TO_TOP,
-      &[4., 4., 4.].into(),
-    );
+    let check_result = TOP
+      .ray_check_normalize_wrap(
+        &[0., 0., 0.].into(),
+        &TEST_RAY_TO_BOTTOM,
+        &[0.5, 0.5, 0.5].into(),
+      );
     println!(
-      "\x1b[034mBOTTOM_TILE_FROM_BOTTOM_SIZED:\x1b[037m {:?}",
+      "TOP_TILE_FROM_TOP_SIZED_05\t{:?}",
       check_result
     );
     assert!(check_result.is_some());
     let check_result = check_result.unwrap();
-    assert!((check_result.t - 5.0 / 10.0).abs() < EPSILON);
+    assert!(
+      (check_result.t - 3.75 / 10.0).abs()
+        < EPSILON
+    );
   }
 
   #[test]
-  fn block_top_from_top_sized_2_raycast_test() {
-    let check_result =
-      AbstractBlock::ray_check_opposing_normalize_wrap(
+  fn top_tile_from_top_sized_1_raycast_test() {
+    let check_result = TOP
+      .ray_check_normalize_wrap(
+        &[0., 0., 0.].into(),
+        &TEST_RAY_TO_BOTTOM,
+        &[1., 1., 1.].into(),
+      );
+    println!("{:?}", check_result);
+    assert!(check_result.is_some());
+    let check_result = check_result.unwrap();
+    assert!(
+      (check_result.t - 3.5 / 10.0).abs()
+        < EPSILON
+    );
+  }
+
+  #[test]
+  fn top_tile_from_top_sized_2_raycast_test() {
+    let check_result = TOP
+      .ray_check_normalize_wrap(
         &[0., 0., 0.].into(),
         &TEST_RAY_TO_BOTTOM,
         &[4., 4., 4.].into(),
@@ -365,6 +385,47 @@ pub mod test {
     println!("{:?}", check_result);
     assert!(check_result.is_some());
     let check_result = check_result.unwrap();
-    assert!((check_result.0.t - 2.0 / 10.0).abs() < EPSILON);
+    assert!(
+      (check_result.t - 2.0 / 10.0).abs()
+        < EPSILON
+    );
+  }
+
+  #[test]
+  fn bottom_tile_from_bottom_sized_2_raycast_test(
+  ) {
+    let check_result = BOTTOM
+      .ray_check_normalize_wrap(
+        &[0., 0., 0.].into(),
+        &TEST_RAY_TO_TOP,
+        &[4., 4., 4.].into(),
+      );
+    println!(
+      "\x1b[034mBOTTOM_TILE_FROM_BOTTOM_SIZED:\x1b[037m {:?}",
+      check_result
+    );
+    assert!(check_result.is_some());
+    let check_result = check_result.unwrap();
+    assert!(
+      (check_result.t - 5.0 / 10.0).abs()
+        < EPSILON
+    );
+  }
+
+  #[test]
+  fn block_top_from_top_sized_2_raycast_test() {
+    let check_result =
+      super::super::AbstractBlock::ray_check_opposing_normalize_wrap(
+        &[0., 0., 0.].into(),
+        &TEST_RAY_TO_BOTTOM,
+        &[4., 4., 4.].into(),
+      );
+    println!("{:?}", check_result);
+    assert!(check_result.is_some());
+    let check_result = check_result.unwrap();
+    assert!(
+      (check_result.0.t - 2.0 / 10.0).abs()
+        < EPSILON
+    );
   }
 }

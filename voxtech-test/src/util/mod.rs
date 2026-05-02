@@ -1,6 +1,6 @@
+pub type StdError =
+  Box<dyn std::error::Error + 'static>;
+pub type StdResult<T> = Result<T, StdError>;
+
 pub mod ray_check;
-pub use ray_check::{
-  ray_casting_rhombus,
-  ray_casting_triangle, //
-  RayCastResult,
-};
+pub mod static_json_config;

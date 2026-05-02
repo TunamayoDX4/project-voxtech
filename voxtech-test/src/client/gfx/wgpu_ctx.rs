@@ -1,102 +1,36 @@
-use nalgebra::{Point3, UnitQuaternion};
 use std::sync::Arc;
 use wgpu::{
   Device, Queue, Surface, SurfaceConfiguration,
 };
 use winit::window::Window;
 
-pub mod renderer;
-pub mod util;
-
-pub struct GfxCtx {
-  wgpu_ctx: WGPUCtx,
-  pub renderer: renderer::Renderer,
-}
-impl GfxCtx {
-  pub async fn new(
-    window: Arc<Window>,
-  ) -> Result<Self, Box<dyn std::error::Error>> {
-    let wgpu_ctx = WGPUCtx::new(window).await?;
-    let renderer = renderer::Renderer::new(&wgpu_ctx)?;
-    Ok(Self { wgpu_ctx, renderer })
-  }
-
-  pub fn reconfigure(&self) {
-    self.wgpu_ctx.reconfigure();
-  }
-
-  pub fn resize(
-    &mut self,
-    new_size: winit::dpi::PhysicalSize<u32>,
-  ) -> Result<(), Box<dyn std::error::Error>> {
-    self.wgpu_ctx.resize();
-    self
-      .renderer
-      .surface_resize(&self.wgpu_ctx, new_size)?;
-    Ok(())
-  }
-
-  pub fn rendering(
-    &mut self,
-  ) -> Result<(), Box<dyn std::error::Error>> {
-    // レンダラの更新(カメラ・インスタンスなど…)
-    self
-      .renderer
-      .renderer_update(&self.wgpu_ctx)?;
-
-    self
-      .wgpu_ctx
-      .rendering(&mut self.renderer)
-  }
-
-  pub fn update_camera(
-    &mut self,
-    position: &Point3<f32>,
-    rotation: &UnitQuaternion<f32>,
-  ) {
-    self.renderer.camera.update(
-      &self.wgpu_ctx,
-      position,
-      rotation,
-    );
-  }
-
-  pub fn update_tile_instances(
-    &mut self,
-    f: impl FnOnce(
-      &mut Vec<renderer::tile::vertex::Instance>,
-    ),
-  ) {
-    self
-      .renderer
-      .tile
-      .update_instances(&self.wgpu_ctx, f);
-  }
-}
-
 pub struct WGPUCtx {
-  window: Arc<Window>,
-  surface: Surface<'static>,
-  device: Device,
-  queue: Queue,
-  config: SurfaceConfiguration,
+  pub(super) window: Arc<Window>,
+  pub(super) surface: Surface<'static>,
+  pub(super) device: Device,
+  pub(super) queue: Queue,
+  pub(super) config: SurfaceConfiguration,
 }
 impl WGPUCtx {
   pub async fn new(
     window: Arc<Window>,
-  ) -> Result<Self, Box<dyn std::error::Error>> {
-    let instance =
-      wgpu::Instance::new(wgpu::InstanceDescriptor {
+  ) -> crate::util::StdResult<Self> {
+    let instance = wgpu::Instance::new(
+      wgpu::InstanceDescriptor {
         backends: wgpu::Backends::VULKAN,
         flags: wgpu::InstanceFlags::default(),
         memory_budget_thresholds:
-          wgpu::MemoryBudgetThresholds::default(),
-        backend_options: wgpu::BackendOptions::default(
-        ),
-        display: Some(Box::new(Arc::clone(&window))),
-      });
-    let surface =
-      instance.create_surface(Arc::clone(&window))?;
+          wgpu::MemoryBudgetThresholds::default(
+          ),
+        backend_options:
+          wgpu::BackendOptions::default(),
+        display: Some(Box::new(Arc::clone(
+          &window,
+        ))),
+      },
+    );
+    let surface = instance
+      .create_surface(Arc::clone(&window))?;
     let adapter = instance
       .request_adapter(
         &wgpu::RequestAdapterOptionsBase {
@@ -119,14 +53,16 @@ impl WGPUCtx {
       })
       .await?;
     let config = wgpu::SurfaceConfiguration {
-      usage: wgpu::TextureUsages::RENDER_ATTACHMENT,
+      usage:
+        wgpu::TextureUsages::RENDER_ATTACHMENT,
       format: surface
         .get_capabilities(&adapter)
         .formats[0],
       width: window.inner_size().width,
       height: window.inner_size().height,
       present_mode: wgpu::PresentMode::Fifo,
-      alpha_mode: wgpu::CompositeAlphaMode::Auto,
+      alpha_mode:
+        wgpu::CompositeAlphaMode::Auto,
       view_formats: vec![],
       desired_maximum_frame_latency: 2,
     };
@@ -159,8 +95,8 @@ impl WGPUCtx {
 
   pub fn rendering(
     &self,
-    renderer: &mut renderer::Renderer,
-  ) -> Result<(), Box<dyn std::error::Error>> {
+    renderer: &mut super::renderer::Renderer,
+  ) -> crate::util::StdResult<()> {
     struct GetSurfaceTextureResult {
       /// サーフェステクスチャ本体
       texture: Option<wgpu::SurfaceTexture>,
@@ -213,19 +149,20 @@ impl WGPUCtx {
       }
     };
 
-    if let Some(texture) = surface_texture.texture {
-      let mut enc = self
-        .device
-        .create_command_encoder(
+    if let Some(texture) =
+      surface_texture.texture
+    {
+      let mut enc =
+        self.device.create_command_encoder(
           &wgpu::CommandEncoderDescriptor {
-            label: Some("Renderer command encoder"),
+            label: Some(
+              "Renderer command encoder",
+            ),
           },
         );
       renderer.rendering(&texture, &mut enc);
 
-      self
-        .queue
-        .submit([enc.finish()]);
+      self.queue.submit([enc.finish()]);
       texture.present();
     }
     if surface_texture.require_reconfigure {
@@ -233,7 +170,8 @@ impl WGPUCtx {
     }
     if surface_texture.cannot_recoverable {
       return Err(
-        "can not recoverable error occured.".into(),
+        "can not recoverable error occured."
+          .into(),
       );
     }
 

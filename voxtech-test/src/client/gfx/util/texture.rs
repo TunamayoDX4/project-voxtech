@@ -1,6 +1,7 @@
+use super::WGPUCtx;
 use wgpu::{
-  AddressMode, Device, Extent3d, Sampler,
-  SurfaceConfiguration, TextureFormat, TextureView,
+  AddressMode, Extent3d, Sampler,
+  TextureFormat, TextureView,
 };
 
 pub struct Texture {
@@ -13,12 +14,11 @@ impl Texture {
     TextureFormat::Depth32Float;
 
   pub fn create_depth_texture(
-    device: &Device,
-    config: &SurfaceConfiguration,
+    wgpu_ctx: &WGPUCtx,
   ) -> Self {
     let size = Extent3d {
-      width: config.width,
-      height: config.height,
+      width: wgpu_ctx.config.width,
+      height: wgpu_ctx.config.height,
       depth_or_array_layers: 1,
     };
     let desc = wgpu::TextureDescriptor {
@@ -28,11 +28,13 @@ impl Texture {
       sample_count: 1,
       dimension: wgpu::TextureDimension::D2,
       format: Self::DEPTH_FORMAT,
-      usage: wgpu::TextureUsages::RENDER_ATTACHMENT
-        | wgpu::TextureUsages::TEXTURE_BINDING,
+      usage:
+        wgpu::TextureUsages::RENDER_ATTACHMENT
+          | wgpu::TextureUsages::TEXTURE_BINDING,
       view_formats: &[],
     };
-    let texture = device.create_texture(&desc);
+    let texture =
+      wgpu_ctx.device.create_texture(&desc);
     let view = texture.create_view(
       &wgpu::TextureViewDescriptor::default(),
     );
@@ -42,13 +44,15 @@ impl Texture {
       address_mode_w: AddressMode::ClampToEdge,
       mag_filter: wgpu::FilterMode::Linear,
       min_filter: wgpu::FilterMode::Linear,
-      mipmap_filter: wgpu::MipmapFilterMode::Nearest,
+      mipmap_filter:
+        wgpu::MipmapFilterMode::Nearest,
       lod_min_clamp: 0.0,
       lod_max_clamp: 1.0,
       compare: None,
       ..Default::default()
     };
-    let sampler = device.create_sampler(&desc);
+    let sampler =
+      wgpu_ctx.device.create_sampler(&desc);
     Self {
       texture,
       view,

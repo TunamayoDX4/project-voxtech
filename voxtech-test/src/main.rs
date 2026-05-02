@@ -1,22 +1,11 @@
-pub mod app;
-pub mod back;
-pub mod front;
-
-pub mod config;
-use config::APP_CONFIG;
-
+pub mod client;
+pub mod server;
 pub mod util;
 
-pub mod gfx;
+fn main() -> util::StdResult<()> {
+  let server = server::ServerHandler::new()?;
+  winit::event_loop::EventLoop::new()?
+    .run_app(&mut client::Client::default())?;
 
-pub mod game_logic;
-pub mod game_logic_old;
-
-fn main() {
-  let ev_loop = winit::event_loop::EventLoop::new()
-    .expect("event loop initialize failure");
-  let mut app = app::AppCtx::new();
-  ev_loop
-    .run_app(&mut app)
-    .expect("application running failure");
+  Ok(())
 }
